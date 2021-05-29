@@ -36,3 +36,10 @@ Our Spotify tracker web app allows music listeners to view their music tastes an
 - Make a simple API call on behalf of the user
 - Create React App
 - Make a login page with a big login button
+
+
+
+## Mockups:
+
+![Mockup 1](https://raw.githubusercontent.com/BonnyBTakesCS455/music-tracker/main/mockup1.png)
+![Mockup 2](https://raw.githubusercontent.com/BonnyBTakesCS455/music-tracker/main/mockup2.png)
