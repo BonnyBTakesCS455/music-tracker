@@ -41,5 +41,8 @@ Our Spotify tracker web app allows music listeners to view their music tastes an
 
 ## Mockups:
 
-![Mockup 1](https://raw.githubusercontent.com/BonnyBTakesCS455/music-tracker/main/mockup1.png)
-![Mockup 2](https://raw.githubusercontent.com/BonnyBTakesCS455/music-tracker/main/mockup2.png)
+![Mockup 1](https://raw.githubusercontent.com/BonnyBTakesCS455/music-tracker/main/login.png)
+![Mockup 2](https://raw.githubusercontent.com/BonnyBTakesCS455/music-tracker/main/home.png)
+![Mockup 3](https://raw.githubusercontent.com/BonnyBTakesCS455/music-tracker/main/friends.png)
+![Mockup 4](https://raw.githubusercontent.com/BonnyBTakesCS455/music-tracker/main/insights_graph.png)
+![Mockup 5](https://raw.githubusercontent.com/BonnyBTakesCS455/music-tracker/main/recommended.png)
