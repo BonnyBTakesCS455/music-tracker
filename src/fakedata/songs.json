@@ -1,0 +1,1001 @@
+{
+  "items": [
+    {
+      "track": {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/6YxrfNCKBcQlbITpmDLErL"
+              },
+              "href": "https://api.spotify.com/v1/artists/6YxrfNCKBcQlbITpmDLErL",
+              "id": "6YxrfNCKBcQlbITpmDLErL",
+              "name": "Xuitcasecity",
+              "type": "artist",
+              "uri": "spotify:artist:6YxrfNCKBcQlbITpmDLErL"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/0mMvgkjJXcPOLIOesCYtiY"
+          },
+          "href": "https://api.spotify.com/v1/albums/0mMvgkjJXcPOLIOesCYtiY",
+          "id": "0mMvgkjJXcPOLIOesCYtiY",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b2737766f36b8b9da0c13ca6792c",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e027766f36b8b9da0c13ca6792c",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d000048517766f36b8b9da0c13ca6792c",
+              "width": 64
+            }
+          ],
+          "name": "Misunderstood",
+          "release_date": "2020-01-31",
+          "release_date_precision": "day",
+          "total_tracks": 1,
+          "type": "album",
+          "uri": "spotify:album:0mMvgkjJXcPOLIOesCYtiY"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/6YxrfNCKBcQlbITpmDLErL"
+            },
+            "href": "https://api.spotify.com/v1/artists/6YxrfNCKBcQlbITpmDLErL",
+            "id": "6YxrfNCKBcQlbITpmDLErL",
+            "name": "Xuitcasecity",
+            "type": "artist",
+            "uri": "spotify:artist:6YxrfNCKBcQlbITpmDLErL"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 227866,
+        "explicit": true,
+        "external_ids": {
+          "isrc": "QZ9ND2010120"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5c38uvbdvtrco6KyvjFRHZ"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5c38uvbdvtrco6KyvjFRHZ",
+        "id": "5c38uvbdvtrco6KyvjFRHZ",
+        "is_local": false,
+        "name": "Misunderstood",
+        "popularity": 56,
+        "preview_url": "https://p.scdn.co/mp3-preview/6d77c6615d7ccfc7971a8e73de6b1f2a0d6c5726?cid=774b29d4f13844c495f206cafdad9c86",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:5c38uvbdvtrco6KyvjFRHZ"
+      },
+      "played_at": "2021-05-31T23:45:59.451Z",
+      "context": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1E8HjVOOo5kt3D"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1E8HjVOOo5kt3D",
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1E8HjVOOo5kt3D"
+      }
+    },
+    {
+      "track": {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5w39eY1aNDybnDGTNgVt3r"
+              },
+              "href": "https://api.spotify.com/v1/artists/5w39eY1aNDybnDGTNgVt3r",
+              "id": "5w39eY1aNDybnDGTNgVt3r",
+              "name": "Midnight Kids",
+              "type": "artist",
+              "uri": "spotify:artist:5w39eY1aNDybnDGTNgVt3r"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/7cBPcPEdhDWIoFX6BDvw1b"
+              },
+              "href": "https://api.spotify.com/v1/artists/7cBPcPEdhDWIoFX6BDvw1b",
+              "id": "7cBPcPEdhDWIoFX6BDvw1b",
+              "name": "Jared Lee",
+              "type": "artist",
+              "uri": "spotify:artist:7cBPcPEdhDWIoFX6BDvw1b"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/0RSNFOHJttOM9vgwW3ENfl"
+          },
+          "href": "https://api.spotify.com/v1/albums/0RSNFOHJttOM9vgwW3ENfl",
+          "id": "0RSNFOHJttOM9vgwW3ENfl",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b2739d298a18a4c65d7dac5275f5",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e029d298a18a4c65d7dac5275f5",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d000048519d298a18a4c65d7dac5275f5",
+              "width": 64
+            }
+          ],
+          "name": "Those Were The Days (feat. Jared Lee)",
+          "release_date": "2019-05-17",
+          "release_date_precision": "day",
+          "total_tracks": 1,
+          "type": "album",
+          "uri": "spotify:album:0RSNFOHJttOM9vgwW3ENfl"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5w39eY1aNDybnDGTNgVt3r"
+            },
+            "href": "https://api.spotify.com/v1/artists/5w39eY1aNDybnDGTNgVt3r",
+            "id": "5w39eY1aNDybnDGTNgVt3r",
+            "name": "Midnight Kids",
+            "type": "artist",
+            "uri": "spotify:artist:5w39eY1aNDybnDGTNgVt3r"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/7cBPcPEdhDWIoFX6BDvw1b"
+            },
+            "href": "https://api.spotify.com/v1/artists/7cBPcPEdhDWIoFX6BDvw1b",
+            "id": "7cBPcPEdhDWIoFX6BDvw1b",
+            "name": "Jared Lee",
+            "type": "artist",
+            "uri": "spotify:artist:7cBPcPEdhDWIoFX6BDvw1b"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 200248,
+        "explicit": false,
+        "external_ids": {
+          "isrc": "USRC11901131"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/0n3G0FcRQRGMAqy0w01Ts3"
+        },
+        "href": "https://api.spotify.com/v1/tracks/0n3G0FcRQRGMAqy0w01Ts3",
+        "id": "0n3G0FcRQRGMAqy0w01Ts3",
+        "is_local": false,
+        "name": "Those Were The Days (feat. Jared Lee)",
+        "popularity": 50,
+        "preview_url": "https://p.scdn.co/mp3-preview/325b06684be52cd4f7813f219d19fc39f9dfe007?cid=774b29d4f13844c495f206cafdad9c86",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:0n3G0FcRQRGMAqy0w01Ts3"
+      },
+      "played_at": "2021-05-31T23:42:11.141Z",
+      "context": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1E8HjVOOo5kt3D"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1E8HjVOOo5kt3D",
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1E8HjVOOo5kt3D"
+      }
+    },
+    {
+      "track": {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/44Ewva5aHOX00EwaX2D2mh"
+              },
+              "href": "https://api.spotify.com/v1/artists/44Ewva5aHOX00EwaX2D2mh",
+              "id": "44Ewva5aHOX00EwaX2D2mh",
+              "name": "Two Friends",
+              "type": "artist",
+              "uri": "spotify:artist:44Ewva5aHOX00EwaX2D2mh"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/4a2QqVjgLQeYJCbkZT5UjH"
+          },
+          "href": "https://api.spotify.com/v1/albums/4a2QqVjgLQeYJCbkZT5UjH",
+          "id": "4a2QqVjgLQeYJCbkZT5UjH",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273a438fb99c0831640c65d14b7",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02a438fb99c0831640c65d14b7",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851a438fb99c0831640c65d14b7",
+              "width": 64
+            }
+          ],
+          "name": "This Will Be My Year",
+          "release_date": "2021-03-26",
+          "release_date_precision": "day",
+          "total_tracks": 3,
+          "type": "album",
+          "uri": "spotify:album:4a2QqVjgLQeYJCbkZT5UjH"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/44Ewva5aHOX00EwaX2D2mh"
+            },
+            "href": "https://api.spotify.com/v1/artists/44Ewva5aHOX00EwaX2D2mh",
+            "id": "44Ewva5aHOX00EwaX2D2mh",
+            "name": "Two Friends",
+            "type": "artist",
+            "uri": "spotify:artist:44Ewva5aHOX00EwaX2D2mh"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5Vp7LqcfAtx2U1RfIX8i7r"
+            },
+            "href": "https://api.spotify.com/v1/artists/5Vp7LqcfAtx2U1RfIX8i7r",
+            "id": "5Vp7LqcfAtx2U1RfIX8i7r",
+            "name": "Point North",
+            "type": "artist",
+            "uri": "spotify:artist:5Vp7LqcfAtx2U1RfIX8i7r"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 180618,
+        "explicit": false,
+        "external_ids": {
+          "isrc": "QM24S2101558"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/11U7Iww4rFNk6tFFG5kJGJ"
+        },
+        "href": "https://api.spotify.com/v1/tracks/11U7Iww4rFNk6tFFG5kJGJ",
+        "id": "11U7Iww4rFNk6tFFG5kJGJ",
+        "is_local": false,
+        "name": "This Will Be My Year",
+        "popularity": 56,
+        "preview_url": "https://p.scdn.co/mp3-preview/e1e8e5b6085e7d82e4eab36e223a7027339449c6?cid=774b29d4f13844c495f206cafdad9c86",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:11U7Iww4rFNk6tFFG5kJGJ"
+      },
+      "played_at": "2021-05-31T23:37:55.858Z",
+      "context": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1E8HjVOOo5kt3D"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1E8HjVOOo5kt3D",
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1E8HjVOOo5kt3D"
+      }
+    },
+    {
+      "track": {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3hyEbRtp617pNCuuQjyOmc"
+              },
+              "href": "https://api.spotify.com/v1/artists/3hyEbRtp617pNCuuQjyOmc",
+              "id": "3hyEbRtp617pNCuuQjyOmc",
+              "name": "Lost Kings",
+              "type": "artist",
+              "uri": "spotify:artist:3hyEbRtp617pNCuuQjyOmc"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/2jEoK4yuqMQOrxXj2006mu"
+          },
+          "href": "https://api.spotify.com/v1/albums/2jEoK4yuqMQOrxXj2006mu",
+          "id": "2jEoK4yuqMQOrxXj2006mu",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b27371165ff9bb2de96a51738b3c",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e0271165ff9bb2de96a51738b3c",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d0000485171165ff9bb2de96a51738b3c",
+              "width": 64
+            }
+          ],
+          "name": "Phone Down",
+          "release_date": "2016-10-07",
+          "release_date_precision": "day",
+          "total_tracks": 1,
+          "type": "album",
+          "uri": "spotify:album:2jEoK4yuqMQOrxXj2006mu"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/3hyEbRtp617pNCuuQjyOmc"
+            },
+            "href": "https://api.spotify.com/v1/artists/3hyEbRtp617pNCuuQjyOmc",
+            "id": "3hyEbRtp617pNCuuQjyOmc",
+            "name": "Lost Kings",
+            "type": "artist",
+            "uri": "spotify:artist:3hyEbRtp617pNCuuQjyOmc"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1oKdM70mJD8VvDOTKeS8t1"
+            },
+            "href": "https://api.spotify.com/v1/artists/1oKdM70mJD8VvDOTKeS8t1",
+            "id": "1oKdM70mJD8VvDOTKeS8t1",
+            "name": "Emily Warren",
+            "type": "artist",
+            "uri": "spotify:artist:1oKdM70mJD8VvDOTKeS8t1"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 215564,
+        "explicit": true,
+        "external_ids": {
+          "isrc": "USRC11602008"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5bvNpG6wiIEf1PA13TkTu2"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5bvNpG6wiIEf1PA13TkTu2",
+        "id": "5bvNpG6wiIEf1PA13TkTu2",
+        "is_local": false,
+        "name": "Phone Down",
+        "popularity": 57,
+        "preview_url": "https://p.scdn.co/mp3-preview/8bf4118757f230a82d23f2c3c46272d5d873de69?cid=774b29d4f13844c495f206cafdad9c86",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:5bvNpG6wiIEf1PA13TkTu2"
+      },
+      "played_at": "2021-05-31T23:34:54.576Z",
+      "context": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1E8HjVOOo5kt3D"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1E8HjVOOo5kt3D",
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1E8HjVOOo5kt3D"
+      }
+    },
+    {
+      "track": {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/44Ewva5aHOX00EwaX2D2mh"
+              },
+              "href": "https://api.spotify.com/v1/artists/44Ewva5aHOX00EwaX2D2mh",
+              "id": "44Ewva5aHOX00EwaX2D2mh",
+              "name": "Two Friends",
+              "type": "artist",
+              "uri": "spotify:artist:44Ewva5aHOX00EwaX2D2mh"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/4a2QqVjgLQeYJCbkZT5UjH"
+          },
+          "href": "https://api.spotify.com/v1/albums/4a2QqVjgLQeYJCbkZT5UjH",
+          "id": "4a2QqVjgLQeYJCbkZT5UjH",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273a438fb99c0831640c65d14b7",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02a438fb99c0831640c65d14b7",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851a438fb99c0831640c65d14b7",
+              "width": 64
+            }
+          ],
+          "name": "This Will Be My Year",
+          "release_date": "2021-03-26",
+          "release_date_precision": "day",
+          "total_tracks": 3,
+          "type": "album",
+          "uri": "spotify:album:4a2QqVjgLQeYJCbkZT5UjH"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/44Ewva5aHOX00EwaX2D2mh"
+            },
+            "href": "https://api.spotify.com/v1/artists/44Ewva5aHOX00EwaX2D2mh",
+            "id": "44Ewva5aHOX00EwaX2D2mh",
+            "name": "Two Friends",
+            "type": "artist",
+            "uri": "spotify:artist:44Ewva5aHOX00EwaX2D2mh"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5Vp7LqcfAtx2U1RfIX8i7r"
+            },
+            "href": "https://api.spotify.com/v1/artists/5Vp7LqcfAtx2U1RfIX8i7r",
+            "id": "5Vp7LqcfAtx2U1RfIX8i7r",
+            "name": "Point North",
+            "type": "artist",
+            "uri": "spotify:artist:5Vp7LqcfAtx2U1RfIX8i7r"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 180618,
+        "explicit": false,
+        "external_ids": {
+          "isrc": "QM24S2101558"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/11U7Iww4rFNk6tFFG5kJGJ"
+        },
+        "href": "https://api.spotify.com/v1/tracks/11U7Iww4rFNk6tFFG5kJGJ",
+        "id": "11U7Iww4rFNk6tFFG5kJGJ",
+        "is_local": false,
+        "name": "This Will Be My Year",
+        "popularity": 56,
+        "preview_url": "https://p.scdn.co/mp3-preview/e1e8e5b6085e7d82e4eab36e223a7027339449c6?cid=774b29d4f13844c495f206cafdad9c86",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:11U7Iww4rFNk6tFFG5kJGJ"
+      },
+      "played_at": "2021-05-31T23:17:11.576Z",
+      "context": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1E8HjVOOo5kt3D"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1E8HjVOOo5kt3D",
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1E8HjVOOo5kt3D"
+      }
+    },
+    {
+      "track": {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3hyEbRtp617pNCuuQjyOmc"
+              },
+              "href": "https://api.spotify.com/v1/artists/3hyEbRtp617pNCuuQjyOmc",
+              "id": "3hyEbRtp617pNCuuQjyOmc",
+              "name": "Lost Kings",
+              "type": "artist",
+              "uri": "spotify:artist:3hyEbRtp617pNCuuQjyOmc"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/2jEoK4yuqMQOrxXj2006mu"
+          },
+          "href": "https://api.spotify.com/v1/albums/2jEoK4yuqMQOrxXj2006mu",
+          "id": "2jEoK4yuqMQOrxXj2006mu",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b27371165ff9bb2de96a51738b3c",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e0271165ff9bb2de96a51738b3c",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d0000485171165ff9bb2de96a51738b3c",
+              "width": 64
+            }
+          ],
+          "name": "Phone Down",
+          "release_date": "2016-10-07",
+          "release_date_precision": "day",
+          "total_tracks": 1,
+          "type": "album",
+          "uri": "spotify:album:2jEoK4yuqMQOrxXj2006mu"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/3hyEbRtp617pNCuuQjyOmc"
+            },
+            "href": "https://api.spotify.com/v1/artists/3hyEbRtp617pNCuuQjyOmc",
+            "id": "3hyEbRtp617pNCuuQjyOmc",
+            "name": "Lost Kings",
+            "type": "artist",
+            "uri": "spotify:artist:3hyEbRtp617pNCuuQjyOmc"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/1oKdM70mJD8VvDOTKeS8t1"
+            },
+            "href": "https://api.spotify.com/v1/artists/1oKdM70mJD8VvDOTKeS8t1",
+            "id": "1oKdM70mJD8VvDOTKeS8t1",
+            "name": "Emily Warren",
+            "type": "artist",
+            "uri": "spotify:artist:1oKdM70mJD8VvDOTKeS8t1"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 215564,
+        "explicit": true,
+        "external_ids": {
+          "isrc": "USRC11602008"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5bvNpG6wiIEf1PA13TkTu2"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5bvNpG6wiIEf1PA13TkTu2",
+        "id": "5bvNpG6wiIEf1PA13TkTu2",
+        "is_local": false,
+        "name": "Phone Down",
+        "popularity": 57,
+        "preview_url": "https://p.scdn.co/mp3-preview/8bf4118757f230a82d23f2c3c46272d5d873de69?cid=774b29d4f13844c495f206cafdad9c86",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:5bvNpG6wiIEf1PA13TkTu2"
+      },
+      "played_at": "2021-05-31T23:14:10.578Z",
+      "context": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1E8HjVOOo5kt3D"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1E8HjVOOo5kt3D",
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1E8HjVOOo5kt3D"
+      }
+    },
+    {
+      "track": {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/5eIbEEQnDM8yuDVB0bimSP"
+              },
+              "href": "https://api.spotify.com/v1/artists/5eIbEEQnDM8yuDVB0bimSP",
+              "id": "5eIbEEQnDM8yuDVB0bimSP",
+              "name": "RL Grime",
+              "type": "artist",
+              "uri": "spotify:artist:5eIbEEQnDM8yuDVB0bimSP"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/04p1jV00pBnrmh2rKl0jnT"
+              },
+              "href": "https://api.spotify.com/v1/artists/04p1jV00pBnrmh2rKl0jnT",
+              "id": "04p1jV00pBnrmh2rKl0jnT",
+              "name": "Juelz",
+              "type": "artist",
+              "uri": "spotify:artist:04p1jV00pBnrmh2rKl0jnT"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/20vGGp9bATvqdxAHkhbV60"
+          },
+          "href": "https://api.spotify.com/v1/albums/20vGGp9bATvqdxAHkhbV60",
+          "id": "20vGGp9bATvqdxAHkhbV60",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273a97d0dc4fd71e56babea6c97",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02a97d0dc4fd71e56babea6c97",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851a97d0dc4fd71e56babea6c97",
+              "width": 64
+            }
+          ],
+          "name": "Formula",
+          "release_date": "2019-11-22",
+          "release_date_precision": "day",
+          "total_tracks": 1,
+          "type": "album",
+          "uri": "spotify:album:20vGGp9bATvqdxAHkhbV60"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/5eIbEEQnDM8yuDVB0bimSP"
+            },
+            "href": "https://api.spotify.com/v1/artists/5eIbEEQnDM8yuDVB0bimSP",
+            "id": "5eIbEEQnDM8yuDVB0bimSP",
+            "name": "RL Grime",
+            "type": "artist",
+            "uri": "spotify:artist:5eIbEEQnDM8yuDVB0bimSP"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/04p1jV00pBnrmh2rKl0jnT"
+            },
+            "href": "https://api.spotify.com/v1/artists/04p1jV00pBnrmh2rKl0jnT",
+            "id": "04p1jV00pBnrmh2rKl0jnT",
+            "name": "Juelz",
+            "type": "artist",
+            "uri": "spotify:artist:04p1jV00pBnrmh2rKl0jnT"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 210389,
+        "explicit": false,
+        "external_ids": {
+          "isrc": "QMUY41900143"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/7h9y8oMm1GtwYNhAPh4OOI"
+        },
+        "href": "https://api.spotify.com/v1/tracks/7h9y8oMm1GtwYNhAPh4OOI",
+        "id": "7h9y8oMm1GtwYNhAPh4OOI",
+        "is_local": false,
+        "name": "Formula",
+        "popularity": 56,
+        "preview_url": "https://p.scdn.co/mp3-preview/7aaae7e584e183d9fb3ae0d4babd3ed88b90aff1?cid=774b29d4f13844c495f206cafdad9c86",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:7h9y8oMm1GtwYNhAPh4OOI"
+      },
+      "played_at": "2021-05-31T23:10:34.282Z",
+      "context": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1E8HjVOOo5kt3D"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1E8HjVOOo5kt3D",
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1E8HjVOOo5kt3D"
+      }
+    },
+    {
+      "track": {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/0BEYTctVmnYa5yStp4Jpab"
+              },
+              "href": "https://api.spotify.com/v1/artists/0BEYTctVmnYa5yStp4Jpab",
+              "id": "0BEYTctVmnYa5yStp4Jpab",
+              "name": "Destructo",
+              "type": "artist",
+              "uri": "spotify:artist:0BEYTctVmnYa5yStp4Jpab"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/2rT7i7IBhyrE4nbof6oy6a"
+          },
+          "href": "https://api.spotify.com/v1/albums/2rT7i7IBhyrE4nbof6oy6a",
+          "id": "2rT7i7IBhyrE4nbof6oy6a",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273ff5f4c1c34cbab4515987a6d",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02ff5f4c1c34cbab4515987a6d",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851ff5f4c1c34cbab4515987a6d",
+              "width": 64
+            }
+          ],
+          "name": "Party Up (feat. YG) [Remixes]",
+          "release_date": "2014-10-21",
+          "release_date_precision": "day",
+          "total_tracks": 4,
+          "type": "album",
+          "uri": "spotify:album:2rT7i7IBhyrE4nbof6oy6a"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0BEYTctVmnYa5yStp4Jpab"
+            },
+            "href": "https://api.spotify.com/v1/artists/0BEYTctVmnYa5yStp4Jpab",
+            "id": "0BEYTctVmnYa5yStp4Jpab",
+            "name": "Destructo",
+            "type": "artist",
+            "uri": "spotify:artist:0BEYTctVmnYa5yStp4Jpab"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/0A0FS04o6zMoto8OKPsDwY"
+            },
+            "href": "https://api.spotify.com/v1/artists/0A0FS04o6zMoto8OKPsDwY",
+            "id": "0A0FS04o6zMoto8OKPsDwY",
+            "name": "YG",
+            "type": "artist",
+            "uri": "spotify:artist:0A0FS04o6zMoto8OKPsDwY"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/6M7RdR9ZP52h2mfNLmiHtU"
+            },
+            "href": "https://api.spotify.com/v1/artists/6M7RdR9ZP52h2mfNLmiHtU",
+            "id": "6M7RdR9ZP52h2mfNLmiHtU",
+            "name": "Good Times Ahead",
+            "type": "artist",
+            "uri": "spotify:artist:6M7RdR9ZP52h2mfNLmiHtU"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 259920,
+        "explicit": true,
+        "external_ids": {
+          "isrc": "USUM71413075"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/6eWzHocUGr3LlnBiT5Pc01"
+        },
+        "href": "https://api.spotify.com/v1/tracks/6eWzHocUGr3LlnBiT5Pc01",
+        "id": "6eWzHocUGr3LlnBiT5Pc01",
+        "is_local": false,
+        "name": "Party Up (feat. YG) - GTA Remix",
+        "popularity": 44,
+        "preview_url": "https://p.scdn.co/mp3-preview/c54cac7190ba0f20cbc1dd23cce1844bd4d21069?cid=774b29d4f13844c495f206cafdad9c86",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:6eWzHocUGr3LlnBiT5Pc01"
+      },
+      "played_at": "2021-05-31T23:04:54.316Z",
+      "context": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1E8HjVOOo5kt3D"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1E8HjVOOo5kt3D",
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1E8HjVOOo5kt3D"
+      }
+    },
+    {
+      "track": {
+        "album": {
+          "album_type": "single",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/2ZRQcIgzPCVaT9XKhXZIzh"
+              },
+              "href": "https://api.spotify.com/v1/artists/2ZRQcIgzPCVaT9XKhXZIzh",
+              "id": "2ZRQcIgzPCVaT9XKhXZIzh",
+              "name": "Gryffin",
+              "type": "artist",
+              "uri": "spotify:artist:2ZRQcIgzPCVaT9XKhXZIzh"
+            },
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/3JDG63cSaK3xgDnB2H55Xp"
+              },
+              "href": "https://api.spotify.com/v1/artists/3JDG63cSaK3xgDnB2H55Xp",
+              "id": "3JDG63cSaK3xgDnB2H55Xp",
+              "name": "Audrey Mika",
+              "type": "artist",
+              "uri": "spotify:artist:3JDG63cSaK3xgDnB2H55Xp"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/2qBzKbaRm9IXomwL7jMdM7"
+          },
+          "href": "https://api.spotify.com/v1/albums/2qBzKbaRm9IXomwL7jMdM7",
+          "id": "2qBzKbaRm9IXomwL7jMdM7",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b273ef67b5f76eacede43f847b57",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e02ef67b5f76eacede43f847b57",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d00004851ef67b5f76eacede43f847b57",
+              "width": 64
+            }
+          ],
+          "name": "Safe With Me (with Audrey Mika)",
+          "release_date": "2020-11-19",
+          "release_date_precision": "day",
+          "total_tracks": 1,
+          "type": "album",
+          "uri": "spotify:album:2qBzKbaRm9IXomwL7jMdM7"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/2ZRQcIgzPCVaT9XKhXZIzh"
+            },
+            "href": "https://api.spotify.com/v1/artists/2ZRQcIgzPCVaT9XKhXZIzh",
+            "id": "2ZRQcIgzPCVaT9XKhXZIzh",
+            "name": "Gryffin",
+            "type": "artist",
+            "uri": "spotify:artist:2ZRQcIgzPCVaT9XKhXZIzh"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/3JDG63cSaK3xgDnB2H55Xp"
+            },
+            "href": "https://api.spotify.com/v1/artists/3JDG63cSaK3xgDnB2H55Xp",
+            "id": "3JDG63cSaK3xgDnB2H55Xp",
+            "name": "Audrey Mika",
+            "type": "artist",
+            "uri": "spotify:artist:3JDG63cSaK3xgDnB2H55Xp"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 205164,
+        "explicit": false,
+        "external_ids": {
+          "isrc": "USUM72019104"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/6Skh3CBum0pZw9TOr7FQnX"
+        },
+        "href": "https://api.spotify.com/v1/tracks/6Skh3CBum0pZw9TOr7FQnX",
+        "id": "6Skh3CBum0pZw9TOr7FQnX",
+        "is_local": false,
+        "name": "Safe With Me (with Audrey Mika)",
+        "popularity": 75,
+        "preview_url": "https://p.scdn.co/mp3-preview/939e320fecb59ffb008fdde50412ad1490142774?cid=774b29d4f13844c495f206cafdad9c86",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:6Skh3CBum0pZw9TOr7FQnX"
+      },
+      "played_at": "2021-05-31T22:46:51.655Z",
+      "context": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1E8HjVOOo5kt3D"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1E8HjVOOo5kt3D",
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1E8HjVOOo5kt3D"
+      }
+    },
+    {
+      "track": {
+        "album": {
+          "album_type": "album",
+          "artists": [
+            {
+              "external_urls": {
+                "spotify": "https://open.spotify.com/artist/7yPPzu5UdAK7yagQqjEZQm"
+              },
+              "href": "https://api.spotify.com/v1/artists/7yPPzu5UdAK7yagQqjEZQm",
+              "id": "7yPPzu5UdAK7yagQqjEZQm",
+              "name": "Party Favor",
+              "type": "artist",
+              "uri": "spotify:artist:7yPPzu5UdAK7yagQqjEZQm"
+            }
+          ],
+          "external_urls": {
+            "spotify": "https://open.spotify.com/album/6kDQ4uisku1cm591Y1ix3Q"
+          },
+          "href": "https://api.spotify.com/v1/albums/6kDQ4uisku1cm591Y1ix3Q",
+          "id": "6kDQ4uisku1cm591Y1ix3Q",
+          "images": [
+            {
+              "height": 640,
+              "url": "https://i.scdn.co/image/ab67616d0000b27389ea0945a0184fc07808dc01",
+              "width": 640
+            },
+            {
+              "height": 300,
+              "url": "https://i.scdn.co/image/ab67616d00001e0289ea0945a0184fc07808dc01",
+              "width": 300
+            },
+            {
+              "height": 64,
+              "url": "https://i.scdn.co/image/ab67616d0000485189ea0945a0184fc07808dc01",
+              "width": 64
+            }
+          ],
+          "name": "Layers",
+          "release_date": "2019-04-26",
+          "release_date_precision": "day",
+          "total_tracks": 11,
+          "type": "album",
+          "uri": "spotify:album:6kDQ4uisku1cm591Y1ix3Q"
+        },
+        "artists": [
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/7yPPzu5UdAK7yagQqjEZQm"
+            },
+            "href": "https://api.spotify.com/v1/artists/7yPPzu5UdAK7yagQqjEZQm",
+            "id": "7yPPzu5UdAK7yagQqjEZQm",
+            "name": "Party Favor",
+            "type": "artist",
+            "uri": "spotify:artist:7yPPzu5UdAK7yagQqjEZQm"
+          },
+          {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/artist/6JINIoM2HUR5ZNTJwoR9eC"
+            },
+            "href": "https://api.spotify.com/v1/artists/6JINIoM2HUR5ZNTJwoR9eC",
+            "id": "6JINIoM2HUR5ZNTJwoR9eC",
+            "name": "EZI",
+            "type": "artist",
+            "uri": "spotify:artist:6JINIoM2HUR5ZNTJwoR9eC"
+          }
+        ],
+        "disc_number": 1,
+        "duration_ms": 186000,
+        "explicit": true,
+        "external_ids": {
+          "isrc": "USZ4V1900107"
+        },
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5IiCTrv2CVarZaaCAz74yO"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5IiCTrv2CVarZaaCAz74yO",
+        "id": "5IiCTrv2CVarZaaCAz74yO",
+        "is_local": false,
+        "name": "Be Ok",
+        "popularity": 52,
+        "preview_url": "https://p.scdn.co/mp3-preview/3f955888b4ed54fa755a46a609c25295ecb97736?cid=774b29d4f13844c495f206cafdad9c86",
+        "track_number": 7,
+        "type": "track",
+        "uri": "spotify:track:5IiCTrv2CVarZaaCAz74yO"
+      },
+      "played_at": "2021-05-31T22:36:19.997Z",
+      "context": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1E8HjVOOo5kt3D"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1E8HjVOOo5kt3D",
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1E8HjVOOo5kt3D"
+      }
+    }
+  ],
+  "next": "https://api.spotify.com/v1/me/player/recently-played?after=1622504759451&limit=10",
+  "cursors": {
+    "after": "1622504759451",
+    "before": "1622500579997"
+  },
+  "limit": 10,
+  "href": "https://api.spotify.com/v1/me/player/recently-played?after=1484811043508&limit=10"
+}
