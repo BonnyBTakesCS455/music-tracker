@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import home_icon from '../icons/Home_Icon.png';
 import home_icon_hovered from '../icons/home_icon_hovered.png';
 import insights_icon from '../icons/insight_icon.png';
 import insights_icon_hovered from '../icons/insight_icon_hovered.png';
 import heart_icon from '../icons/heart_icon.png';
 import heart_icon_hovered from '../icons/heart_icon_hovered.png';
-import friends_icon from '../icons/friends_icon.png';
-import friends_icon_hovered from '../icons/friends_icon_hovered.png';
+import profile_icon from '../icons/profile_icon.png';
+import profile_icon_hovered from '../icons/profile_icon_hovered.png';
 
 const Nav = styled.div`
   list-style-type: none;
@@ -24,6 +24,8 @@ const StyledListItem = styled.div`
   padding: 10px 10px;
   text-decoration: none;
   float: right;
+  position: relative;
+  color: white;
 `;
 
 const StyledImage = styled.img`
@@ -34,17 +36,27 @@ const StyledImage = styled.img`
   max-height: 40px;
 `;
 
+const ProfileText = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #1DB954;
+`;
+
+
 function NavBar(props) {
     return (
         <React.Fragment>
             <Nav className="navbar">
                 <StyledListItem>
-                    <a href=".">
-                        <StyledImage
-                            src={friends_icon}
-                            onMouseOver={(e) => e.currentTarget.src = friends_icon_hovered}
-                            onMouseOut={(e) => e.currentTarget.src = friends_icon}
-                        />
+                    <a href="."
+                       onMouseOver={(e) => e.currentTarget.children.item(1).src = profile_icon_hovered}
+                       onMouseOut={(e) => {e.currentTarget.children.item(1).src = profile_icon}}>
+                        <ProfileText>
+                            <h2>B</h2>
+                        </ProfileText>
+                        <StyledImage src={profile_icon} />
                     </a>
                 </StyledListItem>
                 <StyledListItem>

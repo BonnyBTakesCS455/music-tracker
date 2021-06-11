@@ -1,7 +1,7 @@
 import './App.css';
 import Button from './components/Button'
 import SongList from './components/SongList';
-import NavBar from "./components/NavBar";
+import NavBar from './components/NavBar';
 
 function App() {
   return (
