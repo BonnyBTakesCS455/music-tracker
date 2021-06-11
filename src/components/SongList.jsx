@@ -32,8 +32,8 @@ function SongList(props) {
         <SongDiv>
             <Table>
                 <SongHeader />
-                {songs.map((s, i) => (
-                    <Song {...s.track} />
+                {songs.map((song, i) => (
+                    <Song {...song.track} />
                 ))}
             </Table>
         </SongDiv>

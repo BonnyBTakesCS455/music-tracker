@@ -7,7 +7,7 @@ const ImgDiv = styled.div`
   font-size: 18px;
   font-weight: bolder;
   width: 4%;
-  padding: 0px 0px 0px 0px;
+  padding: 0;
 `;
 
 const SongColumn = styled.div`
