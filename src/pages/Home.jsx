@@ -8,12 +8,11 @@ function Home(props) {
   return (
     <React.Fragment>
       <header className='App-header'>
-        <PageHeader title="Hello, Bonny B!" />
         <Card>
-          <h4>Login</h4>
-          <Button onClick={() => console.log('Clicked Login')}>Login</Button>
-        </Card>
-
+            <h4>Login</h4>
+            <Button onClick={() => console.log('Clicked Login')}>Login</Button>
+          </Card>
+        <PageHeader title="Hello, Bonny B!" />
         <SongList />
       </header>
     </React.Fragment>
