@@ -1,21 +1,21 @@
 import './App.css';
-import Button from './components/Button'
-import Card from './components/Card'
-import SongList from './components/SongList';
 import NavBar from './components/NavBar';
+import Home from './pages/Home';
+import { Switch, Route } from 'wouter';
+import Graph from './pages/Graph';
+import Profile from './pages/Profile';
+import Fav from './pages/Fav';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <NavBar />
-      <header className="App-header">
-        <Card>
-          <h4>Login</h4>
-          <Button onClick={() => console.log('Clicked Login')}>Login</Button>
-        </Card>
-        
-        <SongList />
-      </header>
+      <Switch>
+        <Route path='/profile'>{(_) => Profile()}</Route>
+        <Route path='/fav'>{(_) => Fav()}</Route>
+        <Route path='/graph'>{(_) => Graph()}</Route>
+        <Route path='/'>{(_) => Home()}</Route>
+      </Switch>
     </div>
   );
 }
