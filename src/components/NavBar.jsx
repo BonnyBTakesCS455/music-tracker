@@ -14,7 +14,7 @@ const Nav = styled.div`
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 `;
 
 const StyledListItem = styled.div`
@@ -41,54 +41,59 @@ const ProfileText = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #1DB954;
+  color: #1db954;
 `;
 
-
 function NavBar(props) {
-    return (
-        <React.Fragment>
-            <Nav className="navbar">
-                <StyledListItem>
-                    <a href="."
-                       onMouseOver={(e) => e.currentTarget.children.item(1).src = profile_icon_hovered}
-                       onMouseOut={(e) => {e.currentTarget.children.item(1).src = profile_icon}}>
-                        <ProfileText>
-                            <h2>B</h2>
-                        </ProfileText>
-                        <StyledImage src={profile_icon} />
-                    </a>
-                </StyledListItem>
-                <StyledListItem>
-                    <a href=".">
-                        <StyledImage
-                            src={heart_icon}
-                            onMouseOver={(e) => e.currentTarget.src = heart_icon_hovered}
-                            onMouseOut={(e) => e.currentTarget.src = heart_icon}
-                        />
-                    </a>
-                </StyledListItem>
-                <StyledListItem>
-                    <a href=".">
-                        <StyledImage
-                            src={insights_icon}
-                            onMouseOver={(e) => e.currentTarget.src = insights_icon_hovered}
-                            onMouseOut={(e) => e.currentTarget.src = insights_icon}
-                        />
-                    </a>
-                </StyledListItem>
-                <StyledListItem>
-                    <a href=".">
-                        <StyledImage
-                            src={home_icon}
-                            onMouseOver={(e) => e.currentTarget.src = home_icon_hovered}
-                            onMouseOut={(e) => e.currentTarget.src = home_icon}
-                        />
-                    </a>
-                </StyledListItem>
-            </Nav>
-        </React.Fragment>
-    );
+  return (
+    <React.Fragment>
+      <Nav className='navbar'>
+        <StyledListItem>
+          <a
+            href='/profile'
+            onMouseOver={(e) =>
+              (e.currentTarget.children.item(1).src = profile_icon_hovered)
+            }
+            onMouseOut={(e) => {
+              e.currentTarget.children.item(1).src = profile_icon;
+            }}
+          >
+            <ProfileText>
+              <h2>B</h2>
+            </ProfileText>
+            <StyledImage src={profile_icon} />
+          </a>
+        </StyledListItem>
+        <StyledListItem>
+          <a href='/fav'>
+            <StyledImage
+              src={heart_icon}
+              onMouseOver={(e) => (e.currentTarget.src = heart_icon_hovered)}
+              onMouseOut={(e) => (e.currentTarget.src = heart_icon)}
+            />
+          </a>
+        </StyledListItem>
+        <StyledListItem>
+          <a href='/graph'>
+            <StyledImage
+              src={insights_icon}
+              onMouseOver={(e) => (e.currentTarget.src = insights_icon_hovered)}
+              onMouseOut={(e) => (e.currentTarget.src = insights_icon)}
+            />
+          </a>
+        </StyledListItem>
+        <StyledListItem>
+          <a href='/'>
+            <StyledImage
+              src={home_icon}
+              onMouseOver={(e) => (e.currentTarget.src = home_icon_hovered)}
+              onMouseOut={(e) => (e.currentTarget.src = home_icon)}
+            />
+          </a>
+        </StyledListItem>
+      </Nav>
+    </React.Fragment>
+  );
 }
 
 export default NavBar;
