@@ -15,7 +15,7 @@
  *  }
  * }
  *
- * export default connect(null, mapDispatchToProps)(YourComponentHere);
+ * export default connect(mapStateToProps, mapDispatchToProps)(YourComponentHere);
  *
  */
 
