@@ -22,16 +22,25 @@
 // Initial state
 const INITIAL_STATE = {
   isDarkModeEnabled: true,
+  user: false,
 };
 
 // Types
 export const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE';
+export const SET_USER = 'SET_USER';
 
 // Actions
 export const toggleDarkMode = (isDarkModeEnabled) => {
   return {
     type: TOGGLE_DARK_MODE,
     isDarkModeEnabled: isDarkModeEnabled,
+  };
+};
+
+export const setUser = (user) => {
+  return {
+    type: SET_USER,
+    user,
   };
 };
 
@@ -42,6 +51,11 @@ function reducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isDarkModeEnabled: action.isDarkModeEnabled,
+      };
+    case SET_USER:
+      return {
+        ...state,
+        user: action.user,
       };
     default:
       return state;
