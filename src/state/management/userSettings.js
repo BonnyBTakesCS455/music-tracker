@@ -1,3 +1,24 @@
+/**
+ * Example:
+ *
+ * Add the following function to the JS file:
+ *
+ * function mapStateToProps(state) {
+ *  return {
+ *    isDarkModeEnabled: state.userSettings.isDarkModeEnabled
+ *  }
+ * }
+ *
+ * function mapDispatchToProps(dispatch) {
+ *  return {
+ *    toggleDarkMode: (isDarkModeEnabled) => dispatch(toggleDarkMode(isDarkModeEnabled))
+ *  }
+ * }
+ *
+ * export default connect(null, mapDispatchToProps)(YourComponentHere);
+ *
+ */
+
 // Initial state
 const INITIAL_STATE = {
   isDarkModeEnabled: false,
