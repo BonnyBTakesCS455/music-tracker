@@ -21,7 +21,7 @@
 
 // Initial state
 const INITIAL_STATE = {
-  isDarkModeEnabled: false,
+  isDarkModeEnabled: true,
 };
 
 // Types
