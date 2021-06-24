@@ -7,6 +7,7 @@ import Graph from './pages/Graph';
 import Profile from './pages/Profile';
 import Fav from './pages/Fav';
 import Login from './pages/Login';
+import Settings from './pages/Settings';
 
 function mapStateToProps(state) {
   return {
@@ -25,6 +26,7 @@ function App({ user, ...props }) {
           <Route path='/profile'>{(_) => Profile()}</Route>
           <Route path='/fav'>{(_) => Fav()}</Route>
           <Route path='/graph'>{(_) => Graph()}</Route>
+          <Route path='/settings'><Settings /></Route>
           <Route path='/'>{(_) => Home()}</Route>
         </>
         :
