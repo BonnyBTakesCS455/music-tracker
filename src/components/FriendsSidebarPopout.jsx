@@ -1,6 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Button = styled.button`
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    background: #1DB954;
+    border-radius: 30px;
+    padding: 1em;
+    color: white;
+    min-width: 100px;
+    transition: background 200ms;
+    &:hover {
+        background: #1ED760;
+    }
+`
+
 class FriendsSidebarPopout extends React.Component {
     constructor(props) {
         super(props);
@@ -11,7 +26,7 @@ class FriendsSidebarPopout extends React.Component {
         return (
             <React.Fragment>
                 <div>
-                    <button type={"button"} onClick={this.props.onClick}>Close Friend Pop-out</button>
+                    <Button type={"button"} onClick={this.props.onClick}>Close Friend Pop-out</Button>
                 </div>
             </React.Fragment>
         )
