@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'wouter';
 import home_icon from '../icons/Home_Icon.png';
 import home_icon_hovered from '../icons/home_icon_hovered.png';
 import insights_icon from '../icons/insight_icon.png';
@@ -49,7 +50,7 @@ function NavBar(props) {
     <React.Fragment>
       <Nav className='navbar'>
         <StyledListItem>
-          <a
+          <Link
             href='/profile'
             onMouseOver={(e) =>
               (e.currentTarget.children.item(1).src = profile_icon_hovered)
@@ -62,34 +63,34 @@ function NavBar(props) {
               <h2>B</h2>
             </ProfileText>
             <StyledImage src={profile_icon} />
-          </a>
+          </Link>
         </StyledListItem>
         <StyledListItem>
-          <a href='/fav'>
+          <Link href='/fav'>
             <StyledImage
               src={heart_icon}
               onMouseOver={(e) => (e.currentTarget.src = heart_icon_hovered)}
               onMouseOut={(e) => (e.currentTarget.src = heart_icon)}
             />
-          </a>
+          </Link>
         </StyledListItem>
         <StyledListItem>
-          <a href='/graph'>
+          <Link href='/graph'>
             <StyledImage
               src={insights_icon}
               onMouseOver={(e) => (e.currentTarget.src = insights_icon_hovered)}
               onMouseOut={(e) => (e.currentTarget.src = insights_icon)}
             />
-          </a>
+          </Link>
         </StyledListItem>
         <StyledListItem>
-          <a href='/'>
+          <Link href='/'>
             <StyledImage
               src={home_icon}
               onMouseOver={(e) => (e.currentTarget.src = home_icon_hovered)}
               onMouseOut={(e) => (e.currentTarget.src = home_icon)}
             />
-          </a>
+          </Link>
         </StyledListItem>
       </Nav>
     </React.Fragment>
