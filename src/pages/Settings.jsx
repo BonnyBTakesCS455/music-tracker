@@ -1,16 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { connect } from 'react-redux';
+import { toggleDarkMode } from '../state/management/userSettings'
 import Toggle from '../components/Toggle'
 
-function Settings(props) {
-    const [checked, setChecked] = useState(false)
+function mapStateToProps(state) {
+    return {
+        isDarkModeEnabled: state.userSettings.isDarkModeEnabled
+    }
+}
 
+function mapDispatchToProps(dispatch) {
+    return {
+        toggleDarkMode: (mode) => dispatch(toggleDarkMode(mode))
+    }
+}
+  
+function Settings({ isDarkModeEnabled, toggleDarkMode }) {
     return (
         <>
             <h1>The Settings page</h1>
             <label>
                 <Toggle
-                    checked={checked}
-                    onChange={() => setChecked(!checked)}
+                    checked={isDarkModeEnabled}
+                    onChange={() => toggleDarkMode(!isDarkModeEnabled)}
                 />
                 <span>Dark mode</span>
             </label>
@@ -19,4 +31,4 @@ function Settings(props) {
     );
 }
 
-export default Settings;
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);
