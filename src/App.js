@@ -7,6 +7,7 @@ import Graph from './pages/Graph';
 import Profile from './pages/Profile';
 import Fav from './pages/Fav';
 import Login from './pages/Login';
+import FriendsSidebar from "./components/FriendsSidebar";
 
 function mapStateToProps(state) {
   return {
@@ -18,6 +19,7 @@ function App({ user, ...props }) {
   return (
     <div className='App'>
       <NavBar />
+      <FriendsSidebar />
       <Switch>
       {
         user ?
