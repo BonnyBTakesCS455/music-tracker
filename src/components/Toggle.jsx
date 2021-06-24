@@ -19,7 +19,7 @@ const StyledCheckbox = styled.div`
 display: inline-block;
 width: 44px;
 height: 28px;
-background: ${props => props.checked ? 'green' : '#ccc'};
+background: ${p => p.checked ? p.theme.body : '#ccc'};
 border-radius: 1000px;
 transition: all 150ms;
 margin-right: 0.5em;
@@ -34,7 +34,7 @@ position: relative;
 const Slider = styled.div`
 position: absolute;
 top: 4px;
-${props => props.checked ? 'left: 4px;' : 'left: 20px;'}
+${p => p.checked ? 'left: 4px;' : 'left: 20px;'}
 transition: all 150ms;
 width: 20px;
 height: 20px;

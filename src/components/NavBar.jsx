@@ -15,7 +15,7 @@ const Nav = styled.div`
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #ffffff;
+  background: ${p => p.theme.background};
 `;
 
 const StyledListItem = styled.div`

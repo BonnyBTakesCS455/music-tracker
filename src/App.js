@@ -1,4 +1,5 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 import './App.css';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
@@ -9,6 +10,13 @@ import Fav from './pages/Fav';
 import Login from './pages/Login';
 import Settings from './pages/Settings';
 
+const Container = styled.div`
+  background: ${p => p.theme.background};
+  text-align: center;
+  min-height: 100vh;
+  color: ${p => p.theme.body};
+`
+
 function mapStateToProps(state) {
   return {
     user: state.userSettings.user
@@ -17,7 +25,7 @@ function mapStateToProps(state) {
 
 function App({ user, ...props }) {
   return (
-    <div className='App'>
+    <Container>
       <NavBar />
       <Switch>
       {
@@ -36,7 +44,7 @@ function App({ user, ...props }) {
       }
         </Switch>
       
-    </div>
+    </Container>
   );
 }
 
