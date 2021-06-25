@@ -49,7 +49,7 @@ const PlaysColumn = styled.div`
 `;
 
 const SongRow = styled.div`
-  display: table;
+  display: inline-block;
   width: 100%;
   color: grey;
   margin: 4px 4px 12px 0px;

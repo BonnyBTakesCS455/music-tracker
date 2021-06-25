@@ -23,7 +23,6 @@ const SongColumn = styled.div`
   width: 40%;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 const ArtistColumn = styled.div`
@@ -33,7 +32,6 @@ const ArtistColumn = styled.div`
   width: 35%;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 const TimeColumn = styled.div`
@@ -53,6 +51,12 @@ const PlaysColumn = styled.div`
 const SongRow = styled.div`
   display: inline-block;
   width: 100%;
+`;
+
+const SongRow1 = styled.div`
+  display: inline-block;
+  width: 100%;
+  color: grey;
 `;
 
 // From https://stackoverflow.com/a/21294619
@@ -79,6 +83,20 @@ function Song(props) {
   // const [pic, setPic] = useState(props.pic);
 
   const time = convertMsToTime(props.duration_ms);
+
+  if (props.header) {
+    return (
+        <SongRow1>
+        <ImgDiv>
+          <Img src={''} width={32} height={32} />
+        </ImgDiv>
+        <SongColumn>Song</SongColumn>
+        <ArtistColumn>Album</ArtistColumn>
+        <TimeColumn>Time</TimeColumn>
+        <PlaysColumn>Plays</PlaysColumn>
+      </SongRow1>
+    );
+  }
 
   return (
     <SongRow>

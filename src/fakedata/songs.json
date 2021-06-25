@@ -134,7 +134,7 @@
               "width": 64
             }
           ],
-          "name": "Those Were The Days (feat. Jared Lee)",
+          "name": "Those Were The Days (feat. Jared Lee and Vandy Liu)",
           "release_date": "2019-05-17",
           "release_date_precision": "day",
           "total_tracks": 1,
@@ -175,7 +175,7 @@
         "href": "https://api.spotify.com/v1/tracks/0n3G0FcRQRGMAqy0w01Ts3",
         "id": "0n3G0FcRQRGMAqy0w01Ts3",
         "is_local": false,
-        "name": "Those Were The Days (feat. Jared Lee)",
+        "name": "Those Were The Days (feat. Jared Lee and Vandy Liu)",
         "popularity": 50,
         "preview_url": "https://p.scdn.co/mp3-preview/325b06684be52cd4f7813f219d19fc39f9dfe007?cid=774b29d4f13844c495f206cafdad9c86",
         "track_number": 1,
