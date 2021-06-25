@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import FriendsSidebarPopout from './FriendsSidebarPopout';
-
-// TODO: Add interaction and potential inner
+import SlidingPane from "react-sliding-pane";
+import "../css/SldiingPane.css"
 
 const StickySidebar = styled.div`
     position: -webkit-sticky;
@@ -39,15 +38,25 @@ class FriendsSidebar extends React.Component {
 
     render() {
         return (
+
             <React.Fragment>
-                {
-                    !this.state.show &&
-                    <StickySidebar onClick={this.handleClick}>
-                        <StyledImage
-                            src={"https://i.pinimg.com/originals/d5/8b/03/d58b031567988c90642c40d94f680802.png"}/>
-                    </ StickySidebar>
-                }
-                {this.state.show && <FriendsSidebarPopout show={this.state.show} onClick={() => this.handleClick()}/>}
+                <StickySidebar onClick={this.handleClick}>
+                    <StyledImage
+                        src={"https://i.pinimg.com/originals/d5/8b/03/d58b031567988c90642c40d94f680802.png"}/>
+                </ StickySidebar>
+                <SlidingPane
+                    className={"Pane"}
+                    overlayClassName={"Pane"}
+                    isOpen={this.state.show}
+                    onRequestClose={() => {
+                        this.setState({show:false});
+                    }}
+                    from={"left"}
+                    width={"400px"}
+                    title={"Currently Listening"}
+                >
+                    <b>Add Friends Component here</b>
+                </SlidingPane>
             </React.Fragment>
         );
     }
