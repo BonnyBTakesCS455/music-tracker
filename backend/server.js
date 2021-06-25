@@ -19,34 +19,6 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-app.get('/me', (req, res) => {
-  spotifyApi.getMe()
-  .then((data) => {
-    console.log('Some information about this user', data.body);
-    return {
-      user: data.body.display_name,
-      email: data.body.email
-    }
-  }, (err) => {
-    console.log('Something went wrong!', err);
-  });
-})
-
-app.get('/me', (req, res) => {
-  const token = req.body.token
-  spotifyApi.setAccessToken(token);
-  spotifyApi.getMe()
-  .then((data) => {
-    console.log('Some information about this user', data.body);
-    return {
-      user: data.body.display_name,
-      email: data.body.email
-    }
-  }, (err) => {
-    console.log('Something went wrong!', err);
-  });
-})
-
 app.post('/songs', jsonParser, (req, res) => {
   spotifyApi.setAccessToken(req.body.token);
   spotifyApi.getMyRecentlyPlayedTracks({
