@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SlidingPane from "react-sliding-pane";
 import "../css/SldiingPane.css"
+import FriendsIcon from "../icons/Friends_Icon.svg"
 
 const StickySidebar = styled.div`
     position: -webkit-sticky;
@@ -42,7 +43,7 @@ class FriendsSidebar extends React.Component {
             <React.Fragment>
                 <StickySidebar onClick={this.handleClick}>
                     <StyledImage
-                        src={"https://i.pinimg.com/originals/d5/8b/03/d58b031567988c90642c40d94f680802.png"}/>
+                        src={FriendsIcon}/>
                 </ StickySidebar>
                 <SlidingPane
                     className={"Pane"}
