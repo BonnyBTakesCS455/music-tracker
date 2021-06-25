@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Song from "./Song";
 import SongHeader from "./SongHeader";
-import * as fakeSongs from "../fakedata/songs.json";
 import styled from "styled-components";
+import { getSongs } from "../services";
 
 // There are duplicates. Will need to remove via ID
-const songs = fakeSongs.items;
+// import * as fakeSongs from "../fakedata/songs.json";
+// const songs = fakeSongs.items;
 
 const Table = styled.div`
   display: table;
@@ -25,15 +26,27 @@ const SongDiv = styled.div`
   width: 50%;
 `;
 
-function SongList(props) {
-    // const [pic, setPic] = useState(props.pic);
+function SongList({token}) {
+    const [songs, setSongs] = useState([]);
+
+    const fetchSongs = useCallback(() => {
+        if (!token) return;
+        getSongs(token)
+            .then(songs => {
+                setSongs(songs)
+            })
+    }, [token]);
+
+    useEffect(() => {
+        fetchSongs();
+    }, [fetchSongs])
 
     return (
         <SongDiv>
             <Table>
                 <SongHeader />
                 {songs.map((song, i) => (
-                    <Song {...song.track} />
+                    <Song key={i} {...song.track} />
                 ))}
             </Table>
         </SongDiv>
