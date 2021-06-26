@@ -6,7 +6,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import { Switch, Route } from 'wouter';
-import Graph from './pages/Graph';
+import Insights from './pages/Insights';
 import Profile from './pages/Profile';
 import Fav from './pages/Fav';
 import Login from './pages/Login';
@@ -22,8 +22,8 @@ const Container = styled.div`
 
 function mapStateToProps(state) {
   return {
-    user: state.userSettings.user
-  }
+    user: state.userSettings.user,
+  };
 }
 
 function App({ user, ...props }) {
@@ -37,22 +37,22 @@ function App({ user, ...props }) {
       <NavBar />
       <FriendsSidebar />
       <Switch>
-      {
-        spotifyAuthToken ?
-        <>
-          <Route path='/profile'>{(_) => Profile()}</Route>
-          <Route path='/fav'>{(_) => Fav()}</Route>
-          <Route path='/graph'>{(_) => Graph()}</Route>
-          <Route path='/settings'><Settings /></Route>
-          <Route path='/'>{(_) => Home(spotifyAuthToken)}</Route>
-        </>
-        :
-        <>
-          <Route path='/'><Login /></Route>
-        </>
-      }
+        {user ? (
+          <>
+            <Route path='/profile'>{(_) => Profile()}</Route>
+            <Route path='/fav'>{(_) => Fav()}</Route>
+            <Route path='/insights'>{(_) => Insights()}</Route>
+            <Route path='/settings'><Settings /></Route>
+            <Route path='/'>{(_) => Home(spotifyAuthToken)}</Route>
+          </>
+        ) : (
+          <>
+            <Route path='/'>
+              <Login />
+            </Route>
+          </>
+        )}
         </Switch>
-      
     </Container>
   );
 }
