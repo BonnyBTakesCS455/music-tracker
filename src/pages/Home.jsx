@@ -6,7 +6,7 @@ function Home(props) {
   return (
     <React.Fragment>
       <header className='App-header'>
-        <PageHeader title="Hello, Bonny B!" />
+        <PageHeader title='Hello, Bonny B!' />
         <SongList />
       </header>
     </React.Fragment>

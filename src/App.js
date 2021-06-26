@@ -1,17 +1,17 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import './App.css';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import { Switch, Route } from 'wouter';
-import Graph from './pages/Graph';
+import Insights from './pages/Insights';
 import Profile from './pages/Profile';
 import Fav from './pages/Fav';
 import Login from './pages/Login';
 
 function mapStateToProps(state) {
   return {
-    user: state.userSettings.user
-  }
+    user: state.userSettings.user,
+  };
 }
 
 function App({ user, ...props }) {
@@ -19,21 +19,21 @@ function App({ user, ...props }) {
     <div className='App'>
       <NavBar />
       <Switch>
-      {
-        user ?
-        <>
-          <Route path='/profile'>{(_) => Profile()}</Route>
-          <Route path='/fav'>{(_) => Fav()}</Route>
-          <Route path='/graph'>{(_) => Graph()}</Route>
-          <Route path='/'>{(_) => Home()}</Route>
-        </>
-        :
-        <>
-          <Route path='/'><Login /></Route>
-        </>
-      }
-        </Switch>
-      
+        {user ? (
+          <>
+            <Route path='/profile'>{(_) => Profile()}</Route>
+            <Route path='/fav'>{(_) => Fav()}</Route>
+            <Route path='/insights'>{(_) => Insights()}</Route>
+            <Route path='/'>{(_) => Home()}</Route>
+          </>
+        ) : (
+          <>
+            <Route path='/'>
+              <Login />
+            </Route>
+          </>
+        )}
+      </Switch>
     </div>
   );
 }

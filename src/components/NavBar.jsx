@@ -75,7 +75,7 @@ function NavBar(props) {
           </Link>
         </StyledListItem>
         <StyledListItem>
-          <Link href='/graph'>
+          <Link href='/insights'>
             <StyledImage
               src={insights_icon}
               onMouseOver={(e) => (e.currentTarget.src = insights_icon_hovered)}
