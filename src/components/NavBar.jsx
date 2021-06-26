@@ -15,7 +15,7 @@ const Nav = styled.div`
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #ffffff;
+  background: ${p => p.theme.background};
 `;
 
 const StyledListItem = styled.div`
@@ -85,6 +85,15 @@ function NavBar(props) {
         </StyledListItem>
         <StyledListItem>
           <Link href='/'>
+            <StyledImage
+              src={home_icon}
+              onMouseOver={(e) => (e.currentTarget.src = home_icon_hovered)}
+              onMouseOut={(e) => (e.currentTarget.src = home_icon)}
+            />
+          </Link>
+        </StyledListItem>
+        <StyledListItem>
+          <Link href='/settings'>
             <StyledImage
               src={home_icon}
               onMouseOver={(e) => (e.currentTarget.src = home_icon_hovered)}
