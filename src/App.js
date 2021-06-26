@@ -10,6 +10,7 @@ import Graph from './pages/Graph';
 import Profile from './pages/Profile';
 import Fav from './pages/Fav';
 import Login from './pages/Login';
+import FriendsSidebar from "./components/FriendsSidebar";
 import Settings from './pages/Settings';
 
 const Container = styled.div`
@@ -34,6 +35,7 @@ function App({ user, ...props }) {
   return (
     <Container>
       <NavBar />
+      <FriendsSidebar />
       <Switch>
       {
         spotifyAuthToken ?
