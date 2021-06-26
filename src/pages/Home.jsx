@@ -2,12 +2,12 @@ import React from 'react';
 import SongList from '../components/SongList';
 import PageHeader from '../components/PageHeader';
 
-function Home(props) {
+function Home(token) {
   return (
     <React.Fragment>
       <header className='App-header'>
         <PageHeader title="Hello, Bonny B!" />
-        <SongList />
+        <SongList token={token}/>
       </header>
     </React.Fragment>
   );
