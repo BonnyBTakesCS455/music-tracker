@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import Cookies from 'js-cookie'
 import styled from 'styled-components';
 import './App.css';
 import NavBar from './components/NavBar';
@@ -24,18 +26,23 @@ function mapStateToProps(state) {
 }
 
 function App({ user, ...props }) {
+  const [spotifyAuthToken, setSpotifyAuthToken] = useState()
+
+  useEffect(() => { setSpotifyAuthToken(Cookies.get('spotifyAuthToken'))
+  }, [Cookies.get('spotifyAuthToken')])
+
   return (
     <Container>
       <NavBar />
       <Switch>
       {
-        user ?
+        spotifyAuthToken ?
         <>
           <Route path='/profile'>{(_) => Profile()}</Route>
           <Route path='/fav'>{(_) => Fav()}</Route>
           <Route path='/graph'>{(_) => Graph()}</Route>
           <Route path='/settings'><Settings /></Route>
-          <Route path='/'>{(_) => Home()}</Route>
+          <Route path='/'>{(_) => Home(spotifyAuthToken)}</Route>
         </>
         :
         <>
