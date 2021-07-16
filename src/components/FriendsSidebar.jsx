@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import SlidingPane from "react-sliding-pane";
 import "../css/SldiingPane.css"
 import FriendsIcon from "../icons/Friends_Icon.svg"
+import Friend from "./Friend";
 
 const StickySidebar = styled.div`
     position: -webkit-sticky;
@@ -56,7 +57,7 @@ class FriendsSidebar extends React.Component {
                     width={"400px"}
                     title={"Currently Listening"}
                 >
-                    <b>Add Friends Component here</b>
+                <Friend />
                 </SlidingPane>
             </React.Fragment>
         );
