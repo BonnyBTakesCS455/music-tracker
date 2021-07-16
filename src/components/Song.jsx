@@ -14,6 +14,9 @@ const Img = styled.img`
   position: relative;
   top: 50%;
   transform: translateY(-20%);
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const SongColumn = styled.div`
@@ -24,6 +27,14 @@ const SongColumn = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  a {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: inherit;
+    &: hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 const ArtistColumn = styled.div`
@@ -76,16 +87,13 @@ function getPlays() {
 }
 
 function Song(props) {
-  // const [pic, setPic] = useState(props.pic);
-
   const time = convertMsToTime(props.duration_ms);
-
   return (
     <SongRow>
       <ImgDiv>
-        <Img src={props.album.images[2].url} width={32} height={32} />
+        <Img src={props.album.images[2].url} width={32} height={32} onClick={() => {window.open(props.external_urls.spotify)}} />
       </ImgDiv>
-      <SongColumn>{props.name}</SongColumn>
+      <SongColumn><a href={props.external_urls.spotify} target="_blank">{props.name}</a></SongColumn>
       <ArtistColumn>{getArtistNames(props)}</ArtistColumn>
       <TimeColumn>{time}</TimeColumn>
       <PlaysColumn>{getPlays()}</PlaysColumn>
