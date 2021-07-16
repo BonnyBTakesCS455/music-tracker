@@ -30,12 +30,12 @@ Our Spotify tracker web app allows music listeners to view their music tastes an
 - [ ] As a user, I want to be able to recommend my top songs to my friends.
 
 ## Minimal Tasks:
-- [ ] Set up Node/express backend
+- [x] Set up Node/express backend
 - [ ] Stub out backend endpoints we will need
-- [ ] Set up OAuth Spotify login
-- [ ] Make a simple API call on behalf of the user
-- [ ] Create React App
-- [ ] Make a login page with a big login button
+- [x] Set up OAuth Spotify login
+- [x] Make a simple API call on behalf of the user
+- [x] Create React App
+- [x] Make a login page with a big login button
 
 
 
