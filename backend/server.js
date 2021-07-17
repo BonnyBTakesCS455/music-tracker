@@ -31,8 +31,8 @@ app.post('/user', UserController.createUser);
 app.get('/user/:id', UserController.findUserById);
 app.put('/user/:id', UserController.updateUserById);
 
-app.post('/songs', (req, res) => {
-  spotifyApi.setAccessToken(req.body.token);
+app.get('/songs', (req, res) => {
+  spotifyApi.setAccessToken(req.query.token);
   spotifyApi
     .getMyRecentlyPlayedTracks({
       limit: 10,
@@ -49,8 +49,8 @@ app.post('/songs', (req, res) => {
 });
 
 // After successful login, update user in mongoDB
-app.post('/me', (req, res) => {
-  spotifyApi.setAccessToken(req.body.token);
+app.get('/me', (req, res) => {
+  spotifyApi.setAccessToken(req.query.token);
   spotifyApi
     .getMe()
     .then((data) => {
