@@ -41,15 +41,19 @@ app.get('/songs', async (req, res) => {
   const topN = songsSorted.slice(0, TOP_N_SONGS_TO_SHOW)
   console.log('topN', topN)
 
-
-
   spotifyApi.setAccessToken(req.query.token);
   spotifyApi
     .getTracks(topN)
     .then(
       async (data) => {
-        console.log(data.body.tracks)
-        res.send(data.body.tracks);
+        // console.log(data.body.tracks)
+        const trackData = data.body.tracks.map(track => {
+          return {
+            ...track,
+            plays: listenStats[track.id]
+          }
+        })
+        res.send(trackData);
       },
       (err) => {
         console.log('Something went wrong!', err);
