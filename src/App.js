@@ -36,12 +36,12 @@ function App({ user, ...props }) {
       <NavBar />
       <FriendsSidebar />
       <Switch>
-        {user ? (
+        {spotifyAuthToken && user ? (
           <>
             <Route path='/profile'>{(_) => Profile()}</Route>
             <Route path='/fav'>{(_) => Fav()}</Route>
             <Route path='/insights'>{(_) => Insights()}</Route>
-            <Route path='/'>{(_) => Home(spotifyAuthToken)}</Route>
+            <Route path='/'><Home token={spotifyAuthToken} /></Route>
           </>
         ) : (
           <>

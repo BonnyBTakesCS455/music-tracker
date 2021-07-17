@@ -5,6 +5,7 @@ import Card from '../components/Card';
 import 'react-spotify-auth/dist/index.css'
 import { SpotifyAuth, Scopes } from 'react-spotify-auth'
 import { CLIENT_ID, FRONTEND_SERVER } from '../constants';
+import { getCurrentUserInfo } from '../services';
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -14,10 +15,11 @@ function mapDispatchToProps(dispatch) {
 
 function Login({ setUser }) {
   function getAndSetUser(token) {
-    // TODO: retrieve these values from backend
-    const email = 'bonnyb@gmail.com';
-    const name = 'bonny b'
-    setUser({email: email, name: name});
+    getCurrentUserInfo(token).then((userInfo) => {
+      const email = userInfo.email;
+      const name = userInfo.display_name;
+      setUser({name, email});
+    });
   }
 
   return (
@@ -31,7 +33,7 @@ function Login({ setUser }) {
             scopes={Object.values(Scopes)}
             title={"Login"}
             showDialog={true}
-            onAccessToken={(token) => getAndSetUser(token)}
+            onAccessToken={(token) => {getAndSetUser(token)}}
           />
         </Card>
       </header>

@@ -31,21 +31,46 @@ app.post('/user', UserController.createUser);
 app.get('/user/:id', UserController.findUserById);
 app.put('/user/:id', UserController.updateUserById);
 
-app.post('/songs', (req, res) => {
-  spotifyApi.setAccessToken(req.body.token);
+app.get('/songs', (req, res) => {
+  spotifyApi.setAccessToken(req.query.token);
   spotifyApi
     .getMyRecentlyPlayedTracks({
       limit: 10,
     })
     .then(
       (data) => {
-        console.log('Your 10 most recently played tracks are:');
-        data.body.items.forEach((item) => console.log(item.track.name));
         res.send(data.body.items);
       },
       (err) => {
         console.log('Something went wrong!', err);
-        res.err('Token expired');
+        res.send(err);
       }
     );
+});
+
+// After successful login, update user in mongoDB
+app.get('/me', (req, res) => {
+  spotifyApi.setAccessToken(req.query.token);
+  spotifyApi
+    .getMe()
+    .then((data) => {
+      UserController.directFindUserBySpotifyId(data.body.id).then(user => {
+        if (!user) {
+          console.log("No user found, creating new user");
+          UserController.directCreateUser({
+            name: data.body.display_name,
+            spotifyId: data.body.id,
+            token: req.body.token
+          })
+        } else {
+          console.log("User found, updating their token");
+          UserController.directUpdateUserBySpotifyId(data.body.id, {token: req.body.token});
+        }
+      });
+      res.send(data.body)
+    },
+    (err) => {
+      console.log('Something went wrong!', err);
+      res.send(err);
+    });
 });

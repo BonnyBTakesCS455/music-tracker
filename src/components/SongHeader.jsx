@@ -37,7 +37,7 @@ const TimeColumn = styled.div`
   font-size: 18px;
   font-weight: bolder;
   width: 6%;
-  padding-left: 1px;
+  margin-left: -4px;
 `;
 
 const PlaysColumn = styled.div`
@@ -45,11 +45,11 @@ const PlaysColumn = styled.div`
   font-size: 18px;
   font-weight: bolder;
   width: 6%;
-  margin-left: 10px;
+  margin-left: 2px;
 `;
 
 const SongRow = styled.div`
-  display: table;
+  display: flex;
   width: 100%;
   color: grey;
   margin: 4px 4px 12px 0px;

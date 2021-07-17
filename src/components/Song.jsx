@@ -12,7 +12,7 @@ const ImgDiv = styled.div`
 
 const Img = styled.img`
   position: relative;
-  top: 50%;
+  top: 0%;
   transform: translateY(-20%);
   &:hover {
     cursor: pointer;
@@ -62,7 +62,7 @@ const PlaysColumn = styled.div`
 `;
 
 const SongRow = styled.div`
-  display: inline-block;
+  display: flex;
   width: 100%;
 `;
 
@@ -88,13 +88,15 @@ function getPlays() {
 
 function Song(props) {
   const time = convertMsToTime(props.duration_ms);
+  const artists = getArtistNames(props);
+
   return (
     <SongRow>
       <ImgDiv>
         <Img src={props.album.images[2].url} width={32} height={32} onClick={() => {window.open(props.external_urls.spotify)}} />
       </ImgDiv>
-      <SongColumn><a href={props.external_urls.spotify} target="_blank">{props.name}</a></SongColumn>
-      <ArtistColumn>{getArtistNames(props)}</ArtistColumn>
+      <SongColumn title={props.name}><a href={props.external_urls.spotify} target="_blank" rel="noreferrer">{props.name}</a></SongColumn>
+      <ArtistColumn title={artists}>{artists}</ArtistColumn>
       <TimeColumn>{time}</TimeColumn>
       <PlaysColumn>{getPlays()}</PlaysColumn>
     </SongRow>

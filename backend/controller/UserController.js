@@ -30,6 +30,19 @@ exports.findUserById = (req, res) => {
 };
 
 /**
+ * @param {*} req.params.id: the spotify id
+ */
+ exports.findUserBySpotifyId = (req, res) => {
+  const id = req.params.id;
+  User.findOne({spotifyId: id}, (err, user) => {
+    if (err) {
+      console.error(err);
+      res.send(err);
+    } else res.send(user);
+  });
+};
+
+/**
  * This IS AND SHOULD be a PATCH request. It is not a PUT request because
  * it is not designed to replace an entire entity.
  *
@@ -73,5 +86,39 @@ exports.updateUserById = (req, res) => {
       console.error(err);
       res.send(err);
     } else res.send(user);
+  });
+};
+
+// These functions are used for when the backend makes calls to the database
+exports.directUpdateUserBySpotifyId = (spotifyId, fieldsToUpdate) => {
+  return User.findOneAndUpdate({spotifyId}, fieldsToUpdate, { new: true }, (err, user) => {
+    // the { new: true } option makes sure `user` is the updated value
+    // in a Mongoose 4.0, they made it return the old value by default...
+    if (err) {
+      console.error(err);
+      return err;
+    }
+    return user;
+  });
+}
+
+exports.directFindUserBySpotifyId = (spotifyId) => {
+  return User.findOne({spotifyId}, (err, user) => {
+    if (err) {
+      console.error(err);
+      return err
+    }
+    return user;
+  });
+}
+
+exports.directCreateUser = (fields) => {
+  const user = new User(fields);
+  return user.save((err, user) => {
+    if (err) {
+      console.error(err);
+      return err;
+    }
+    return user;
   });
 };
