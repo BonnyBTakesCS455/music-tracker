@@ -8,7 +8,7 @@ function Home(props) {
     <React.Fragment>
       <header className='App-header'>
         <PageHeader title={`Hello ${props.user.name}!`} />
-        <SongList token={props.token}/>
+        <SongList token={props.token} spotifyId={props.user.spotifyId} />
       </header>
     </React.Fragment>
   );

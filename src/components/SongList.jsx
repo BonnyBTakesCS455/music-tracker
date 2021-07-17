@@ -26,12 +26,12 @@ const SongDiv = styled.div`
   width: 50%;
 `;
 
-function SongList({token}) {
+function SongList({token, spotifyId}) {
     const [songs, setSongs] = useState([]);
 
     const fetchSongs = useCallback(() => {
         if (!token) return;
-        getSongs(token)
+        getSongs(token, spotifyId)
             .then(songs => {
                 setSongs(songs)
             })

@@ -31,14 +31,21 @@ app.post('/user', UserController.createUser);
 app.get('/user/:id', UserController.findUserById);
 app.put('/user/:id', UserController.updateUserById);
 
-app.get('/songs', (req, res) => {
+app.get('/songs', async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  const { lastScraped } = await UserController.directFindUserBySpotifyId(spotifyId)
+  console.log('lastScraped', lastScraped)
   spotifyApi.setAccessToken(req.query.token);
   spotifyApi
     .getMyRecentlyPlayedTracks({
-      limit: 10,
+      limit: 50,
+      after: lastScraped
     })
     .then(
-      (data) => {
+      async (data) => {
+        const lastScraped = data.body.cursors.after
+        console.log("Updating user last scraped");
+        await UserController.directUpdateUserBySpotifyId(spotifyId, { lastScraped });
         res.send(data.body.items);
       },
       (err) => {
@@ -74,3 +81,5 @@ app.get('/me', (req, res) => {
       res.send(err);
     });
 });
+
+// cursors: { after: '1626508570260', before: '1626506057589' },

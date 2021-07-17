@@ -18,7 +18,8 @@ function Login({ setUser }) {
     getCurrentUserInfo(token).then((userInfo) => {
       const email = userInfo.email;
       const name = userInfo.display_name;
-      setUser({name, email});
+      const spotifyId = userInfo.id;
+      setUser({name, email, spotifyId});
     });
   }
 
