@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { toggleDarkMode } from '../state/management/userSettings'
-import Toggle from '../components/Toggle'
+import Toggle from './Toggle'
 
 function mapStateToProps(state) {
     return {
@@ -18,7 +18,7 @@ function mapDispatchToProps(dispatch) {
 function Settings({ isDarkModeEnabled, toggleDarkMode }) {
     return (
         <>
-            <h1>The Settings page</h1>
+            <h1>Account Settings</h1>
             <label>
                 <Toggle
                     checked={isDarkModeEnabled}
