@@ -63,7 +63,7 @@ app.post('/me', (req, res) => {
             token: req.body.token
           })
         } else {
-          console.log("User found, updating their display name");
+          console.log("User found, updating their token");
           UserController.directUpdateUserBySpotifyId(data.body.id, {token: req.body.token});
         }
       });
