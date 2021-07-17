@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema(
     lastScraped: Number,
     friendIds: [String],
     topSongIds: [String],
+    listenStats: mongoose.Schema.Types.Mixed,
   },
   { timestamps: true }
 );

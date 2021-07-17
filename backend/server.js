@@ -39,13 +39,24 @@ app.get('/songs', async (req, res) => {
   spotifyApi
     .getMyRecentlyPlayedTracks({
       limit: 50,
-      after: lastScraped
+      after: lastScraped || 0
     })
     .then(
       async (data) => {
-        const lastScraped = data.body.cursors.after
-        console.log("Updating user last scraped");
-        await UserController.directUpdateUserBySpotifyId(spotifyId, { lastScraped });
+        // console.log(data.body.items[0])
+        const ids = {}
+        data.body.items.forEach(item => {
+          const id = `listenStats.${item.track.id}`
+          if(ids[id]) {
+            ids[id] = ids[id] + 1;
+          } else {
+            ids[id] = 1
+          }
+        })
+        console.log(ids)
+        const newLastScraped = data.body.cursors?.after || lastScraped
+        console.log("Updating user last scraped", newLastScraped);
+        UserController.directUpdateUserBySpotifyId(spotifyId, { lastScraped: newLastScraped, $inc: ids} );
         res.send(data.body.items);
       },
       (err) => {
