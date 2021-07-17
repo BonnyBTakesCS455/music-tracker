@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const { MONGO } = require('./secret');
 
-const TOP_N_SONGS_TO_SHOW = 10;
+const TOP_N_SONGS_TO_SHOW = 20;
 
 const app = express();
 const port = 3001;
@@ -35,11 +35,20 @@ app.put('/user/:id', UserController.updateUserById);
 
 app.get('/songs', async (req, res) => {
   const spotifyId = req.query.spotifyId;
-  const { lastScraped, listenStats } = await UserController.directFindUserBySpotifyId(spotifyId)
+  const user = await UserController.directFindUserBySpotifyId(spotifyId)
+
+  if (!user || !user.lastScraped) {
+    res.redirect(`/scrape?spotifyId=${req.query.spotifyId}&token=${req.query.token}`)
+    return
+  }
+
+  const lastScraped = user.lastScraped
+  const listenStats = user.listenStats
   console.log('lastScraped', lastScraped)
   const songsSorted = Object.keys(listenStats).sort(function(a, b) {return -(listenStats[a] - listenStats[b])})
   const topN = songsSorted.slice(0, TOP_N_SONGS_TO_SHOW)
   console.log('topN', topN)
+  
 
   spotifyApi.setAccessToken(req.query.token);
   spotifyApi
@@ -87,7 +96,7 @@ app.get('/scrape', async (req, res) => {
         const newLastScraped = data.body.cursors?.after || lastScraped
         console.log("Updating user last scraped", newLastScraped);
         UserController.directUpdateUserBySpotifyId(spotifyId, { lastScraped: newLastScraped, $inc: ids} );
-        res.send(data.body.items);
+        res.redirect(`/songs?spotifyId=${req.query.spotifyId}&token=${req.query.token}`)
       },
       (err) => {
         console.log('Something went wrong!', err);
@@ -122,5 +131,3 @@ app.get('/me', (req, res) => {
       res.send(err);
     });
 });
-
-// cursors: { after: '1626508570260', before: '1626506057589' },

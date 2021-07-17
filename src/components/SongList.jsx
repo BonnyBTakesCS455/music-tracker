@@ -33,13 +33,18 @@ function SongList({token, spotifyId}) {
         if (!token) return;
         getSongs(token, spotifyId)
             .then(songs => {
-                setSongs(songs)
+                if (songs.length) {
+                    setSongs(songs)
+                }
             })
     }, [token]);
 
     useEffect(() => {
-        fetchSongs();
-    }, [fetchSongs])
+        if (!songs.length) {
+            console.log('fetching songs')
+            fetchSongs()
+        }
+    }, [fetchSongs, songs])
 
     return (
         <SongDiv>
