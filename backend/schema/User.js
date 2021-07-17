@@ -6,6 +6,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    spotifyId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     token: String,
     friendIds: [String],
     topSongIds: [String],
