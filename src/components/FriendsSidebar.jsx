@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SlidingPane from "react-sliding-pane";
 import "../css/SldiingPane.css"
-import FriendsIcon from "../icons/Friends_Icon.svg"
+import FriendsIcon from "../icons/Friends_Filled_WHITE.png"
 import Friend from "./Friend";
 
 const StickySidebar = styled.div`
@@ -11,6 +11,7 @@ const StickySidebar = styled.div`
     top: 0;
     background-color: #1db954;
     border: 2px solid #1db954;
+    padding: 4px 4px;
     width: 50px;
     border-radius: 0px 25px 25px 0px;
 `;

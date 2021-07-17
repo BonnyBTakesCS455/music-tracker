@@ -11,7 +11,6 @@ import Profile from './pages/Profile';
 import Fav from './pages/Fav';
 import Login from './pages/Login';
 import FriendsSidebar from "./components/FriendsSidebar";
-import Settings from './pages/Settings';
 
 const Container = styled.div`
   background: ${p => p.theme.background};
@@ -42,7 +41,6 @@ function App({ user, ...props }) {
             <Route path='/profile'>{(_) => Profile()}</Route>
             <Route path='/fav'>{(_) => Fav()}</Route>
             <Route path='/insights'>{(_) => Insights()}</Route>
-            <Route path='/settings'><Settings /></Route>
             <Route path='/'><Home token={spotifyAuthToken} /></Route>
           </>
         ) : (
