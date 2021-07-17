@@ -46,7 +46,7 @@ function SongList({token, spotifyId}) {
             <Table>
                 <SongHeader />
                 {songs.map((song, i) => (
-                    <Song key={i} {...song.track} />
+                    <Song key={i} {...song} />
                 ))}
             </Table>
         </SongDiv>
