@@ -92,15 +92,6 @@ function NavBar(props) {
             />
           </Link>
         </StyledListItem>
-        <StyledListItem>
-          <Link href='/settings'>
-            <StyledImage
-              src={home_icon}
-              onMouseOver={(e) => (e.currentTarget.src = home_icon_hovered)}
-              onMouseOut={(e) => (e.currentTarget.src = home_icon)}
-            />
-          </Link>
-        </StyledListItem>
       </Nav>
     </React.Fragment>
   );
