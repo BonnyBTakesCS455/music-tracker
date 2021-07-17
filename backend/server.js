@@ -108,11 +108,11 @@ app.get('/me', (req, res) => {
           UserController.directCreateUser({
             name: data.body.display_name,
             spotifyId: data.body.id,
-            token: req.body.token
+            token: req.query.token
           })
         } else {
           console.log("User found, updating their token");
-          UserController.directUpdateUserBySpotifyId(data.body.id, {token: req.body.token});
+          UserController.directUpdateUserBySpotifyId(data.body.id, {token: req.query.token});
         }
       });
       res.send(data.body)
