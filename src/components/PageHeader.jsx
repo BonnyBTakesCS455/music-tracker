@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import profile_icon from '../icons/profile_icon.png';
+import profile_icon from '../icons/Dot_Hollow.png';
 
 const Img = styled.img`
   position: relative;
