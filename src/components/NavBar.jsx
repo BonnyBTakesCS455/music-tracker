@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'wouter';
-import home_icon from '../icons/Home_Icon.png';
-import home_icon_hovered from '../icons/home_icon_hovered.png';
-import insights_icon from '../icons/insight_icon.png';
-import insights_icon_hovered from '../icons/insight_icon_hovered.png';
-import heart_icon from '../icons/heart_icon.png';
-import heart_icon_hovered from '../icons/heart_icon_hovered.png';
-import profile_icon from '../icons/profile_icon.png';
-import profile_icon_hovered from '../icons/profile_icon_hovered.png';
+import home_icon from '../icons/Home_Hollow.png';
+import home_icon_hovered from '../icons/Home_Filled.png';
+import insights_icon from '../icons/Insights_Hollow.png';
+import insights_icon_hovered from '../icons/Insights_Filled.png';
+import heart_icon from '../icons/Heart_Hollow.png';
+import heart_icon_hovered from '../icons/Heart_Filled.png';
+import profile_icon from '../icons/Dot_Hollow.png';
+import profile_icon_hovered from '../icons/Dot_Filled.png';
 
 const Nav = styled.div`
   list-style-type: none;
