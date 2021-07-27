@@ -10,6 +10,7 @@ import Insights from './pages/Insights';
 import Profile from './pages/Profile';
 import Fav from './pages/Fav';
 import Login from './pages/Login';
+import LoggedIn from './pages/LoggedIn';
 import FriendsSidebar from "./components/FriendsSidebar";
 
 const Container = styled.div`
@@ -41,12 +42,18 @@ function App({ user, ...props }) {
             <Route path='/profile'>{(_) => Profile()}</Route>
             <Route path='/fav'>{(_) => Fav()}</Route>
             <Route path='/insights'>{(_) => Insights()}</Route>
+            <Route path='/callback'>
+              <LoggedIn />
+            </Route>
             <Route path='/'><Home token={spotifyAuthToken} /></Route>
           </>
         ) : (
           <>
             <Route path='/'>
               <Login />
+            </Route>
+            <Route path='/callback'>
+              <LoggedIn />
             </Route>
           </>
         )}
