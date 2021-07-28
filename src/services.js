@@ -32,10 +32,10 @@ export function login() {
 
 export function getTokens(code) {
     return fetch(`/gettokens?code=${code}`)
-    .then(data => {
-        return data.json();
-    }, err => {
-        console.log('Something went wrong ', err);
-        return err;
-    });
+        .then(data => {
+            return data.json();
+        }, err => {
+            console.log('Something went wrong ', err);
+            return err;
+        });
 }
