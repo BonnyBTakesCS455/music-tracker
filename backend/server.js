@@ -62,9 +62,8 @@ app.get('/callback', async (req, res) => {
     json: true
   };
 
-  console.log('auth options', authOptions);
-
-  await request.post(authOptions, (err, response, body) => {
+  // Make request back to Spotify API to get access token and refresh token
+  request.post(authOptions, async (err, response, body) => {
     if (err) {
       console.log("Something went wrong: ", err);
       res.send(err);
@@ -75,9 +74,24 @@ app.get('/callback', async (req, res) => {
     const tokens = {
       accessToken: body['access_token'],
       refreshToken: body['refresh_token']
+    };
+
+    // Get user info from spotify with new access token
+    const data = await spotifyApi.getMe()
+    const user = await UserController.directFindUserBySpotifyId(data.body.id);
+    if (!user) {
+      console.log("No user found, creating new user");
+      UserController.directCreateUser({
+        name: data.body.display_name,
+        spotifyId: data.body.id,
+        token: tokens.accessToken,
+        refreshToken: tokens.refreshToken
+      })
+    } else {
+      console.log("User found, updating their token");
+      UserController.directUpdateUserBySpotifyId(data.body.id, { token: tokens.accessToken, refreshToken: tokens.refreshToken });
     }
-    console.log('actual tokens', tokens);
-    res.send(tokens);
+    res.redirect(`${CONSTANTS.FRONTEND_SERVER}?user=${data.body.display_name}&accessToken=${tokens.accessToken}`);
   });
 });
 
