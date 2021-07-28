@@ -13,20 +13,23 @@ const scrape = async(spotifyId, token) => {
         })
         .then(
             async (data) => {
-                const ids = {}
+
+                // Build an object of trackId -> array of timestamps
+                const plays = {}
                 data.body.items.forEach(item => {
-                // console.log(item.played_at)
-                const id = `listenStats.${item.track.id}`
-                if(ids[id]) {
-                    ids[id] = ids[id].append(item.played_at);
-                } else {
-                    ids[id] = [item.played_at]
-                }
+                    const id = `listenStats.${item.track.id}`
+                    if(plays[id]) {
+                        plays[id] = plays[id].append(item.played_at);
+                    } else {
+                        plays[id] = [item.played_at]
+                    }
                 })
-                // console.log(ids)
+                
                 const newLastScraped = data.body.cursors?.after || lastScraped
                 console.log("Updating user last scraped", newLastScraped);
-                UserController.directUpdateUserBySpotifyId(spotifyId, { lastScraped: newLastScraped, $push: ids} );
+
+                // Push does an atomic append to existing plays arrays in db
+                UserController.directUpdateUserBySpotifyId(spotifyId, { lastScraped: newLastScraped, $push: plays} );
                 return ['success', null]
             },
             (err) => {

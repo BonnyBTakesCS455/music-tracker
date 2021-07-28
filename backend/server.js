@@ -52,7 +52,6 @@ app.get('/songs', async (req, res) => {
     .getTracks(topN)
     .then(
       async (data) => {
-        // console.log(data.body.tracks)
         const trackData = data.body.tracks.map(track => {
           return {
             ...track,
