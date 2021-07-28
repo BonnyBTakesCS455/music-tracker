@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const { MONGO } = require('./secret');
+const { scrape } = require('./scrape');
+
+const TOP_N_SONGS_TO_SHOW = 20;
 
 const app = express();
 const port = 3001;
@@ -31,21 +34,49 @@ app.post('/user', UserController.createUser);
 app.get('/user/:id', UserController.findUserById);
 app.put('/user/:id', UserController.updateUserById);
 
-app.get('/songs', (req, res) => {
+app.get('/songs', async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  const user = await UserController.directFindUserBySpotifyId(spotifyId)
+
+  if (!user || !user.lastScraped) {
+    res.redirect(`/scrape?spotifyId=${req.query.spotifyId}&token=${req.query.token}`)
+    return
+  }
+
+  const listenStats = user.listenStats
+  const songsSorted = Object.keys(listenStats).sort(function(a, b) {return -(listenStats[a].length - listenStats[b].length)})
+  const topN = songsSorted.slice(0, TOP_N_SONGS_TO_SHOW) 
+
   spotifyApi.setAccessToken(req.query.token);
   spotifyApi
-    .getMyRecentlyPlayedTracks({
-      limit: 10,
-    })
+    .getTracks(topN)
     .then(
-      (data) => {
-        res.send(data.body.items);
+      async (data) => {
+        const trackData = data.body.tracks.map(track => {
+          return {
+            ...track,
+            plays: listenStats[track.id].length
+          }
+        })
+        res.send(trackData);
       },
       (err) => {
         console.log('Something went wrong!', err);
         res.send(err);
       }
     );
+});
+
+app.get('/scrape', async (req, res) => {
+  const [success, err] = await scrape(req.query.spotifyId, req.query.token)
+
+  if (success) {
+    res.redirect(`/songs?spotifyId=${req.query.spotifyId}&token=${req.query.token}`)
+  }
+  if (err) {
+    res.send(err)
+  }
+
 });
 
 // After successful login, update user in mongoDB

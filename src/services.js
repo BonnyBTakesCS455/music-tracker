@@ -1,8 +1,8 @@
 import { BACKEND_SERVER } from "./constants";
 import Cookies from 'js-cookie';
 
-export function getSongs(token) {
-    return fetch(`${BACKEND_SERVER}/songs?token=${token}`)
+export function getSongs(token, spotifyId) {
+    return fetch(`${BACKEND_SERVER}/songs?token=${token}&spotifyId=${spotifyId}`)
     .then(data => {
         return data.json();
     }, err => {

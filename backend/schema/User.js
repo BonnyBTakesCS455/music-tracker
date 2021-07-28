@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema(
       unique: true,
     },
     token: String,
+    lastScraped: Number,
     friendIds: [String],
     topSongIds: [String],
     listenStats: mongoose.Schema.Types.Mixed,

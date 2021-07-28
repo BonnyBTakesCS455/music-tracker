@@ -82,10 +82,6 @@ function getArtistNames(songJson) {
   return artistStr;
 }
 
-function getPlays() {
-  return Math.floor(Math.random() * 100);
-}
-
 function Song(props) {
   const time = convertMsToTime(props.duration_ms);
   const artists = getArtistNames(props);
@@ -98,7 +94,7 @@ function Song(props) {
       <SongColumn title={props.name}><a href={props.external_urls.spotify} target="_blank" rel="noreferrer">{props.name}</a></SongColumn>
       <ArtistColumn title={artists}>{artists}</ArtistColumn>
       <TimeColumn>{time}</TimeColumn>
-      <PlaysColumn>{getPlays()}</PlaysColumn>
+      <PlaysColumn>{props.plays}</PlaysColumn>
     </SongRow>
   );
 }
