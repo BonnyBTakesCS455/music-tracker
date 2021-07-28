@@ -105,3 +105,29 @@ app.get('/me', (req, res) => {
       res.send(err);
     });
 });
+
+app.get('/friends', async (req, res) => {
+  const user = await UserController.directFindUserBySpotifyId(req.query.id)
+
+  const friends = await Promise.all(user.friendIds.map(async friendId => {
+    const userFriend = await UserController.directFindUserBySpotifyId(friendId)
+
+    // find top track
+    let topPlays = 0
+    let topTrackId = 0
+
+    Object.entries(userFriend.listenStats).forEach(([id, plays]) => {
+      if (plays.length > topPlays) {
+        topPlays = plays.length
+        topTrackId = id
+      }
+    })
+
+    return {
+      name: userFriend.name,
+      topTrack: topTrackId
+    }
+  }))
+
+  res.send(friends)
+})
