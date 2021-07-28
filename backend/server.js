@@ -55,7 +55,7 @@ app.get('/songs', async (req, res) => {
         const trackData = data.body.tracks.map(track => {
           return {
             ...track,
-            plays: listenStats[track.id]
+            plays: listenStats[track.id].length
           }
         })
         res.send(trackData);
