@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import Song from "./Song";
 import SongHeader from "./SongHeader";
 import styled from "styled-components";
-import { getSongs } from "../services";
 
 // There are duplicates. Will need to remove via ID
 // import * as fakeSongs from "../fakedata/songs.json";
@@ -26,25 +25,7 @@ const SongDiv = styled.div`
   width: 50%;
 `;
 
-function SongList({token, spotifyId}) {
-    const [songs, setSongs] = useState([]);
-
-    const fetchSongs = useCallback(() => {
-        if (!token) return;
-        getSongs(token, spotifyId)
-            .then(songs => {
-                if (songs.length) {
-                    setSongs(songs)
-                }
-            })
-    }, [token]);
-
-    useEffect(() => {
-        if (!songs.length) {
-            console.log('fetching songs')
-            fetchSongs()
-        }
-    }, [fetchSongs, songs])
+function SongList({ songs }) {
 
     return (
         <SongDiv>
