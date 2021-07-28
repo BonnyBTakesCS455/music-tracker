@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema(
     token: String,
     friendIds: [String],
     topSongIds: [String],
+    listenStats: mongoose.Schema.Types.Mixed,
   },
   { timestamps: true }
 );
