@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const { MONGO } = require('./secret');
+const { scrape } = require('./scrape');
 
 const TOP_N_SONGS_TO_SHOW = 20;
 
@@ -42,13 +43,9 @@ app.get('/songs', async (req, res) => {
     return
   }
 
-  const lastScraped = user.lastScraped
   const listenStats = user.listenStats
-  console.log('lastScraped', lastScraped)
-  const songsSorted = Object.keys(listenStats).sort(function(a, b) {return -(listenStats[a] - listenStats[b])})
-  const topN = songsSorted.slice(0, TOP_N_SONGS_TO_SHOW)
-  console.log('topN', topN)
-  
+  const songsSorted = Object.keys(listenStats).sort(function(a, b) {return -(listenStats[a].length - listenStats[b].length)})
+  const topN = songsSorted.slice(0, TOP_N_SONGS_TO_SHOW) 
 
   spotifyApi.setAccessToken(req.query.token);
   spotifyApi
@@ -72,37 +69,15 @@ app.get('/songs', async (req, res) => {
 });
 
 app.get('/scrape', async (req, res) => {
-  const spotifyId = req.query.spotifyId;
-  const { lastScraped } = await UserController.directFindUserBySpotifyId(spotifyId)
-  console.log('lastScraped', lastScraped)
-  spotifyApi.setAccessToken(req.query.token);
-  spotifyApi
-    .getMyRecentlyPlayedTracks({
-      limit: 50,
-      after: lastScraped || 0
-    })
-    .then(
-      async (data) => {
-        const ids = {}
-        data.body.items.forEach(item => {
-          const id = `listenStats.${item.track.id}`
-          if(ids[id]) {
-            ids[id] = ids[id] + 1;
-          } else {
-            ids[id] = 1
-          }
-        })
-        console.log(ids)
-        const newLastScraped = data.body.cursors?.after || lastScraped
-        console.log("Updating user last scraped", newLastScraped);
-        UserController.directUpdateUserBySpotifyId(spotifyId, { lastScraped: newLastScraped, $inc: ids} );
-        res.redirect(`/songs?spotifyId=${req.query.spotifyId}&token=${req.query.token}`)
-      },
-      (err) => {
-        console.log('Something went wrong!', err);
-        res.send(err);
-      }
-    );
+  const [success, err] = await scrape(req.query.spotifyId, req.query.token)
+
+  if (success) {
+    res.redirect(`/songs?spotifyId=${req.query.spotifyId}&token=${req.query.token}`)
+  }
+  if (err) {
+    res.send(err)
+  }
+
 });
 
 // After successful login, update user in mongoDB
