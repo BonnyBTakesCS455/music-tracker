@@ -14,7 +14,6 @@ const scrape = async (spotifyId) => {
                 // Build an object of trackId -> array of timestamps
                 const plays = {};
                 data.body.items.forEach(item => {
-                    console.log(item);
                     const id = `listenStats.${item.track.id}`;
                     if (id in plays) {
                         plays[id].push(item.played_at);
