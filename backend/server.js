@@ -4,7 +4,7 @@ const express = require('express');
 const request = require('request');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const { MONGO, SPOTIFY_CLIENT_SECRET } = require('./secret');
+const { MONGO } = require('./secret');
 const { scrape } = require('./scrape');
 
 const TOP_N_SONGS_TO_SHOW = 20;
@@ -44,7 +44,7 @@ app.get('/login', async (req, res) => {
     {
       redirectUri: CONSTANTS.REDIRECT_URI,
       clientId: CONSTANTS.CLIENT_ID,
-      clientSecret: SPOTIFY_CLIENT_SECRET
+      clientSecret: CONSTANTS.SPOTIFY_CLIENT_SECRET
     }
   );
   const authorizeURL = spotifyApi.createAuthorizeURL(Object.values(CONSTANTS.SCOPES), 'example_state');
@@ -62,7 +62,7 @@ app.get('/callback', async (req, res) => {
       grant_type: 'authorization_code'
     },
     headers: {
-      'Authorization': 'Basic ' + (new Buffer(CONSTANTS.CLIENT_ID + ':' + SPOTIFY_CLIENT_SECRET).toString('base64')),
+      'Authorization': 'Basic ' + (new Buffer(CONSTANTS.CLIENT_ID + ':' + CONSTANTS.SPOTIFY_CLIENT_SECRET).toString('base64')),
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     json: true
@@ -84,7 +84,7 @@ app.get('/callback', async (req, res) => {
       {
         redirectUri: CONSTANTS.REDIRECT_URI,
         clientId: CONSTANTS.CLIENT_ID,
-        clientSecret: SPOTIFY_CLIENT_SECRET
+        clientSecret: CONSTANTS.SPOTIFY_CLIENT_SECRET
       }
     );
 
@@ -106,7 +106,7 @@ app.get('/callback', async (req, res) => {
       console.log("User found, updating their tokens");
       UserController.directUpdateUserBySpotifyId(data.body.id, { token: tokens.accessToken, refreshToken: tokens.refreshToken });
     }
-    SpotifyControlller.setClient(data.body.id, spotifyApi);
+    SpotifyController.createClient(data.body.id, tokens.accessToken, tokens.refreshToken);
     res.redirect(`${CONSTANTS.FRONTEND_SERVER}?username=${data.body.display_name}&accessToken=${tokens.accessToken}&spotifyId=${data.body.id}`);
   });
 });
@@ -118,7 +118,7 @@ app.get('/songs', async (req, res) => {
     res.redirect(`/scrape?spotifyId=${req.query.spotifyId}`)
     return
   }
-  const listenStats = user.listenStats
+  const listenStats = user.listenStats ?? {};
   const songsSorted = Object.keys(listenStats).sort(function(a, b) {return -(listenStats[a].length - listenStats[b].length)})
   const topN = songsSorted.slice(0, TOP_N_SONGS_TO_SHOW) 
 
@@ -141,7 +141,7 @@ app.get('/songs', async (req, res) => {
 });
 
 app.get('/scrape', async (req, res) => {
-  const [success, err] = await scrape(req.query.spotifyId)
+  const [success, err] = await scrape(req.query.spotifyId);
 
   if (success) {
     res.redirect(`/songs?spotifyId=${req.query.spotifyId}`)

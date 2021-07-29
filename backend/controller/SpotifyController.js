@@ -1,4 +1,5 @@
 const CONSTANTS = require('../../src/constants');
+const request = require('request');
 
 const SpotifyWebApi = require('spotify-web-api-node');
 const { User } = require('../schema/User');
@@ -13,7 +14,7 @@ const spotifyClients = new Map();
  * @param {*} spotifyId 
  * @returns SpotifyWebApi
  */
-exports.createOrGetClient = (spotifyId) => {
+exports.createClient = (spotifyId, accessToken, refreshToken) => {
   if (spotifyClients.has(spotifyId)) {
     return spotifyClients[spotifyId];
   } else {
@@ -24,27 +25,13 @@ exports.createOrGetClient = (spotifyId) => {
         clientSecret: CONSTANTS.SPOTIFY_CLIENT_SECRET
       }
     );
-    spotifyClients[spotifyId] = spotifyApi;
-    return spotifyApi;
+    spotifyClients[spotifyId] = {
+      client: spotifyApi,
+      refreshToken,
+      accessToken
+    };
+    return spotifyClients[spotifyId];
   }
-}
-
- exports.setClient = (spotifyId, client) => {
-  spotifyClients[spotifyId] = client;
-}
-
-/**
- * Refreshes access token for spotifyId's client
- * @param {*} spotifyId 
- */
-exports.refreshToken = (spotifyId) => {
-  const client = spotifyClients[spotifyId];
-  client.refreshAccessToken().then((data) => {
-    // Save the access token so that it's used in future calls
-    client.setAccessToken(data.body['access_token']);
-  }, (err) => {
-    console.log('Could not refresh access token', err);
-  });
 }
 
 exports.removeClient = (spotifyId) => {
@@ -61,12 +48,9 @@ exports.removeClient = (spotifyId) => {
 exports.loadAllClients = () => {
   User.find((err, users) => {
     users.forEach((user) => {
-      const client = this.createOrGetClient(user.spotifyId);
-      client.setAccessToken(user.token);
-      client.setRefreshToken(user.refreshToken);
-      console.log("Successfully loaded user", user.spotifyId);
-    })
-    console.log(spotifyClients);
+      const spotifyItem = this.createClient(user.spotifyId, user.token, user.refreshToken);
+      console.log("Successfully loaded user", spotifyItem);
+    });
   })
 }
 
@@ -75,43 +59,78 @@ exports.loadAllClients = () => {
  * @param {*} spotifyId 
  * @param {*} amountOfTracks 
  */
-exports.getTracks = (spotifyId, amountOfTracks) => {
-  const client = this.createOrGetClient(spotifyId);
-  return client.getTracks(amountOfTracks)
+exports.getTracks = (spotifyId, tracks) => {
+  const spotifyItem = spotifyClients[spotifyId];
+  const client = spotifyItem.client;
+  client.setAccessToken(spotifyItem.accessToken);
+  return client.getTracks(tracks)
     .then(
       (data) => {
         return data;
       },
-      (err) => {
+      async (err) => {
         // Try refreshing access token and try again
-        this.refreshToken(spotifyId);
+        client.setRefreshToken(spotifyItem.refreshToken);
+        client.refreshAccessToken().then(
+          (data) => {
+            console.log('The access token has been refreshed!');
 
-        // Second try with refreshed access token
-        return client.getTracks(amountOfTracks).then(
-          (data) => { return data },
+            // Save the access token so that it's used in future calls
+            client.setAccessToken(data.body['access_token']);
+
+            // Second try with refreshed access token
+            return client.getTracks(tracks).then(
+              (data) => { return data },
+              (err) => {
+                console.log('Something went wrong!', err);
+                return err;
+              }
+            );
+          },
           (err) => {
-            console.log('Something went wrong!', err);
-            return err;
+            console.log('Could not refresh access token', err);
+            throw err;
           }
-        )
+        );
       }
     );
 };
 
+/**
+ * Gets most recently played tracks
+ * @param {*} spotifyId 
+ * @param {*} options 
+ * @returns most recent tracks
+ */
 exports.getMyRecentlyPlayedTracks = (spotifyId, options) => {
-  const client = this.createOrGetClient(spotifyId);
+  const spotifyItem = spotifyClients[spotifyId];
+  const client = spotifyItem.client;
+  client.setAccessToken(spotifyItem.accessToken);
   return client
     .getMyRecentlyPlayedTracks(options)
-    .then((data) => { return data; }, (err) => {
+    .then((data) => { return data; }, async (err) => {
       // Try refreshing access token and try again
-      this.refreshToken(spotifyId);
+      client.setRefreshToken(spotifyItem.refreshToken);
+      client.refreshAccessToken().then(
+        (data) => {
+          console.log('The access token has been refreshed!');
 
-      // Second try with refreshed access token
-      return client
-        .getMyRecentlyPlayedTracks(options)
-        .then((data) => { return data; }, (err) => {
-          console.log('Something went wrong!', err);
-          return err;
-        })
-  });
+          // Save the access token so that it's used in future calls
+          client.setAccessToken(data.body['access_token']);
+
+          // Second try with refreshed access token
+          return client.getMyRecentlyPlayedTracks(options).then(
+            (data) => { return data },
+            (err) => {
+              console.log('Something went wrong!', err);
+              return err;
+            }
+          );
+        },
+        (err) => {
+          console.log('Could not refresh access token', err);
+          throw err;
+        }
+      );
+    });
 }

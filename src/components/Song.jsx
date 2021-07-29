@@ -52,6 +52,9 @@ const TimeColumn = styled.div`
   font-size: 18px;
   font-weight: bold;
   width: 6%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 const PlaysColumn = styled.div`
@@ -59,6 +62,10 @@ const PlaysColumn = styled.div`
   font-size: 18px;
   font-weight: bold;
   width: 6%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: right;
 `;
 
 const SongRow = styled.div`

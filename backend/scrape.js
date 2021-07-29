@@ -12,13 +12,14 @@ const scrape = async (spotifyId) => {
         .then(
             async (data) => {
                 // Build an object of trackId -> array of timestamps
-                const plays = {}
+                const plays = {};
                 data.body.items.forEach(item => {
-                    const id = `listenStats.${item.track.id}`
-                    if (plays[id]) {
-                        plays[id] = plays[id].append(item.played_at);
+                    console.log(item);
+                    const id = `listenStats.${item.track.id}`;
+                    if (id in plays) {
+                        plays[id].push(item.played_at);
                     } else {
-                        plays[id] = [item.played_at]
+                        plays[id] = [item.played_at];
                     }
                 })
 
