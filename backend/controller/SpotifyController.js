@@ -76,7 +76,10 @@ exports.getTracks = (spotifyId, tracks) => {
             console.log('The access token has been refreshed!');
 
             // Save the access token so that it's used in future calls
-            client.setAccessToken(data.body['access_token']);
+            const newToken = data.body['access_token'];
+            client.setAccessToken(newToken);
+            UserController.updateAccessToken(spotifyId, newToken);
+            spotifyClients[spotifyId].accessToken = newToken;
 
             // Second try with refreshed access token
             return client.getTracks(tracks).then(
@@ -116,7 +119,10 @@ exports.getMyRecentlyPlayedTracks = (spotifyId, options) => {
           console.log('The access token has been refreshed!');
 
           // Save the access token so that it's used in future calls
-          client.setAccessToken(data.body['access_token']);
+          const newToken = data.body['access_token'];
+          client.setAccessToken(newToken);
+          UserController.updateAccessToken(spotifyId, newToken);
+          spotifyClients[spotifyId].accessToken = newToken;
 
           // Second try with refreshed access token
           return client.getMyRecentlyPlayedTracks(options).then(
