@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import Cookies from 'js-cookie'
 import styled from 'styled-components';
 import './App.css';
@@ -11,7 +10,6 @@ import Profile from './pages/Profile';
 import Fav from './pages/Fav';
 import Login from './pages/Login';
 import FriendsSidebar from "./components/FriendsSidebar";
-import { setUser } from './state/management/userSettings';
 
 const Container = styled.div`
   background: ${p => p.theme.background};
@@ -20,55 +18,42 @@ const Container = styled.div`
   color: ${p => p.theme.body};
 `
 
-function mapDispatchToProps(dispatch) {
-  return {
-    setUser: (user) => dispatch(setUser(user)),
-  };
-}
+function App() {
+  const [username, setUsername] = useState(Cookies.get('username') ?? "")
+  const [spotifyId, setSpotifyId] = useState(Cookies.get('spotifyId') ?? "")
 
-function mapStateToProps(state) {
-  return {
-    user: state.userSettings.user,
-  };
-}
-
-function App({ user, ...props }) {
-  const [spotifyAuthToken, setSpotifyAuthToken] = useState()
-
-  useEffect(() => { setSpotifyAuthToken(Cookies.get('spotifyAuthToken'))
-  }, [Cookies.get('spotifyAuthToken')]);
+  useEffect(getHashParams, []);
 
   function getHashParams() {
     // Split so the part parsed is just ?code=adsf&state=asdf instead of http://localhost:3000/callback?code=asdf...
     // which makes the key the entire URL
     const urlParams = new URLSearchParams(window.location.href.split('?')[1]);
-    const username = urlParams.get('user') ?? "";
-    const accessToken = urlParams.get('accessToken');
-    
-    if (accessToken) {
-      Cookies.set('spotifyAuthToken', accessToken);
+    const username = urlParams.get('username') ?? "";
+    const spotifyId = urlParams.get('spotifyId');
+
+    if (spotifyId) {
+      Cookies.set('spotifyId', spotifyId);
+      setSpotifyId(spotifyId);
     }
     if (username !== "") {
-      console.log('set user');
-      setUser(username);
+      Cookies.set('username', username);
+      setUsername(username);
     }
-    return { username, accessToken };
   }
 
-  const { username, accessToken } = getHashParams();
-  console.log('username', username, 'accesstoken', accessToken);
+  console.log('user', username, 'spotifyId', spotifyId);
 
   return (
     <Container>
       <NavBar />
       <FriendsSidebar />
       <Switch>
-        { spotifyAuthToken ? (
+        {username && spotifyId ? (
           <>
             <Route path='/profile'>{(_) => Profile()}</Route>
             <Route path='/fav'>{(_) => Fav()}</Route>
             <Route path='/insights'>{(_) => Insights()}</Route>
-            <Route path='/'><Home token={spotifyAuthToken} /></Route>
+            <Route path='/'><Home username={username} spotifyId={spotifyId}/></Route>
           </>
         ) : (
           <>
@@ -77,9 +62,9 @@ function App({ user, ...props }) {
             </Route>
           </>
         )}
-        </Switch>
+      </Switch>
     </Container>
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
