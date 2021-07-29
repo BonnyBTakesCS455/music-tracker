@@ -29,6 +29,10 @@ exports.createOrGetClient = (spotifyId) => {
   }
 }
 
+ exports.setClient = (spotifyId, client) => {
+  spotifyClients[spotifyId] = client;
+}
+
 /**
  * Refreshes access token for spotifyId's client
  * @param {*} spotifyId 

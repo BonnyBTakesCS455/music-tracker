@@ -80,12 +80,19 @@ app.get('/callback', async (req, res) => {
       refreshToken: body['refresh_token']
     };
 
-    const client = SpotifyControlller.createOrGetClient(data.body.id);
-    client.setAccessToken(tokens.accessToken);
-    client.setRefreshToken(tokens.refreshToken);
+    const spotifyApi = new SpotifyWebApi(
+      {
+        redirectUri: CONSTANTS.REDIRECT_URI,
+        clientId: CONSTANTS.CLIENT_ID,
+        clientSecret: SPOTIFY_CLIENT_SECRET
+      }
+    );
+
+    spotifyApi.setAccessToken(tokens.accessToken);
+    spotifyApi.setRefreshToken(tokens.refreshToken);
 
     // Get user info from spotify with new access token
-    const data = await client.getMe()
+    const data = await spotifyApi.getMe()
     const user = await UserController.directFindUserBySpotifyId(data.body.id);
     if (!user) {
       console.log("No user found, creating new user");
@@ -99,6 +106,7 @@ app.get('/callback', async (req, res) => {
       console.log("User found, updating their tokens");
       UserController.directUpdateUserBySpotifyId(data.body.id, { token: tokens.accessToken, refreshToken: tokens.refreshToken });
     }
+    SpotifyControlller.setClient(data.body.id, spotifyApi);
     res.redirect(`${CONSTANTS.FRONTEND_SERVER}?username=${data.body.display_name}&accessToken=${tokens.accessToken}&spotifyId=${data.body.id}`);
   });
 });
