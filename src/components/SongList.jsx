@@ -25,14 +25,13 @@ const SongDiv = styled.div`
   width: 50%;
 `;
 
-function SongList({ songs }) {
-
+function SongList({ songs, showPlays }) {
     return (
         <SongDiv>
             <Table>
-                <SongHeader />
+                <SongHeader showPlays={showPlays} />
                 {songs.map((song, i) => (
-                    <Song key={i} {...song} />
+                    <Song key={i} {...song} showPlays={showPlays} />
                 ))}
             </Table>
         </SongDiv>

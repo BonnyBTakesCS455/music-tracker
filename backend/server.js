@@ -140,6 +140,35 @@ app.get('/songs', async (req, res) => {
     );
 });
 
+app.get('/recommendations', async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  SpotifyController.getRecommendations(spotifyId)
+  .then(
+    async (data) => {
+      const tracks = data.body.tracks;
+      res.send(tracks);
+    },
+    (err) => {
+      console.log('Something went wrong!', err);
+      res.send(err);
+    }
+  )
+})
+
+app.post('/createplaylist', async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  SpotifyController.createPlaylistWithSongs(spotifyId, req.body.songIds, req.body.playlistTitle, req.body.playlistDescription)
+  .then(
+    async (data) => {
+      res.send(data);
+    },
+    (err) => {
+      console.log('Something went wrong!', err);
+      res.send(err);
+    }
+  )
+});
+
 app.get('/scrape', async (req, res) => {
   const [success, err] = await scrape(req.query.spotifyId);
 

@@ -13,7 +13,7 @@ Our Spotify tracker web app allows music listeners to view their music tastes an
 ## Minimal Requirements:
 - [ ] As a user, I want to be able to see what songs/albums/artists I listen to the most
 - [ ] As a user, I want to be able to see what another user is currently listening to
-- [ ] As a user, I want to see a comparison of how my music taste is similar to another user
+- [x] As a user, I want to be able to find similar songs that I’ve been currently listening to
 - [x] As a user, I want to be able to click on songs, and have them taken to the spotify page
 
 ## Standard Requirements:
@@ -23,7 +23,7 @@ Our Spotify tracker web app allows music listeners to view their music tastes an
 - [ ] As a user, I want to be able to share my stats on Instagram easily
 
 ## Stretch goals:
-- [ ] As a user, I want to be able to find similar songs that I’ve been currently listening to
+- [ ] As a user, I want to see a comparison of how my music taste is similar to another user
 - [ ] As a user, I want to be able to have a weekly generated playlist of my favourite songs
 - [ ] As a user, I want to be able to express my mood and have a playlist created based on songs I’ve previously listened to, to curate a playlist for me
 - [ ] Possible to create a playlist using ML gathering a bunch of info from different users?
