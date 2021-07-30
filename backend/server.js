@@ -1,4 +1,4 @@
-const CONSTANTS = require('../src/constants');
+const CONSTANTS = require('./constants');
 
 const express = require('express');
 const request = require('request');
