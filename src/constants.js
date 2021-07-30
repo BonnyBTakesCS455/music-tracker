@@ -1,4 +1,4 @@
-const { SPOTIFY_CLIENT_SECRET } = require('../backend/secret');
+const { SPOTIFY_CLIENT_SECRET } = require('./secret');
 
 module.exports = {
     FRONTEND_SERVER: 'http://localhost:3000',
