@@ -5,6 +5,7 @@ import '../css/SldiingPane.css';
 import FriendsIcon from '../icons/Friends_Filled_WHITE.png';
 import Friend from './Friend';
 import FriendsSearchBar from './FriendsSearchBar';
+import { friends } from '../services';
 
 const StickySidebar = styled.div`
   position: -webkit-sticky;
@@ -28,9 +29,22 @@ const StyledImage = styled.img`
 class FriendsSidebar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { show: false };
+    this.state = {
+      show: false,
+      myFriends: []
+    };
 
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (!this.state.myFriends.length) {
+      friends(this.props.spotifyId).then(myFriends => {
+        this.setState((prevState) => {
+          return { ...prevState, myFriends };
+        });
+      })
+    }
   }
 
   handleClick() {
@@ -40,6 +54,7 @@ class FriendsSidebar extends React.Component {
   }
 
   render() {
+    console.log(this.state.myFriends)
     return (
       <React.Fragment>
         <StickySidebar onClick={this.handleClick}>
@@ -54,9 +69,13 @@ class FriendsSidebar extends React.Component {
           }}
           from={'left'}
           width={'400px'}
-          title={'Currently Listening'}
+          title={'Top tracks'}
         >
-          <Friend />
+          {this.state.myFriends.map(friend => (
+            <Friend imgSrc={friend.imgSrc} name={friend.name} song={friend.topTrack}/>
+            )
+          )
+          }
           <FriendsSearchBar />
         </SlidingPane>
       </React.Fragment>
