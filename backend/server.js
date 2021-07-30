@@ -103,12 +103,13 @@ app.get('/callback', async (req, res) => {
     const user = await UserController.directFindUserBySpotifyId(data.body.id);
     if (!user) {
       console.log("No user found, creating new user");
+      let image = ((data.body.images[0].url != null) ? data.body.images[0].url : "");
       UserController.directCreateUser({
         name: data.body.display_name,
         spotifyId: data.body.id,
         token: tokens.accessToken,
         refreshToken: tokens.refreshToken,
-        image: data.body.images[0].url
+        image: image
       })
     } else {
       console.log("User found, updating their tokens");

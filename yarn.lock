@@ -9403,6 +9403,13 @@ react-smooth@^2.0.0:
     raf "^3.4.0"
     react-transition-group "2.9.0"
 
+react-spotify-auth@^1.3.5:
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/react-spotify-auth/-/react-spotify-auth-1.3.5.tgz#6e23f7384c2132e668a4030725f633f6b45d4425"
+  integrity sha512-C8M9CbFHuivzdP9ePbZ/DbgAQo1vxpjyT1MOdZS5VdBaLjliS0/RDjMYsyn300zXFWokcJ0OlZsIHooTdpYAQg==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-transition-group@2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
