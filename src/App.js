@@ -52,7 +52,7 @@ function App() {
           <>
             <Route path='/profile'>{(_) => Profile()}</Route>
             <Route path='/fav'>{(_) => Fav()}</Route>
-            <Route path='/insights'>{(_) => Insights()}</Route>
+            <Route path='/insights'>{<Insights username={username} spotifyId={spotifyId}/>}</Route>
             <Route path='/'><Home username={username} spotifyId={spotifyId}/></Route>
           </>
         ) : (

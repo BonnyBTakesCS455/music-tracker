@@ -59,14 +59,14 @@ const SongRow = styled.div`
   text-align: left;
 `;
 
-function SongHeader(props) {
+function SongHeader({showPlays}) {
     return (
         <SongRow>
             <ImgDiv></ImgDiv>
             <SongColumn>Song</SongColumn>
             <ArtistColumn>Artist</ArtistColumn>
             <TimeColumn>Time</TimeColumn>
-            <PlaysColumn>Plays</PlaysColumn>
+            {showPlays && <PlaysColumn>Plays</PlaysColumn>}
         </SongRow>
     );
 }
