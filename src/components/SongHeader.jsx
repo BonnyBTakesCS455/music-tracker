@@ -45,7 +45,8 @@ const PlaysColumn = styled.div`
   font-size: 18px;
   font-weight: bolder;
   width: 6%;
-  margin-left: 2px;
+  margin-left: 4px;
+  text-align: right;
 `;
 
 const SongRow = styled.div`

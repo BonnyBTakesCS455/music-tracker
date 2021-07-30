@@ -102,6 +102,10 @@ exports.directUpdateUserBySpotifyId = (spotifyId, fieldsToUpdate) => {
   });
 }
 
+exports.updateAccessToken = (spotifyId, token) => {
+  this.directUpdateUserBySpotifyId(spotifyId, {token});
+}
+
 exports.directFindUserBySpotifyId = (spotifyId) => {
   return User.findOne({spotifyId}, (err, user) => {
     if (err) {

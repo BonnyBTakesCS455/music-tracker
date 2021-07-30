@@ -1,22 +1,18 @@
-import { BACKEND_SERVER } from "./constants";
-import Cookies from 'js-cookie';
-
-export function getSongs(token, spotifyId) {
-    return fetch(`${BACKEND_SERVER}/songs?token=${token}&spotifyId=${spotifyId}`)
-    .then(data => {
-        return data.json();
-    }, err => {
-        // TODO: Better way to handle token refresh
-        Cookies.remove('spotifyAuthToken');
-    });
+export function getSongs(spotifyId) {
+    return fetch(`/songs?spotifyId=${spotifyId}`)
+        .then(data => {
+            return data.json();
+        }, err => {
+            console.log("something went wrong", err);
+        });
 };
 
-export function getCurrentUserInfo(token) {
-    return fetch(`${BACKEND_SERVER}/me?token=${token}`)
-    .then(data => {
-        return data.json();
-    }, err => {
-        // TODO: Better way to handle token refresh
-        Cookies.remove('spotifyAuthToken');
-    });
-};
+export function login() {
+    return fetch('/login')
+        .then(data => {
+            return data.json();
+        }, err => {
+            console.log('Something went wrong ', err);
+            return err;
+        });
+}

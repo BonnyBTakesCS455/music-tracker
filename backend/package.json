@@ -10,6 +10,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.13.2",
     "nodemon": "^2.0.7",
+    "request": "^2.88.2",
     "spotify-web-api-node": "^5.0.2"
   },
   "scripts": {

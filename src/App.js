@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import Cookies from 'js-cookie'
 import styled from 'styled-components';
 import './App.css';
@@ -19,29 +18,42 @@ const Container = styled.div`
   color: ${p => p.theme.body};
 `
 
-function mapStateToProps(state) {
-  return {
-    user: state.userSettings.user,
-  };
-}
+function App() {
+  const [username, setUsername] = useState(Cookies.get('username') ?? "")
+  const [spotifyId, setSpotifyId] = useState(Cookies.get('spotifyId') ?? "")
 
-function App({ user, ...props }) {
-  const [spotifyAuthToken, setSpotifyAuthToken] = useState()
+  useEffect(getHashParams, []);
 
-  useEffect(() => { setSpotifyAuthToken(Cookies.get('spotifyAuthToken'))
-  }, [Cookies.get('spotifyAuthToken')])
+  function getHashParams() {
+    // Split so the part parsed is just ?code=adsf&state=asdf instead of http://localhost:3000/callback?code=asdf...
+    // which makes the key the entire URL
+    const urlParams = new URLSearchParams(window.location.href.split('?')[1]);
+    const username = urlParams.get('username') ?? "";
+    const spotifyId = urlParams.get('spotifyId');
+
+    if (spotifyId) {
+      Cookies.set('spotifyId', spotifyId);
+      setSpotifyId(spotifyId);
+    }
+    if (username !== "") {
+      Cookies.set('username', username);
+      setUsername(username);
+    }
+  }
+
+  console.log('user', username, 'spotifyId', spotifyId);
 
   return (
     <Container>
       <NavBar />
       <FriendsSidebar />
       <Switch>
-        {spotifyAuthToken && user ? (
+        {username && spotifyId ? (
           <>
             <Route path='/profile'>{(_) => Profile()}</Route>
             <Route path='/fav'>{(_) => Fav()}</Route>
             <Route path='/insights'>{(_) => Insights()}</Route>
-            <Route path='/'><Home token={spotifyAuthToken} /></Route>
+            <Route path='/'><Home username={username} spotifyId={spotifyId}/></Route>
           </>
         ) : (
           <>
@@ -50,9 +62,9 @@ function App({ user, ...props }) {
             </Route>
           </>
         )}
-        </Switch>
+      </Switch>
     </Container>
   );
 }
 
-export default connect(mapStateToProps, null)(App);
+export default App;
