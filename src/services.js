@@ -45,3 +45,14 @@ export function login() {
             throw err;
         });
 }
+
+export function friends(spotifyId) {
+    return fetch(`/friends?id=${spotifyId}`)
+        .then(data => {
+            return data.json();
+        }, err => {
+            console.log('Something went wrong ', err);
+            return err;
+        });
+}
+
