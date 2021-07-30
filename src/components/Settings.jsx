@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { toggleDarkMode } from '../state/management/userSettings'
 import Toggle from './Toggle'
+import Button from './Button'
 
 function mapStateToProps(state) {
     return {
@@ -15,7 +16,7 @@ function mapDispatchToProps(dispatch) {
     }
 }
   
-function Settings({ isDarkModeEnabled, toggleDarkMode }) {
+function Settings({ logout, isDarkModeEnabled, toggleDarkMode }) {
     return (
         <>
             <h1>Account Settings</h1>
@@ -26,7 +27,7 @@ function Settings({ isDarkModeEnabled, toggleDarkMode }) {
                 />
                 <span>Dark mode</span>
             </label>
-            
+            <Button onClick={logout}>Logout</Button>
         </>
     );
 }
