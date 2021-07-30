@@ -12,6 +12,8 @@ const spotifyClients = new Map();
 /**
  * Create or gets spotifyWebApi for a particular spotifyId
  * @param {*} spotifyId 
+ * @param {*} accessToken
+ * @param {*} refreshToken
  * @returns SpotifyWebApi
  */
 exports.createClient = (spotifyId, accessToken, refreshToken) => {
@@ -32,6 +34,10 @@ exports.createClient = (spotifyId, accessToken, refreshToken) => {
   }
 }
 
+/**
+ * Removes client from in-memory map
+ * @param {*} spotifyId 
+ */
 exports.removeClient = (spotifyId) => {
   spotifyClients.delete(spotifyId);
 }
@@ -55,38 +61,10 @@ exports.loadAllClients = () => {
 /**
  * Get amountOfTracks most recent tracks
  * @param {*} spotifyId 
- * @param {*} amountOfTracks 
+ * @param {*} tracks list of tracks 
  */
 exports.getTracks = (spotifyId, tracks) => {
-  const client = spotifyClients[spotifyId];
-  return client.getTracks(tracks)
-    .then(
-      (data) => {
-        return data;
-      },
-      async (_err) => {
-        // Try refreshing access token and try again
-        return await client.refreshAccessToken().then(
-          (data) => {
-            // Save the access token so that it's used in future calls
-            updateAccessToken(spotifyId, data.body['access_token']);
-
-            // Second try with refreshed access token
-            return client.getTracks(tracks).then(
-              (data) => { return data },
-              (err) => {
-                console.log('Something went wrong!', err);
-                throw err;
-              }
-            );
-          },
-          (err) => {
-            console.log('Could not refresh access token', err);
-            throw err;
-          }
-        );
-      }
-    );
+  return spotifyWrapperFunction(spotifyId, 'getTracks', [tracks]);
 };
 
 /**
@@ -96,31 +74,7 @@ exports.getTracks = (spotifyId, tracks) => {
  * @returns most recent tracks
  */
 exports.getMyRecentlyPlayedTracks = (spotifyId, options) => {
-  const client = spotifyClients[spotifyId];
-  return client
-    .getMyRecentlyPlayedTracks(options)
-    .then((data) => { return data; }, async (_err) => {
-      // Try refreshing access token and try again
-      return await client.refreshAccessToken().then(
-        (data) => {
-          // Save the access token so that it's used in future calls
-          updateAccessToken(spotifyId, data.body['access_token']);
-
-          // Second try with refreshed access token
-          return client.getMyRecentlyPlayedTracks(options).then(
-            (data) => { return data },
-            (err) => {
-              console.log('Something went wrong!', err);
-              throw err;
-            }
-          );
-        },
-        (err) => {
-          console.log('Could not refresh access token', err);
-          throw err;
-        }
-      );
-    });
+  return spotifyWrapperFunction(spotifyId, 'getMyRecentlyPlayedTracks', [options]);
 }
 
 /**
@@ -158,66 +112,99 @@ exports.getRecommendations = async (spotifyId) => {
 
   console.log('song seed', songSeed, 'artist seed', artistSeed);
 
-  return client.getRecommendations({
+  return spotifyWrapperFunction(spotifyId, 'getRecommendations', [{
     seed_songs: songSeed,
     seed_artists: artistSeed,
     min_popularity: 20,
     limit: 10
-  }).then(
-    (data) => { return data; },
-    (_err) => {
-      console.log('Something went wrong!', err);
-      throw err;
-    });
+  }]);
 }
 
 /**
- * Gets recomendations based on most recently played tracks
+ * Creates playlist with playlistTitle and playlistDescription
  * @param {*} spotifyId 
- * @returns list of tracks to recommend user
+ * @param {*} playlistTitle 
+ * @param {*} playlistDescription 
+ * @returns 
  */
- exports.createPlaylistWithSongs = async (spotifyId, songIds, playlistTitle, playlistDescription) => {
-  const client = spotifyClients[spotifyId];
-  const data = await client.createPlaylist(playlistTitle, {'description': playlistDescription, 'public': true})
-    .then((data) => { console.log("done creating playlist"); return data; }, async (_err) => {
-      // Try refreshing access token and try again
-      return await client.refreshAccessToken().then(
-        (data) => {
-          // Save the access token so that it's used in future calls
-          updateAccessToken(spotifyId, data.body['access_token']);
-
-          // Second try with refreshed access token
-          return client.createPlaylist(playlistTitle, {'description': playlistDescription, 'public': true}).then(
-            (data) => { console.log("done creating playlist"); return data; },
-            (err) => {
-              console.log('Something went wrong!', err);
-              throw err;
-            }
-          );
-        },
-        (err) => {
-          console.log('Could not refresh access token', err);
-          throw err;
-        }
-      );
-    });
-  const playlistData = data;
-  const linkToPlaylist = data.body.external_urls.spotify;
-  const playlistId = data.body.id;
-  console.log("link", linkToPlaylist, "playlist id", playlistId);
-  return await client.addTracksToPlaylist(playlistId, songIds).then(
-    (_data) => {
-      return playlistData;
-    }, (err) => {
-      console.log('Something went wrong!', err);
-      throw err;
-    }
-  )
+exports.createPlaylist = async (spotifyId, playlistTitle, playlistDescription) => {
+  return spotifyWrapperFunction(spotifyId, 'createPlaylist', [playlistTitle, {'description': playlistDescription, 'public': true}]);
 }
 
+/**
+ * Adds tracks to playlist with playlistId
+ * @param {*} spotifyId 
+ * @param {*} playlistId 
+ * @param {*} songIds 
+ * @returns 
+ */
+exports.addTracksToPlaylist = async (spotifyId, playlistId, songIds) => {
+  return spotifyWrapperFunction(spotifyId, 'addTracksToPlaylist', [playlistId, songIds]);
+}
+
+/**
+ * Creates a playlist with the songs in songIds
+ * @param {*} spotifyId 
+ * @param {*} songIds 
+ * @param {*} playlistTitle 
+ * @param {*} playlistDescription 
+ * @returns 
+ */
+exports.createPlaylistWithSongs = async (spotifyId, songIds, playlistTitle, playlistDescription) => {
+  const playlistData = await this.createPlaylist(spotifyId, playlistTitle, playlistDescription);
+  const playlistId = playlistData.body.id;
+  await this.addTracksToPlaylist(spotifyId, playlistId, songIds);
+  // Return original create playlist body because it has better information
+  return playlistData;
+}
+
+/**
+ * Updates access token in mongoDB and in memory for spotifyId
+ * @param {string} spotifyId id of spotify account
+ * @param {string} newToken new access token for the spotify account
+ */
 updateAccessToken = (spotifyId, newToken) => {
   console.log('The access token has been refreshed!');
 
   spotifyClients[spotifyId].setAccessToken(newToken);
   UserController.updateAccessToken(spotifyId, newToken);
+}
+
+/**
+ * Runs the spotify client functions and when necessary, refreshes access token then runs function again
+ * @param {*} spotifyId id of spotify account
+ * @param {string} func name of the method in SpotifyAPI
+ * @param {*} args list of args that will be called in func
+ * For example, if args is [1, 2, 3] then the method would be client.func(1, 2, 3)
+ */
+spotifyWrapperFunction = (spotifyId, func, args) => {
+  const client = spotifyClients[spotifyId];
+  return client[func](...args)
+    .then(
+      (data) => {
+        return data;
+      },
+      async (_err) => {
+        // Try refreshing access token and try again
+        return await client.refreshAccessToken().then(
+          (data) => {
+            // Save the access token so that it's used in future calls
+            updateAccessToken(spotifyId, data.body['access_token']);
+
+            // Second try with refreshed access token
+            return client[func](...args).then(
+              (data) => { return data },
+              (err) => {
+                console.log('Something went wrong!', err);
+                throw err;
+              }
+            );
+          },
+          (err) => {
+            console.log('Could not refresh access token', err);
+            throw err;
+          }
+        );
+      }
+    );
 }
