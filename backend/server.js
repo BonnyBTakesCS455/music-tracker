@@ -100,11 +100,12 @@ app.get('/callback', async (req, res) => {
         name: data.body.display_name,
         spotifyId: data.body.id,
         token: tokens.accessToken,
-        refreshToken: tokens.refreshToken
+        refreshToken: tokens.refreshToken,
+        image: data.body.images[0].url
       })
     } else {
       console.log("User found, updating their tokens");
-      UserController.directUpdateUserBySpotifyId(data.body.id, { token: tokens.accessToken, refreshToken: tokens.refreshToken });
+      UserController.directUpdateUserBySpotifyId(data.body.id, { name: data.body.display_name, token: tokens.accessToken, refreshToken: tokens.refreshToken, image: data.body.images[0].url });
     }
     SpotifyController.createClient(data.body.id, tokens.accessToken, tokens.refreshToken);
     res.redirect(`${CONSTANTS.FRONTEND_SERVER}?username=${data.body.display_name}&accessToken=${tokens.accessToken}&spotifyId=${data.body.id}`);
@@ -178,7 +179,7 @@ app.get('/friends', async (req, res) => {
 
     return {
       name: userFriend.name,
-      imgSrc: 'https://i.ytimg.com/vi/1uvr7CJazqE/maxresdefault.jpg',
+      imgSrc: userFriend.image,
       topTrack
     }
   }))
