@@ -170,9 +170,16 @@ app.get('/friends', async (req, res) => {
       }
     })
 
+
+    const topTrack = await SpotifyController.getTracks(req.query.id, [topTrackId]).then(data => {
+      const track = data.body.tracks[0]
+      return track.name
+    })
+
     return {
       name: userFriend.name,
-      topTrack: topTrackId
+      imgSrc: 'https://i.ytimg.com/vi/1uvr7CJazqE/maxresdefault.jpg',
+      topTrack
     }
   }))
 
