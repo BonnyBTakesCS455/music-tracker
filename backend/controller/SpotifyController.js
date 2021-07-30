@@ -171,11 +171,15 @@ updateAccessToken = (spotifyId, newToken) => {
 }
 
 /**
- * Runs the spotify client functions and when necessary, refreshes access token then runs function again
+ * Runs the spotify client functions 
+ * If the access token is expired, it will automatically refresh it then try to run the function again
+ * 
+ * func example: if I want to run client.getMe() then func would be 'getMe'
+ * args example: if args is [1, 2, 3] then the method would be client.func(1, 2, 3)
+ * 
  * @param {*} spotifyId id of spotify account
- * @param {string} func name of the method in SpotifyAPI
+ * @param {string} func name of the method in SpotifyAPI as a string
  * @param {*} args list of args that will be called in func
- * For example, if args is [1, 2, 3] then the method would be client.func(1, 2, 3)
  */
 spotifyWrapperFunction = (spotifyId, func, args) => {
   const client = spotifyClients[spotifyId];
