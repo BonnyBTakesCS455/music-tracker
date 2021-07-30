@@ -57,7 +57,7 @@ function App() {
       {username && spotifyId ? (
         <>
           <NavBar />
-          <FriendsSidebar />
+          <FriendsSidebar spotifyId={spotifyId} />
           <Switch>
             <Route path='/profile'>{(_) => { return <Profile logout={logout} /> }}</Route>
             <Route path='/fav'>{(_) => Fav()}</Route>

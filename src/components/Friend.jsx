@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ian from "../icons/ianmah.jpg";
 
 const Button = styled.button`
     border: none;
@@ -17,25 +16,30 @@ const Button = styled.button`
     }
 `;
 
+const FlexBox = styled.div`
+    display: flex;
+    align-items: center;
+`
+
 const Img = styled.img`
-  position: relative;
-  padding: 16px 16px;
   float: left;
+  object-fit: cover;
 `;
 
 const Information = styled.div`;
   float: right;
   text-align: left;
+  margin-left: 1em;
 `;
 
-const Name = styled.div`;
+const Name = styled.p`;
   font-weight: bold;
-  margin-top: 25px ;
+  margin: 0.5em 0;
 `;
 
-const Song = styled.div`;
+const Song = styled.p`;
   font-weight: normal;
-  margin-top: 5px ;
+  margin: 0.5em 0;
 `;
 
 class Friend extends React.Component {
@@ -46,17 +50,15 @@ class Friend extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
-                <div>
-                    <Button type={"button"} onClick={this.props.onClick}>
-                        <Img src={ian} width={50} height={50} />
-                        <Information>
-                            <Name>Ian Mah</Name>
-                            <Song>Yu-Gi-Oh Soundtrack</Song>
-                        </Information>
-                    </Button>
-                </div>
-            </React.Fragment>
+            <Button type={"button"} onClick={this.props.onClick}>
+                <FlexBox>
+                    <Img src={this.props.imgSrc} width={50} height={50} />
+                    <Information>
+                        <Name>{this.props.name}</Name>
+                        <Song>{this.props.song}</Song>
+                    </Information>
+                </FlexBox>
+            </Button>
         )
     }
 }
