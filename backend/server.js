@@ -6,6 +6,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const { MONGO } = require('./secret');
 const { scrape } = require('./scrape');
+const path = require("path");
 
 const TOP_N_SONGS_TO_SHOW = 20;
 
