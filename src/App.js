@@ -46,7 +46,7 @@ function App() {
   return (
     <Container>
       <NavBar />
-      <FriendsSidebar />
+      <FriendsSidebar spotifyId={spotifyId} />
       <Switch>
         {username && spotifyId ? (
           <>
