@@ -100,8 +100,8 @@ function Song(props) {
       </ImgDiv>
       <SongColumn title={props.name}><a href={props.external_urls.spotify} target="_blank" rel="noreferrer">{props.name}</a></SongColumn>
       <ArtistColumn title={artists}>{artists}</ArtistColumn>
-      <TimeColumn>{time}</TimeColumn>
-      <PlaysColumn>{props.plays}</PlaysColumn>
+      <TimeColumn title={time}>{time}</TimeColumn>
+      {props.showPlays && <PlaysColumn title={props.play}>{props.plays}</PlaysColumn>}
     </SongRow>
   );
 }

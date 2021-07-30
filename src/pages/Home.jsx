@@ -29,7 +29,7 @@ function Home({ username, spotifyId, user }) {
     <React.Fragment>
       <header className='App-header'>
         <PageHeader title={`Hello ${username}!`} />
-        <SongList songs={songs} />
+        <SongList songs={songs} showPlays={true} />
       </header>
     </React.Fragment>
   );

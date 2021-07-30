@@ -61,7 +61,7 @@ function App() {
           <Switch>
             <Route path='/profile'>{(_) => { return <Profile logout={logout} /> }}</Route>
             <Route path='/fav'>{(_) => Fav()}</Route>
-            <Route path='/insights'>{(_) => Insights()}</Route>
+            <Route path='/insights'>{(_) => {return <Insights username={username} spotifyId={spotifyId}/>}}</Route>
             <Route path='/'>{(_) => { return <Home username={username} spotifyId={spotifyId} /> }}</Route>
             <Route>{(_) => NotFound()}</Route>
           </Switch>
