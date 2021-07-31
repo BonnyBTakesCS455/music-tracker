@@ -18,8 +18,8 @@ Our Spotify tracker web app allows music listeners to view their music tastes an
 
 ## Standard Requirements:
 - [x] As a user, I want to be able to find similar songs that I’ve been currently listening to
-- [ ] As a user, I want to be able to add other users as friends
-- [ ] As a user, I want to see my stats in an interesting, visual way
+- [x] As a user, I want to be able to add other users as friends
+- [x] As a user, I want to see my stats in an interesting, visual way
 - [ ] As a user, I want to be able to see how many times I listened to a song/album/artist over a given time frame
 
 ## Stretch goals:
