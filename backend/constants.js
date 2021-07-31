@@ -1,7 +1,7 @@
 module.exports = {
     FRONTEND_SERVER: 'http://localhost:3000',
     CLIENT_ID: 'f943ad62119e426e878c674c01de2358',
-    REDIRECT_URI: 'http://localhost:5000/callback',
+    REDIRECT_URI: 'https://cpsc-455-music-tracker.herokuapp.com/callback',
     SCOPES: {
         ugcImageUpload: 'ugc-image-upload',
         userFollowRead: 'user-follow-read',
