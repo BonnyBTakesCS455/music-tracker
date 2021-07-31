@@ -4,7 +4,6 @@ const express = require('express');
 const request = require('request');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const { MONGO } = require('./secret');
 const { scrape } = require('./scrape');
 const path = require("path");
 
@@ -28,7 +27,7 @@ const SpotifyWebApi = require('spotify-web-api-node');
 SpotifyController.loadAllClients();
 
 mongoose.set('useFindAndModify', false);
-mongoose.connect(MONGO, {
+mongoose.connect(process.env.MONGO_SECRET, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -38,10 +37,6 @@ app.listen(port, () => {
 });
 
 app.use(express.static("build"));
-
-app.get("/", ( req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
- });
 
 app.post('/user', UserController.createUser);
 app.get('/user/:id', UserController.findUserById);
@@ -194,3 +189,7 @@ app.get('/scrape', async (req, res) => {
 
 app.get('/friends', FriendController.getFriends);
 app.patch('/friend/:id', FriendController.addFriend);
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.resolve(__dirname, 'build/index.html', 'index.html'));
+})

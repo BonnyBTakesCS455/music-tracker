@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 const { User } = require('../schema/User');
 const { scrape } = require('../scrape');
-const { MONGO } = require('../secret');
 
 mongoose.set('useFindAndModify', false);
-mongoose.connect(MONGO, {
+mongoose.connect(process.env.MONGO_SECRET, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

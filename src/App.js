@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import './App.css';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 import { Switch, Route } from 'wouter';
 import Insights from './pages/Insights';
 import Profile from './pages/Profile';
@@ -24,6 +25,14 @@ function App() {
   const [spotifyId, setSpotifyId] = useState(Cookies.get('spotifyId') ?? "")
 
   useEffect(getHashParams, []);
+
+  const logout = () => {
+    console.log('Logging out');
+    Cookies.remove('spotifyId');
+    Cookies.remove('username');
+    setUsername('');
+    setSpotifyId('');
+  }
 
   function getHashParams() {
     // Split so the part parsed is just ?code=adsf&state=asdf instead of http://localhost:3000/callback?code=asdf...
@@ -47,24 +56,25 @@ function App() {
 
   return (
     <Container>
-      <NavBar />
-      <FriendsSidebar spotifyId={spotifyId} />
-      <Switch>
-        {username && spotifyId ? (
-          <>
-            <Route path='/profile'>{(_) => Profile()}</Route>
+      {username && spotifyId ? (
+        <>
+          <NavBar />
+          <FriendsSidebar spotifyId={spotifyId} />
+          <Switch>
+            <Route path='/profile'>{(_) => { return <Profile logout={logout} /> }}</Route>
             <Route path='/fav'>{(_) => Fav()}</Route>
-            <Route path='/insights'>{<Insights username={username} spotifyId={spotifyId}/>}</Route>
-            <Route path='/'><Home username={username} spotifyId={spotifyId}/></Route>
-          </>
-        ) : (
-          <>
-            <Route path='/'>
-              <Login />
-            </Route>
-          </>
-        )}
-      </Switch>
+            <Route path='/insights'>{(_) => {return <Insights username={username} spotifyId={spotifyId}/>}}</Route>
+            <Route path='/'>{(_) => { return <Home username={username} spotifyId={spotifyId} /> }}</Route>
+            <Route>{(_) => NotFound()}</Route>
+          </Switch>
+        </>
+      ) : (
+        <Switch>
+          <Route>
+            <Login />
+          </Route>
+        </Switch>
+      )}
     </Container>
   );
 }

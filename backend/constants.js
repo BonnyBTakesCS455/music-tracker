@@ -1,9 +1,7 @@
-const { SPOTIFY_CLIENT_SECRET } = require('../backend/secret');
-
 module.exports = {
-    FRONTEND_SERVER: 'http://localhost:3000',
+    FRONTEND_SERVER: 'https://cpsc-455-music-tracker.herokuapp.com',
     CLIENT_ID: 'f943ad62119e426e878c674c01de2358',
-    REDIRECT_URI: 'http://localhost:5000/callback',
+    REDIRECT_URI: 'https://cpsc-455-music-tracker.herokuapp.com/callback',
     SCOPES: {
         ugcImageUpload: 'ugc-image-upload',
         userFollowRead: 'user-follow-read',
@@ -25,5 +23,5 @@ module.exports = {
         userReadEmail: 'user-read-email',
         userReadPrivate: 'user-read-private'
     },
-    SPOTIFY_CLIENT_SECRET: SPOTIFY_CLIENT_SECRET
+    SPOTIFY_CLIENT_SECRET: process.env.SPOTIFY_CLIENT_SECRET
 }
