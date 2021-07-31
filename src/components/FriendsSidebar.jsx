@@ -5,7 +5,9 @@ import '../css/SldiingPane.css';
 import FriendsIcon from '../icons/Friends_Filled_WHITE.png';
 import Friend from './Friend';
 import FriendsSearchBar from './FriendsSearchBar';
-import { friends } from '../services';
+import { getFriends } from '../services';
+import { setFriends } from '../state/management/userSettings';
+import { connect } from 'react-redux';
 
 const StickySidebar = styled.div`
   position: -webkit-sticky;
@@ -30,31 +32,30 @@ class FriendsSidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
-      myFriends: []
+      show: false
     };
 
     this.handleClick = this.handleClick.bind(this);
-  }
-
-  componentDidUpdate() {
-    if (!this.state.myFriends.length) {
-      friends(this.props.spotifyId).then(myFriends => {
-        this.setState((prevState) => {
-          return { ...prevState, myFriends };
-        });
-      })
-    }
+    this.fetchFriends = this.fetchFriends.bind(this);
   }
 
   handleClick() {
     this.setState((prevState) => {
       return { show: !prevState.show };
     });
+    if (this.state.show) {
+      this.fetchFriends();
+    }
+  }
+
+  fetchFriends() {
+    getFriends(this.props.spotifyId).then((friends) => {
+      this.props.setFriends(friends);
+      this.friendsCount = friends.length;
+    });
   }
 
   render() {
-    console.log(this.state.myFriends)
     return (
       <React.Fragment>
         <StickySidebar onClick={this.handleClick}>
@@ -71,11 +72,13 @@ class FriendsSidebar extends React.Component {
           width={'400px'}
           title={'Top tracks'}
         >
-          {this.state.myFriends.map(friend => (
-            <Friend imgSrc={friend.imgSrc} name={friend.name} song={friend.topTrack}/>
-            )
-          )
-          }
+          {this.props.friends.map((friend) => (
+            <Friend
+              imgSrc={friend.imgSrc}
+              name={friend.name}
+              song={friend.topTrack}
+            />
+          ))}
           <FriendsSearchBar />
         </SlidingPane>
       </React.Fragment>
@@ -83,4 +86,16 @@ class FriendsSidebar extends React.Component {
   }
 }
 
-export default FriendsSidebar;
+function mapStateToProps(state) {
+  return {
+    friends: state.userSettings.friends
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setFriends: (friends) => dispatch(setFriends(friends))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FriendsSidebar);

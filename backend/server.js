@@ -194,6 +194,11 @@ app.get('/scrape', async (req, res) => {
 app.get('/friends', async (req, res) => {
   const user = await UserController.directFindUserBySpotifyId(req.query.id)
 
+  if (user === null || user.friendIds === null) {
+    res.send([]);
+    return;
+  }
+
   const friends = await Promise.all(user.friendIds.map(async friendId => {
     const userFriend = await UserController.directFindUserBySpotifyId(friendId)
 
