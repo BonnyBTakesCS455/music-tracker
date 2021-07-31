@@ -1,5 +1,3 @@
-const { SPOTIFY_CLIENT_SECRET } = require('../backend/secret');
-
 module.exports = {
     FRONTEND_SERVER: 'http://localhost:3000',
     CLIENT_ID: 'f943ad62119e426e878c674c01de2358',
@@ -25,5 +23,5 @@ module.exports = {
         userReadEmail: 'user-read-email',
         userReadPrivate: 'user-read-private'
     },
-    SPOTIFY_CLIENT_SECRET: SPOTIFY_CLIENT_SECRET
+    SPOTIFY_CLIENT_SECRET: process.env.SPOTIFY_CLIENT_SECRET
 }
