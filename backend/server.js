@@ -21,6 +21,7 @@ app.use(
 );
 
 const UserController = require('./controller/UserController');
+const FriendController = require('./controller/FriendController');
 const SpotifyController = require('./controller/SpotifyController');
 const SpotifyWebApi = require('spotify-web-api-node');
 
@@ -190,41 +191,5 @@ app.get('/scrape', async (req, res) => {
 
 });
 
-
-app.get('/friends', async (req, res) => {
-  const user = await UserController.directFindUserBySpotifyId(req.query.id)
-
-  if (user === null || user.friendIds === null) {
-    res.send([]);
-    return;
-  }
-
-  const friends = await Promise.all(user.friendIds.map(async friendId => {
-    const userFriend = await UserController.directFindUserBySpotifyId(friendId)
-
-    // find top track
-    let topPlays = 0
-    let topTrackId = 0
-
-    Object.entries(userFriend.listenStats).forEach(([id, plays]) => {
-      if (plays.length > topPlays) {
-        topPlays = plays.length
-        topTrackId = id
-      }
-    })
-
-
-    const topTrack = await SpotifyController.getTracks(req.query.id, [topTrackId]).then(data => {
-      const track = data.body.tracks[0]
-      return track.name
-    })
-
-    return {
-      name: userFriend.name,
-      imgSrc: userFriend.image,
-      topTrack
-    }
-  }))
-
-  res.send(friends)
-})
+app.get('/friends', FriendController.getFriends);
+app.patch('/friend/:id', FriendController.addFriend);
