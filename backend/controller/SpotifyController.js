@@ -1,4 +1,4 @@
-const CONSTANTS = require('../../src/constants');
+const CONSTANTS = require('../constants');
 const UserController = require('./UserController');
 
 const SpotifyWebApi = require('spotify-web-api-node');
