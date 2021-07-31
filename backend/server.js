@@ -103,12 +103,13 @@ app.get('/callback', async (req, res) => {
     const user = await UserController.directFindUserBySpotifyId(data.body.id);
     if (!user) {
       console.log("No user found, creating new user");
+      const image = (data.body.images[0].url) ? data.body.images[0].url : "";
       UserController.directCreateUser({
         name: data.body.display_name,
         spotifyId: data.body.id,
         token: tokens.accessToken,
         refreshToken: tokens.refreshToken,
-        image: data.body.images[0].url
+        image: image
       })
     } else {
       console.log("User found, updating their tokens");
@@ -146,6 +147,35 @@ app.get('/songs', async (req, res) => {
         res.send(err);
       }
     );
+});
+
+app.get('/recommendations', async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  SpotifyController.getRecommendations(spotifyId)
+  .then(
+    async (data) => {
+      const tracks = data.body.tracks;
+      res.send(tracks);
+    },
+    (err) => {
+      console.log('Something went wrong!', err);
+      res.send(err);
+    }
+  )
+})
+
+app.post('/createplaylist', async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  SpotifyController.createPlaylistWithSongs(spotifyId, req.body.songIds, req.body.playlistTitle, req.body.playlistDescription)
+  .then(
+    async (data) => {
+      res.send(data);
+    },
+    (err) => {
+      console.log('Something went wrong!', err);
+      res.send(err);
+    }
+  )
 });
 
 app.get('/scrape', async (req, res) => {

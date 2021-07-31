@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "../components/Card";
 import Button from "../components/Button";
-import "react-spotify-auth/dist/index.css";
 import { login } from "../services";
 
 function Login() {
