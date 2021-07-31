@@ -4,7 +4,7 @@ const express = require('express');
 const request = require('request');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const { MONGO } = process.env.MONGO_SECRET
+const { MONGO } = process.env.MONGO_SECRET.toString();
 const { scrape } = require('./scrape');
 const path = require("path");
 
