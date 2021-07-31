@@ -109,7 +109,7 @@ app.get('/callback', async (req, res) => {
       })
     } else {
       console.log("User found, updating their tokens");
-      const image = (data.body.images) ? data.body.images[0].url : "";
+      const image = (data.body.images && data.body.images[0] && data.body.images[0].url) ? data.body.images[0].url : "";
       UserController.directUpdateUserBySpotifyId(data.body.id, { name: data.body.display_name, token: tokens.accessToken, refreshToken: tokens.refreshToken, image: image });
     }
     SpotifyController.createClient(data.body.id, tokens.accessToken, tokens.refreshToken);
