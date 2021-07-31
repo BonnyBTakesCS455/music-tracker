@@ -1,7 +1,7 @@
 # music-tracker
 
 ## Description:
-Our Spotify tracker web app allows music listeners to view their music tastes and stats, analyze their listening history and trends, and compare with their friends. It is similar to Spotify Wrapped but supports more timeframes and will track more metrics. We will be storing user’s listening history and with this data, users can view their own historical stats and compare them with their friend’s stats. If we have extra time, we would like to explore suggesting new content to users based on their listening history and their friend’s listening history. Perhaps auto-generating playlists.
+Our Spotify tracker web app allows music listeners to view their music tastes and stats, analyze their listening history and trends, and compare with their friends. It is similar to Spotify Wrapped but supports more timeframes, will track more metrics and give you more insights on your music listening.
 
 ## Some additional functionality: 
 - [ ] Community sharing
