@@ -38,10 +38,6 @@ app.listen(port, () => {
 
 app.use(express.static("build"));
 
-app.get("/", ( req, res ) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
- });
-
 app.post('/user', UserController.createUser);
 app.get('/user/:id', UserController.findUserById);
 app.put('/user/:id', UserController.updateUserById);
@@ -222,4 +218,8 @@ app.get('/friends', async (req, res) => {
   }))
 
   res.send(friends)
+})
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.resolve(__dirname, 'build/index.html', 'index.html'));
 })
