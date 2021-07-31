@@ -42,11 +42,16 @@ exports.getFriends = async (req, res) => {
   exports.addFriend = async (req, res) => {
     const spotifyId = req.params.id;
     const friendToAdd = req.body.friendId;
-    const fieldsToUpdate = {
-        $addToSet: {
-            friendIds: friendToAdd
-        }
-    };
-    await UserController.directUpdateUserBySpotifyId(spotifyId, fieldsToUpdate);
-    res.send(friendToAdd);
+    const userFriend = await UserController.directFindUserBySpotifyId(friendToAdd);
+    if (userFriend) {
+        const fieldsToUpdate = {
+            $addToSet: {
+                friendIds: friendToAdd
+            }
+        };
+        await UserController.directUpdateUserBySpotifyId(spotifyId, fieldsToUpdate);
+        res.send(friendToAdd);
+    } else {
+        res.sendStatus(404);
+    }
   }

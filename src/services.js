@@ -1,3 +1,6 @@
+import { setFriends } from './state/management/userSettings';
+import store from './state/store';
+
 export function getSongs(spotifyId) {
   return fetch(`/songs?spotifyId=${spotifyId}`).then(
     (data) => {
@@ -63,17 +66,15 @@ export function login() {
   );
 }
 
-export function getFriends(spotifyId) {
+export async function pullFriends(spotifyId) {
   return fetch(`/friends?id=${spotifyId}`).then(
-    (data) => {
-      if (!data) {
-        return [];
-      }
-      return data.json();
+    async (data) => {
+      const friends = await data.json();
+      if (!friends) return;
+      store.dispatch(setFriends(friends));
     },
     (err) => {
       console.log('Something went wrong ', err);
-      return [];
     }
   );
 }

@@ -5,8 +5,7 @@ import '../css/SldiingPane.css';
 import FriendsIcon from '../icons/Friends_Filled_WHITE.png';
 import Friend from './Friend';
 import FriendsSearchBar from './FriendsSearchBar';
-import { getFriends } from '../services';
-import { setFriends } from '../state/management/userSettings';
+import { pullFriends } from '../services';
 import { connect } from 'react-redux';
 
 const StickySidebar = styled.div`
@@ -36,7 +35,6 @@ class FriendsSidebar extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.fetchFriends = this.fetchFriends.bind(this);
   }
 
   handleClick() {
@@ -44,15 +42,8 @@ class FriendsSidebar extends React.Component {
       return { show: !prevState.show };
     });
     if (this.state.show) {
-      this.fetchFriends();
+      pullFriends(this.props.spotifyId);
     }
-  }
-
-  fetchFriends() {
-    getFriends(this.props.spotifyId).then((friends) => {
-      this.props.setFriends(friends);
-      this.friendsCount = friends.length;
-    });
   }
 
   render() {
@@ -79,7 +70,7 @@ class FriendsSidebar extends React.Component {
               song={friend.topTrack}
             />
           ))}
-          <FriendsSearchBar />
+          <FriendsSearchBar spotifyId={this.props.spotifyId} />
         </SlidingPane>
       </React.Fragment>
     );
@@ -92,10 +83,4 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    setFriends: (friends) => dispatch(setFriends(friends))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(FriendsSidebar);
+export default connect(mapStateToProps, null)(FriendsSidebar);

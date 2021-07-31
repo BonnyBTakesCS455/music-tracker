@@ -104,7 +104,7 @@ app.get('/callback', async (req, res) => {
     const user = await UserController.directFindUserBySpotifyId(data.body.id);
     if (!user) {
       console.log("No user found, creating new user");
-      const image = (data.body.images[0].url) ? data.body.images[0].url : "";
+      const image = (data.body.images && data.body.images[0] && data.body.images[0].url) ? data.body.images[0].url : "";
       UserController.directCreateUser({
         name: data.body.display_name,
         spotifyId: data.body.id,
@@ -114,7 +114,8 @@ app.get('/callback', async (req, res) => {
       })
     } else {
       console.log("User found, updating their tokens");
-      UserController.directUpdateUserBySpotifyId(data.body.id, { name: data.body.display_name, token: tokens.accessToken, refreshToken: tokens.refreshToken, image: data.body.images[0].url });
+      const image = (data.body.images) ? data.body.images[0].url : "";
+      UserController.directUpdateUserBySpotifyId(data.body.id, { name: data.body.display_name, token: tokens.accessToken, refreshToken: tokens.refreshToken, image: image });
     }
     SpotifyController.createClient(data.body.id, tokens.accessToken, tokens.refreshToken);
     res.redirect(`${CONSTANTS.FRONTEND_SERVER}?username=${data.body.display_name}&accessToken=${tokens.accessToken}&spotifyId=${data.body.id}`);
