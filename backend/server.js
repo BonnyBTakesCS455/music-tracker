@@ -28,7 +28,7 @@ const SpotifyWebApi = require('spotify-web-api-node');
 SpotifyController.loadAllClients();
 
 mongoose.set('useFindAndModify', false);
-mongoose.connect(MONGO, {
+mongoose.connect(process.env.MONGO_SECRET, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
