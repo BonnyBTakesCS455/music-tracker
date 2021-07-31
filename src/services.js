@@ -1,5 +1,7 @@
+const API = "https://cpsc-455-music-tracker.herokuapp.com"
+
 export function getSongs(spotifyId) {
-    return fetch(`/songs?spotifyId=${spotifyId}`)
+    return fetch(`${API}/songs?spotifyId=${spotifyId}`)
         .then(data => {
             return data.json();
         }, (err) => {
@@ -9,7 +11,7 @@ export function getSongs(spotifyId) {
 };
 
 export function getRecommendations(spotifyId) {
-    return fetch(`/recommendations?spotifyId=${spotifyId}`)
+    return fetch(`${API}/recommendations?spotifyId=${spotifyId}`)
         .then(data => {
             return data.json();
         }, (err) => {
@@ -22,7 +24,7 @@ export function createPlaylistWithSongs(spotifyId, songIds, playlistTitle, playl
     const data = {
         spotifyId, songIds, playlistTitle, playlistDescription
     };
-    return fetch(`/createplaylist?spotifyId=${spotifyId}`, {
+    return fetch(`${API}/createplaylist?spotifyId=${spotifyId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -37,7 +39,7 @@ export function createPlaylistWithSongs(spotifyId, songIds, playlistTitle, playl
 }
 
 export function login() {
-    return fetch('/login')
+    return fetch('${API}/login')
         .then(data => {
             return data.json();
         }, (err) => {
@@ -47,7 +49,7 @@ export function login() {
 }
 
 export function friends(spotifyId) {
-    return fetch(`/friends?id=${spotifyId}`)
+    return fetch(`${API}/friends?id=${spotifyId}`)
         .then(data => {
             return data.json();
         }, err => {
