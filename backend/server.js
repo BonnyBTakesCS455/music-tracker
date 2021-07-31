@@ -20,6 +20,7 @@ app.use(
 );
 
 const UserController = require('./controller/UserController');
+const FriendController = require('./controller/FriendController');
 const SpotifyController = require('./controller/SpotifyController');
 const SpotifyWebApi = require('spotify-web-api-node');
 
@@ -98,7 +99,7 @@ app.get('/callback', async (req, res) => {
     const user = await UserController.directFindUserBySpotifyId(data.body.id);
     if (!user) {
       console.log("No user found, creating new user");
-      const image = (data.body.images[0].url) ? data.body.images[0].url : "";
+      const image = (data.body.images && data.body.images[0] && data.body.images[0].url) ? data.body.images[0].url : "";
       UserController.directCreateUser({
         name: data.body.display_name,
         spotifyId: data.body.id,
@@ -108,7 +109,8 @@ app.get('/callback', async (req, res) => {
       })
     } else {
       console.log("User found, updating their tokens");
-      UserController.directUpdateUserBySpotifyId(data.body.id, { name: data.body.display_name, token: tokens.accessToken, refreshToken: tokens.refreshToken, image: data.body.images[0].url });
+      const image = (data.body.images) ? data.body.images[0].url : "";
+      UserController.directUpdateUserBySpotifyId(data.body.id, { name: data.body.display_name, token: tokens.accessToken, refreshToken: tokens.refreshToken, image: image });
     }
     SpotifyController.createClient(data.body.id, tokens.accessToken, tokens.refreshToken);
     res.redirect(`${CONSTANTS.FRONTEND_SERVER}?username=${data.body.display_name}&accessToken=${tokens.accessToken}&spotifyId=${data.body.id}`);
@@ -185,39 +187,8 @@ app.get('/scrape', async (req, res) => {
 
 });
 
-
-app.get('/friends', async (req, res) => {
-  const user = await UserController.directFindUserBySpotifyId(req.query.id)
-
-  const friends = await Promise.all(user.friendIds.map(async friendId => {
-    const userFriend = await UserController.directFindUserBySpotifyId(friendId)
-
-    // find top track
-    let topPlays = 0
-    let topTrackId = 0
-
-    Object.entries(userFriend.listenStats).forEach(([id, plays]) => {
-      if (plays.length > topPlays) {
-        topPlays = plays.length
-        topTrackId = id
-      }
-    })
-
-
-    const topTrack = await SpotifyController.getTracks(req.query.id, [topTrackId]).then(data => {
-      const track = data.body.tracks[0]
-      return track.name
-    })
-
-    return {
-      name: userFriend.name,
-      imgSrc: userFriend.image,
-      topTrack
-    }
-  }))
-
-  res.send(friends)
-})
+app.get('/friends', FriendController.getFriends);
+app.patch('/friend/:id', FriendController.addFriend);
 
 app.get("/*", function (req, res) {
   res.sendFile(path.resolve(__dirname, 'build/index.html', 'index.html'));

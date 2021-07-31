@@ -5,7 +5,8 @@ import '../css/SldiingPane.css';
 import FriendsIcon from '../icons/Friends_Filled_WHITE.png';
 import Friend from './Friend';
 import FriendsSearchBar from './FriendsSearchBar';
-import { friends } from '../services';
+import { pullFriends } from '../services';
+import { connect } from 'react-redux';
 
 const StickySidebar = styled.div`
   position: -webkit-sticky;
@@ -30,31 +31,22 @@ class FriendsSidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
-      myFriends: []
+      show: false
     };
 
     this.handleClick = this.handleClick.bind(this);
-  }
-
-  componentDidUpdate() {
-    if (!this.state.myFriends.length) {
-      friends(this.props.spotifyId).then(myFriends => {
-        this.setState((prevState) => {
-          return { ...prevState, myFriends };
-        });
-      })
-    }
   }
 
   handleClick() {
     this.setState((prevState) => {
       return { show: !prevState.show };
     });
+    if (this.state.show) {
+      pullFriends(this.props.spotifyId);
+    }
   }
 
   render() {
-    console.log(this.state.myFriends)
     return (
       <React.Fragment>
         <StickySidebar onClick={this.handleClick}>
@@ -71,16 +63,24 @@ class FriendsSidebar extends React.Component {
           width={'400px'}
           title={'Top tracks'}
         >
-          {this.state.myFriends.map(friend => (
-            <Friend imgSrc={friend.imgSrc} name={friend.name} song={friend.topTrack}/>
-            )
-          )
-          }
-          <FriendsSearchBar />
+          {this.props.friends.map((friend) => (
+            <Friend
+              imgSrc={friend.imgSrc}
+              name={friend.name}
+              song={friend.topTrack}
+            />
+          ))}
+          <FriendsSearchBar spotifyId={this.props.spotifyId} />
         </SlidingPane>
       </React.Fragment>
     );
   }
 }
 
-export default FriendsSidebar;
+function mapStateToProps(state) {
+  return {
+    friends: state.userSettings.friends
+  }
+}
+
+export default connect(mapStateToProps, null)(FriendsSidebar);

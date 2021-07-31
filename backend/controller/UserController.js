@@ -110,7 +110,7 @@ exports.directFindUserBySpotifyId = (spotifyId) => {
   return User.findOne({spotifyId}, (err, user) => {
     if (err) {
       console.error(err);
-      return err
+      return null;
     }
     return user;
   });

@@ -11,6 +11,7 @@ import Profile from './pages/Profile';
 import Fav from './pages/Fav';
 import Login from './pages/Login';
 import FriendsSidebar from "./components/FriendsSidebar";
+import { pullFriends } from './services';
 
 const Container = styled.div`
   background: ${p => p.theme.background};
@@ -51,6 +52,7 @@ function App() {
   }
 
   console.log('user', username, 'spotifyId', spotifyId);
+  pullFriends(spotifyId);
 
   return (
     <Container>
