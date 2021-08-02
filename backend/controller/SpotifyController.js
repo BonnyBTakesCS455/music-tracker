@@ -63,12 +63,14 @@ exports.loadAllClients = () => {
  * @param {*} spotifyId
  */
  exports.loadClient = async (spotifyId) => {
-  await User.find({ spotifyId: spotifyId }, (err, users) => {
-    users.forEach((user) => {
+  const users = await User.find({ spotifyId: spotifyId } ).exec();
+  if (!users) {
+    return;
+  }
+  users.forEach((user) => {
       const spotifyItem = this.createClient(user.spotifyId, user.token, user.refreshToken);
       console.log("Successfully loaded user", spotifyItem);
-    });
-  })
+  });
 }
 
 /**
