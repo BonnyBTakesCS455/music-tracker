@@ -1,5 +1,5 @@
 const CONSTANTS = require('./constants');
-
+const { MONGO } = require('./secret');
 const express = require('express');
 const request = require('request');
 const cors = require('cors');
@@ -11,6 +11,9 @@ const TOP_N_SONGS_TO_SHOW = 20;
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+const MONGO_SECRET = process.env.MONGO_SECRET || MONGO;
+
 app.use(cors());
 app.use(express.json());
 app.use(
@@ -27,7 +30,7 @@ const SpotifyWebApi = require('spotify-web-api-node');
 SpotifyController.loadAllClients();
 
 mongoose.set('useFindAndModify', false);
-mongoose.connect(process.env.MONGO_SECRET, {
+mongoose.connect(MONGO_SECRET, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
