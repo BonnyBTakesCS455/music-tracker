@@ -59,6 +59,19 @@ exports.loadAllClients = () => {
 }
 
 /**
+ * Loads and creates spotify client from database
+ * @param {*} spotifyId
+ */
+ exports.loadClient = async (spotifyId) => {
+  await User.find({ spotifyId: spotifyId }, (err, users) => {
+    users.forEach((user) => {
+      const spotifyItem = this.createClient(user.spotifyId, user.token, user.refreshToken);
+      console.log("Successfully loaded user", spotifyItem);
+    });
+  })
+}
+
+/**
  * Get amountOfTracks most recent tracks
  * @param {*} spotifyId 
  * @param {*} tracks list of tracks 
@@ -182,6 +195,9 @@ updateAccessToken = (spotifyId, newToken) => {
  * @param {*} args list of args that will be called in func
  */
 spotifyWrapperFunction = (spotifyId, func, args) => {
+  if (!(spotifyId in spotifyClients)) {
+    await this.loadClient(spotifyId);
+  }
   const client = spotifyClients[spotifyId];
   return client[func](...args)
     .then(
