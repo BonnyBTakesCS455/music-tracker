@@ -1,0 +1,20 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install; npm run build
+      - run: mv ./build ./backend/build
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "cpsc-455-music-tracker" #Must be unique in Heroku
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          appdir: "backend"
