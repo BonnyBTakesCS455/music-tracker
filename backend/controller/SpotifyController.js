@@ -196,7 +196,7 @@ updateAccessToken = (spotifyId, newToken) => {
  */
 spotifyWrapperFunction = (spotifyId, func, args) => {
   if (!(spotifyId in spotifyClients)) {
-    await this.loadClient(spotifyId);
+    this.loadClient(spotifyId);
   }
   const client = spotifyClients[spotifyId];
   return client[func](...args)
