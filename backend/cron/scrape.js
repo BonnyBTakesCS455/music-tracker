@@ -13,8 +13,8 @@ console.log('Scraping user stats')
 const run = async() => {
     for await (const doc of User.find()) {
         console.log('scraping', doc.name, doc.spotifyId)
-        await scrape(doc.spotifyId, doc.token)
+        await scrape(doc.spotifyId)
     }
 }
 
-run().then(() => mongoose.connection.close())
+run().finally(() => mongoose.connection.close())

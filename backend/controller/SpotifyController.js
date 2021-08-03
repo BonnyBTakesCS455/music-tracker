@@ -178,7 +178,7 @@ exports.createPlaylistWithSongs = async (spotifyId, songIds, playlistTitle, play
  * @param {string} spotifyId id of spotify account
  * @param {string} newToken new access token for the spotify account
  */
-updateAccessToken = (spotifyId, newToken) => {
+const updateAccessToken = (spotifyId, newToken) => {
   console.log('The access token has been refreshed!');
 
   spotifyClients[spotifyId].setAccessToken(newToken);
@@ -196,7 +196,7 @@ updateAccessToken = (spotifyId, newToken) => {
  * @param {string} func name of the method in SpotifyAPI as a string
  * @param {*} args list of args that will be called in func
  */
-spotifyWrapperFunction = (spotifyId, func, args) => {
+const spotifyWrapperFunction = (spotifyId, func, args) => {
   if (!(spotifyId in spotifyClients)) {
     this.loadClient(spotifyId);
   }
