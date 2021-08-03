@@ -11,13 +11,12 @@ mongoose.connect(process.env.MONGO_SECRET, {
 console.log('Scraping user stats')
 
 const run = async() => {
-  const tasks = []
   for await (const doc of User.find()) {
     console.log('scraping', doc.name, doc.spotifyId)
-    tasks.push(scrape(doc.spotifyId))
+    scrape(doc.spotifyId)
   }
-
-  return await Promise.all(tasks)
 }
 
-run().finally(() => mongoose.connection.close())
+run()
+
+setTimeout(mongoose.connection.close(), 20 * 1000); // close connection after x seconds LMAO
