@@ -67,10 +67,10 @@ exports.loadAllClients = () => {
   if (!users) {
     return;
   }
-  users.forEach((user) => {
-      const spotifyItem = this.createClient(user.spotifyId, user.token, user.refreshToken);
+  return Promise.all(users.map(async (user) => {
+      const spotifyItem = await this.createClient(user.spotifyId, user.token, user.refreshToken);
       console.log("Successfully loaded user", spotifyItem);
-  });
+  }));
 }
 
 /**
@@ -196,9 +196,9 @@ const updateAccessToken = (spotifyId, newToken) => {
  * @param {string} func name of the method in SpotifyAPI as a string
  * @param {*} args list of args that will be called in func
  */
-const spotifyWrapperFunction = (spotifyId, func, args) => {
+const spotifyWrapperFunction = async (spotifyId, func, args) => {
   if (!(spotifyId in spotifyClients)) {
-    this.loadClient(spotifyId);
+    await this.loadClient(spotifyId);
   }
   const client = spotifyClients[spotifyId];
   return client[func](...args)
