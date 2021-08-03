@@ -24,7 +24,7 @@ exports.createClient = (spotifyId, accessToken, refreshToken) => {
       {
         redirectUri: CONSTANTS.REDIRECT_URI,
         clientId: CONSTANTS.CLIENT_ID,
-        clientSecret: CONSTANTS.SPOTIFY_CLIENT_SECRET,
+        clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
         refreshToken,
         accessToken
       }
