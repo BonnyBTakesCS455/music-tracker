@@ -11,10 +11,13 @@ mongoose.connect(process.env.MONGO_SECRET, {
 console.log('Scraping user stats')
 
 const run = async() => {
-  await Promise.all(User.find().map(doc => {
+  const tasks = []
+  for await (const doc of User.find()) {
     console.log('scraping', doc.name, doc.spotifyId)
-    return scrape(doc.spotifyId)
-  }))
+    tasks.push(scrape(doc.spotifyId))
+  }
+
+  return await Promise.all(tasks)
 }
 
 run().finally(() => mongoose.connection.close())
