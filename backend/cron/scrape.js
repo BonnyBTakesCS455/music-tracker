@@ -19,4 +19,4 @@ const run = async() => {
 
 run()
 
-setTimeout(mongoose.connection.close(), 20 * 1000); // close connection after x seconds LMAO
+setTimeout(async () => { await mongoose.connection.close() }, 20 * 1000); // close connection after x seconds LMAO
