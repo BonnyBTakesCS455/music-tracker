@@ -28,10 +28,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.connect(process.env.MONGO_SECRET, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-}).then(() => {
-  SpotifyController.loadAllClients();
 })
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

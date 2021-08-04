@@ -8,13 +8,12 @@ import NotFound from './pages/NotFound';
 import { Switch, Route } from 'wouter';
 import Insights from './pages/Insights';
 import Profile from './pages/Profile';
-import Fav from './pages/Fav';
 import Login from './pages/Login';
 import FriendsSidebar from "./components/FriendsSidebar";
 import { pullFriends } from './services';
+import Recommendations from './pages/Recommendations';
 
 const Container = styled.div`
-  background: ${p => p.theme.background};
   text-align: center;
   min-height: 100vh;
   color: ${p => p.theme.body};
@@ -62,7 +61,7 @@ function App() {
           <FriendsSidebar spotifyId={spotifyId} />
           <Switch>
             <Route path='/profile'>{(_) => { return <Profile logout={logout} /> }}</Route>
-            <Route path='/fav'>{(_) => Fav()}</Route>
+            <Route path='/recommendations'>{(_) => {return <Recommendations username={username} spotifyId={spotifyId}/>}}</Route>
             <Route path='/insights'>{(_) => {return <Insights username={username} spotifyId={spotifyId}/>}}</Route>
             <Route path='/'>{(_) => { return <Home username={username} spotifyId={spotifyId} /> }}</Route>
             <Route>{(_) => NotFound()}</Route>

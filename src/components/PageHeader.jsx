@@ -6,8 +6,8 @@ const Img = styled.img`
   padding: 16px 16px;
 `;
 
-const Title = styled.div`
-  font-size: 72px;
+const Title = styled.h1`
+  font-size: 1.5em;
   font-weight: bold;
   white-space: nowrap;
   position: relative;
@@ -25,7 +25,7 @@ const PageHeaderContainer = styled.div`
 function PageHeader(props) {
     return (
         <PageHeaderContainer>
-            <Img src={profile_icon} width={128} height={128} />
+            <Img src={profile_icon} width={72} height={72} />
             <Title>{props.title}</Title>
         </PageHeaderContainer>
     )

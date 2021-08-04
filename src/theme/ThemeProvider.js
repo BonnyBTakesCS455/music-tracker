@@ -1,6 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: ${p => p.theme.background};
+  }
+`
 
 function mapStateToProps(state) {
     return {
@@ -21,7 +27,10 @@ const lightTheme = {
 const CustomThemeProvider = ({ children, isDarkModeEnabled }) => {
     const selectedTheme = isDarkModeEnabled ? darkTheme : lightTheme
     
-    return <ThemeProvider theme={selectedTheme}>{children}</ThemeProvider>
+    return <ThemeProvider theme={selectedTheme}>
+        <GlobalStyle />
+        {children}
+    </ThemeProvider>
 }
 
 export default connect(mapStateToProps, null)(CustomThemeProvider);

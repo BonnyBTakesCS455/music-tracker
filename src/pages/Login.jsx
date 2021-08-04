@@ -18,7 +18,7 @@ function Login() {
 
   return (
     <>
-      <header className="App-header">
+      <header className="App-container">
         <Card>
           <h4>Login</h4>
           <Button onClick={goToSpotifyAuthLogin}>Login</Button>
