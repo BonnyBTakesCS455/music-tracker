@@ -1,6 +1,6 @@
 module.exports = {
     FRONTEND_SERVER: process.env.NODE_ENV === 'production' ? 'https://cpsc-455-music-tracker.herokuapp.com' : 'http://localhost:3000',
-    CLIENT_ID: 'f943ad62119e426e878c674c01de2358',
+    CLIENT_ID: 'c7765adc626d4959ade45fba973c58d1',
     REDIRECT_URI: process.env.NODE_ENV === 'production' ? 'https://cpsc-455-music-tracker.herokuapp.com/callback' : 'http://localhost:5000/callback',
     SCOPES: {
         ugcImageUpload: 'ugc-image-upload',
