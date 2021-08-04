@@ -37,7 +37,7 @@ const Filter2 = styled.div`
   position: absolute;
   height: 100%;
   mix-blend-mode: soft-light;
-  background: linear-gradient(#20d10f 60%, black);
+  background: linear-gradient(#0fd122 60%, black);
   z-index: 11;
 `
 
