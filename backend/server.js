@@ -24,13 +24,14 @@ const FriendController = require('./controller/FriendController');
 const SpotifyController = require('./controller/SpotifyController');
 const SpotifyWebApi = require('spotify-web-api-node');
 
-SpotifyController.loadAllClients();
-
 mongoose.set('useFindAndModify', false);
 mongoose.connect(process.env.MONGO_SECRET, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+}).then(() => {
+  SpotifyController.loadAllClients();
+})
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
@@ -119,11 +120,12 @@ app.get('/callback', async (req, res) => {
 
 app.get('/songs', async (req, res) => {
   const spotifyId = req.query.spotifyId;
-  const user = await UserController.directFindUserBySpotifyId(spotifyId)
-  if (!user || !user.lastScraped) {
-    res.redirect(`/scrape?spotifyId=${req.query.spotifyId}`)
-    return
+  const [success, err] = await scrape(spotifyId);
+  if (err) {
+    res.status(500).send(err);
   }
+  const user = await UserController.directFindUserBySpotifyId(spotifyId)
+
   const listenStats = user.listenStats ?? {};
   const songsSorted = Object.keys(listenStats).sort(function(a, b) {return -(listenStats[a].length - listenStats[b].length)})
   const topN = songsSorted.slice(0, TOP_N_SONGS_TO_SHOW) 
