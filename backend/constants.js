@@ -1,7 +1,7 @@
 module.exports = {
-    FRONTEND_SERVER: 'https://cpsc-455-music-tracker.herokuapp.com',
+    FRONTEND_SERVER: process.env.NODE_ENV === 'production' ? 'https://cpsc-455-music-tracker.herokuapp.com' : 'http://localhost:3000',
     CLIENT_ID: 'f943ad62119e426e878c674c01de2358',
-    REDIRECT_URI: 'https://cpsc-455-music-tracker.herokuapp.com/callback',
+    REDIRECT_URI: process.env.NODE_ENV === 'production' ? 'https://cpsc-455-music-tracker.herokuapp.com/callback' : 'http://localhost:5000/callback',
     SCOPES: {
         ugcImageUpload: 'ugc-image-upload',
         userFollowRead: 'user-follow-read',
@@ -22,6 +22,5 @@ module.exports = {
         appRemoteControl: 'app-remote-control',
         userReadEmail: 'user-read-email',
         userReadPrivate: 'user-read-private'
-    },
-    SPOTIFY_CLIENT_SECRET: process.env.SPOTIFY_CLIENT_SECRET
+    }
 }
