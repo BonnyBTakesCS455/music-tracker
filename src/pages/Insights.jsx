@@ -1,15 +1,13 @@
 import React from 'react';
 
-import Recommendations from './Recommendations';
 import Graph from '../components/Graph';
 
-function Insights(props) {
+function Insights() {
   return (
     <React.Fragment>
-      <header className='App-header'>
-        <h1>The insights page</h1>
+      <header className='App-container'>
+        <h1>Insights</h1>
         <Graph />
-        <Recommendations {...props}/>
       </header>
     </React.Fragment>
   );

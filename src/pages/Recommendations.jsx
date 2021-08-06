@@ -48,7 +48,7 @@ function Recommendations({ username, spotifyId }) {
 
   return (
     <React.Fragment>
-      <header className='App-header'>
+      <header className='App-container'>
         <h2>{`Recommendations for ${username}!`}</h2>
         <SongList songs={songs} showPlays={false} />
         <Button onClick={createPlaylist}>{playlistLink === '' ? 'Create Playlist' : 'Open Playlist'}</Button>

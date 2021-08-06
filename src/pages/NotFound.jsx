@@ -4,7 +4,7 @@ import PageHeader from '../components/PageHeader';
 function NotFound() {
   return (
     <React.Fragment>
-      <header className='App-header'>
+      <header className='App-container'>
         <PageHeader title="Page not found" />
       </header>
     </React.Fragment>
