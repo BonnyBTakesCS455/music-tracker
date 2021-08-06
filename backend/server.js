@@ -4,6 +4,7 @@ const request = require('request');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const { scrape } = require('./scrape');
+const { chunkify } = require('./util');
 const path = require("path");
 
 const TOP_N_SONGS_TO_SHOW = 20;
@@ -35,6 +36,11 @@ app.listen(port, () => {
 });
 
 app.use(express.static("build"));
+
+app.use(function (req, res, next) {
+  console.log('INFO:', req.method, req.url, req.body)
+  next()
+})
 
 app.post('/user', UserController.createUser);
 app.get('/user/:id', UserController.findUserById);
@@ -144,6 +150,58 @@ app.get('/songs', async (req, res) => {
       }
     );
 });
+
+app.get('/insights', async (req, res) => {
+  // https://stackoverflow.com/questions/1296358/how-to-subtract-days-from-a-plain-date
+  const yesterday = new Date()
+  yesterday.setDate(yesterday.getDate() - 1)
+  const yestTimestamp = yesterday.toISOString()
+
+  const spotifyId = req.query.spotifyId;
+  const user = await UserController.directFindUserBySpotifyId(spotifyId)
+  const listenStats = user.listenStats ?? {};
+
+  console.log({yestTimestamp, spotifyId})
+
+  // of the form { trackId: # listens }
+  let listens = {}
+
+  Object.entries(listenStats).forEach(([trackId, trackListens]) => {
+    // I kinda murked the data so there are nested arrays...
+    const flatListens = trackListens.flat(2)
+    // Listens that happened after 24 hours ago
+    const recentListens = flatListens.filter(listen => listen > yestTimestamp)
+    if (recentListens.length) {
+      listens[trackId] = recentListens.length
+    }
+  })
+
+  // of the form { trackId: duration_ms }
+  const trackDurations = {}
+
+  // "tracks" endpoint allows 50 tracks at a time
+  chunkedTrackIds = chunkify(Object.keys(listens), 50)
+
+  await Promise.all(chunkedTrackIds.map(async chunk => {
+    const trackData = await SpotifyController.getTracks(spotifyId, chunk)
+    trackData.body.tracks.map(track => {
+      trackDurations[track.id] = track.duration_ms
+    })
+  }))
+
+  let msListened = 0
+
+  Object.entries(listens).forEach(([trackId, listens]) => {
+    msListened += trackDurations[trackId] * listens
+  })
+
+  const minutesListened = Math.floor(msListened / 1000 / 60)
+
+  res.send({
+    minutesListened
+  })
+
+})
 
 app.get('/recommendations', async (req, res) => {
   const spotifyId = req.query.spotifyId;
