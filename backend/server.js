@@ -130,7 +130,7 @@ app.get('/songs', async (req, res) => {
   const user = await UserController.directFindUserBySpotifyId(spotifyId)
 
   const listenStats = user.listenStats ?? {};
-  const songsSorted = Object.keys(listenStats).sort(function(a, b) {return -(listenStats[a].length - listenStats[b].length)})
+  const songsSorted = Object.keys(listenStats).sort(function(a, b) {return -(listenStats[a].flat(2).length - listenStats[b].flat(2).length)})
   const topN = songsSorted.slice(0, TOP_N_SONGS_TO_SHOW) 
 
   SpotifyController.getTracks(spotifyId, topN)
@@ -139,7 +139,7 @@ app.get('/songs', async (req, res) => {
         const trackData = data.body.tracks.map(track => {
           return {
             ...track,
-            plays: listenStats[track.id].length
+            plays: listenStats[track.id].flat(2).length
           }
         })
         res.send(trackData);
