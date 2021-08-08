@@ -1,16 +1,16 @@
 @font-face {
-  font-family: 'Gotham';
-  src: url('./fonts/Gotham.ttf') format('truetype');
+  font-family: "Gotham";
+  src: url("./fonts/Gotham.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Gotham-thin';
-  src: url('./fonts/Gotham-Thin.otf') format('opentype');
+  font-family: "Gotham-thin";
+  src: url("./fonts/Gotham-Thin.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'Gotham-light';
-  src: url('./fonts/Gotham-Light.otf') format('opentype');
+  font-family: "Gotham-light";
+  src: url("./fonts/Gotham-Light.otf") format("opentype");
 }
 
 .App-logo {
@@ -25,7 +25,7 @@
 }
 
 body {
-  font-family: 'Gotham-light';
+  font-family: "Gotham-light";
 }
 
 .App-container {

@@ -1,5 +1,5 @@
-import { setFriends } from './state/management/userSettings';
-import store from './state/store';
+import { setFriends } from "./state/management/userSettings";
+import store from "./state/store";
 
 export function getSongs(spotifyId) {
   return fetch(`/songs?spotifyId=${spotifyId}`).then(
@@ -7,7 +7,7 @@ export function getSongs(spotifyId) {
       return data.json();
     },
     (err) => {
-      console.log('something went wrong', err);
+      console.log("something went wrong", err);
       throw err;
     }
   );
@@ -19,7 +19,7 @@ export function getRecommendations(spotifyId) {
       return data.json();
     },
     (err) => {
-      console.log('something went wrong', err);
+      console.log("something went wrong", err);
       throw err;
     }
   );
@@ -31,7 +31,7 @@ export function getInsights(spotifyId) {
       return data.json();
     },
     (err) => {
-      console.log('something went wrong', err);
+      console.log("something went wrong", err);
       throw err;
     }
   );
@@ -50,9 +50,9 @@ export function createPlaylistWithSongs(
     playlistDescription,
   };
   return fetch(`/createplaylist?spotifyId=${spotifyId}`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   }).then(
@@ -60,19 +60,19 @@ export function createPlaylistWithSongs(
       return data.json();
     },
     (err) => {
-      console.log('something went wrong', err);
+      console.log("something went wrong", err);
       throw err;
     }
   );
 }
 
 export function login() {
-  return fetch('/login').then(
+  return fetch("/login").then(
     (data) => {
       return data.json();
     },
     (err) => {
-      console.log('Something went wrong ', err);
+      console.log("Something went wrong ", err);
       throw err;
     }
   );
@@ -86,7 +86,7 @@ export async function pullFriends(spotifyId) {
       store.dispatch(setFriends(friends));
     },
     (err) => {
-      console.log('Something went wrong ', err);
+      console.log("Something went wrong ", err);
     }
   );
 }

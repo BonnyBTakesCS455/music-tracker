@@ -1,33 +1,31 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import SongList from '../components/SongList';
-import PageHeader from '../components/PageHeader';
-import { connect } from 'react-redux';
-import { getSongs } from '../services';
+import React, { useState, useEffect, useCallback } from "react";
+import SongList from "../components/SongList";
+import PageHeader from "../components/PageHeader";
+import { connect } from "react-redux";
+import { getSongs } from "../services";
 
 function Home({ username, spotifyId, user }) {
   const [songs, setSongs] = useState([]);
 
   const fetchSongs = useCallback(() => {
-      if (!spotifyId) return;
-      getSongs(spotifyId)
-          .then(songs => {
-              if (songs.length) {
-                  setSongs(songs)
-              }
-          })
+    if (!spotifyId) return;
+    getSongs(spotifyId).then((songs) => {
+      if (songs.length) {
+        setSongs(songs);
+      }
+    });
   }, [spotifyId]);
 
   useEffect(() => {
-      if (!songs.length) {
-          console.log('fetching songs')
-          fetchSongs()
+    if (!songs.length) {
+      console.log("fetching songs");
+      fetchSongs();
     }
-  }, [fetchSongs, songs])
-
+  }, [fetchSongs, songs]);
 
   return (
     <React.Fragment>
-      <header className='App-container'>
+      <header className="App-container">
         <PageHeader title={`Hey ${username}!`} />
         <p>Your most listened songs:</p>
         <SongList songs={songs} showPlays={true} />
@@ -35,7 +33,6 @@ function Home({ username, spotifyId, user }) {
     </React.Fragment>
   );
 }
-
 
 function mapStateToProps(state) {
   return {

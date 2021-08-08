@@ -1,6 +1,6 @@
-import { combineReducers } from 'redux';
-import userSettings from './management/userSettings';
-import songGraph from './management/songGraph';
+import { combineReducers } from "redux";
+import userSettings from "./management/userSettings";
+import songGraph from "./management/songGraph";
 
 const rootReducer = combineReducers({
   userSettings: userSettings,

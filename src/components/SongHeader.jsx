@@ -59,16 +59,16 @@ const SongRow = styled.div`
   text-align: left;
 `;
 
-function SongHeader({showPlays}) {
-    return (
-        <SongRow>
-            <ImgDiv></ImgDiv>
-            <SongColumn>Song</SongColumn>
-            <ArtistColumn>Artist</ArtistColumn>
-            <TimeColumn>Time</TimeColumn>
-            {showPlays && <PlaysColumn>Plays</PlaysColumn>}
-        </SongRow>
-    );
+function SongHeader({ showPlays }) {
+  return (
+    <SongRow>
+      <ImgDiv></ImgDiv>
+      <SongColumn>Song</SongColumn>
+      <ArtistColumn>Artist</ArtistColumn>
+      <TimeColumn>Time</TimeColumn>
+      {showPlays && <PlaysColumn>Plays</PlaysColumn>}
+    </SongRow>
+  );
 }
 
 export default SongHeader;

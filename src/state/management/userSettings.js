@@ -22,14 +22,14 @@
 // Initial state
 const INITIAL_STATE = {
   isDarkModeEnabled: true,
-  user: '',
+  user: "",
   friends: [],
 };
 
 // Types
-export const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE';
-export const SET_USER = 'SET_USER';
-export const SET_FRIENDS = 'FRIENDS';
+export const TOGGLE_DARK_MODE = "TOGGLE_DARK_MODE";
+export const SET_USER = "SET_USER";
+export const SET_FRIENDS = "FRIENDS";
 
 // Actions
 export const toggleDarkMode = (isDarkModeEnabled) => {
