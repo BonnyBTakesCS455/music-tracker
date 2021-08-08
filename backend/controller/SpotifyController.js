@@ -50,10 +50,11 @@ exports.removeClient = (spotifyId) => {
  * something in a while
  */
 exports.loadAllClients = () => {
+  console.log("Spotify: Loading all clients")
   User.find((err, users) => {
-    users.forEach((user) => {
-      const spotifyItem = this.createClient(user.spotifyId, user.token, user.refreshToken);
-      console.log("Successfully loaded user", spotifyItem);
+    users.forEach(async (user) => {
+      await this.createClient(user.spotifyId, user.token, user.refreshToken);
+      console.log("Spotify: Successfully loaded client for", user.spotifyId);
     });
   })
 }
@@ -68,8 +69,8 @@ exports.loadAllClients = () => {
     return;
   }
   return Promise.all(users.map(async (user) => {
-      const spotifyItem = await this.createClient(user.spotifyId, user.token, user.refreshToken);
-      console.log("Successfully loaded user", spotifyItem);
+      await this.createClient(user.spotifyId, user.token, user.refreshToken);
+      console.log("Spotify: Successfully loaded client for", user.spotifyId);
   }));
 }
 

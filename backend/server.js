@@ -22,12 +22,16 @@ app.use(
 const UserController = require('./controller/UserController');
 const FriendController = require('./controller/FriendController');
 const SpotifyController = require('./controller/SpotifyController');
+const InsightsController = require('./controller/InsightsController');
 const SpotifyWebApi = require('spotify-web-api-node');
 
 mongoose.set('useFindAndModify', false);
 mongoose.connect(process.env.MONGO_SECRET, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+}).then(() => {
+  console.log("MongoDB: Connected")
+  process.env.NODE_ENV === 'production' && SpotifyController.loadAllClients();
 })
 
 app.listen(port, () => {
@@ -35,6 +39,11 @@ app.listen(port, () => {
 });
 
 app.use(express.static("build"));
+
+app.use(function (req, res, next) {
+  console.log('INFO:', req.method, req.url, req.body)
+  next()
+})
 
 app.post('/user', UserController.createUser);
 app.get('/user/:id', UserController.findUserById);
@@ -124,7 +133,7 @@ app.get('/songs', async (req, res) => {
   const user = await UserController.directFindUserBySpotifyId(spotifyId)
 
   const listenStats = user.listenStats ?? {};
-  const songsSorted = Object.keys(listenStats).sort(function(a, b) {return -(listenStats[a].length - listenStats[b].length)})
+  const songsSorted = Object.keys(listenStats).sort(function(a, b) {return -(listenStats[a].flat(2).length - listenStats[b].flat(2).length)})
   const topN = songsSorted.slice(0, TOP_N_SONGS_TO_SHOW) 
 
   SpotifyController.getTracks(spotifyId, topN)
@@ -133,7 +142,7 @@ app.get('/songs', async (req, res) => {
         const trackData = data.body.tracks.map(track => {
           return {
             ...track,
-            plays: listenStats[track.id].length
+            plays: listenStats[track.id].flat(2).length
           }
         })
         res.send(trackData);
@@ -144,6 +153,19 @@ app.get('/songs', async (req, res) => {
       }
     );
 });
+
+app.get('/insights', async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  const user = await UserController.directFindUserBySpotifyId(spotifyId)
+  const listenStats = user.listenStats ?? {};
+
+  const minutesListened = await InsightsController.getMinutesListened(spotifyId, listenStats)
+
+  res.send({
+    minutesListened
+  })
+
+})
 
 app.get('/recommendations', async (req, res) => {
   const spotifyId = req.query.spotifyId;

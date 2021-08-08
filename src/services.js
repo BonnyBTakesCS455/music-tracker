@@ -25,6 +25,18 @@ export function getRecommendations(spotifyId) {
   );
 }
 
+export function getInsights(spotifyId) {
+  return fetch(`/insights?spotifyId=${spotifyId}`).then(
+    (data) => {
+      return data.json();
+    },
+    (err) => {
+      console.log('something went wrong', err);
+      throw err;
+    }
+  );
+}
+
 export function createPlaylistWithSongs(
   spotifyId,
   songIds,
