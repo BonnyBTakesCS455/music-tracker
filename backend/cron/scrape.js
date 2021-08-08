@@ -1,22 +1,24 @@
-const mongoose = require('mongoose');
-const { User } = require('../schema/User');
-const { scrape } = require('../scrape');
+const mongoose = require("mongoose");
+const { User } = require("../schema/User");
+const { scrape } = require("../scrape");
 
-mongoose.set('useFindAndModify', false);
+mongoose.set("useFindAndModify", false);
 mongoose.connect(process.env.MONGO_SECRET, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-console.log('Scraping user stats')
+console.log("Scraping user stats");
 
-const run = async() => {
+const run = async () => {
   for await (const doc of User.find()) {
-    console.log('scraping', doc.name, doc.spotifyId)
-    scrape(doc.spotifyId)
+    console.log("scraping", doc.name, doc.spotifyId);
+    scrape(doc.spotifyId);
   }
-}
+};
 
-run()
+run();
 
-setTimeout(async () => { await mongoose.connection.close() }, 20 * 1000); // close connection after x seconds LMAO
+setTimeout(async () => {
+  await mongoose.connection.close();
+}, 20 * 1000); // close connection after x seconds LMAO
