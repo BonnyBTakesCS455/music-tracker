@@ -26,16 +26,16 @@ const SongDiv = styled.div`
 `;
 
 function SongList({ songs, showPlays }) {
-    return (
-        <SongDiv>
-            <Table>
-                <SongHeader showPlays={showPlays} />
-                {songs.map((song, i) => (
-                    <Song key={i} {...song} showPlays={showPlays} />
-                ))}
-            </Table>
-        </SongDiv>
-    );
+  return (
+    <SongDiv>
+      <Table>
+        <SongHeader showPlays={showPlays} />
+        {songs.map((song, i) => (
+          <Song key={i} {...song} showPlays={showPlays} />
+        ))}
+      </Table>
+    </SongDiv>
+  );
 }
 
 export default SongList;

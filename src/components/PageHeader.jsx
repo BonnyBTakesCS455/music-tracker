@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import profile_icon from '../icons/Dot_Hollow.png';
+import profile_icon from "../icons/Dot_Hollow.png";
 
 const Img = styled.img`
   position: relative;
@@ -23,12 +23,12 @@ const PageHeaderContainer = styled.div`
 `;
 
 function PageHeader(props) {
-    return (
-        <PageHeaderContainer>
-            <Img src={profile_icon} width={72} height={72} />
-            <Title>{props.title}</Title>
-        </PageHeaderContainer>
-    )
+  return (
+    <PageHeaderContainer>
+      <Img src={profile_icon} width={72} height={72} />
+      <Title>{props.title}</Title>
+    </PageHeaderContainer>
+  );
 }
 
 export default PageHeader;

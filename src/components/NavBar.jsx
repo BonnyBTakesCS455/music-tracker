@@ -1,21 +1,21 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'wouter';
-import home_icon from '../icons/Home_Hollow.png';
-import home_icon_hovered from '../icons/Home_Filled.png';
-import insights_icon from '../icons/Insights_Hollow.png';
-import insights_icon_hovered from '../icons/Insights_Filled.png';
-import heart_icon from '../icons/Heart_Hollow.png';
-import heart_icon_hovered from '../icons/Heart_Filled.png';
-import profile_icon from '../icons/Dot_Hollow.png';
-import profile_icon_hovered from '../icons/Dot_Filled.png';
+import React from "react";
+import styled from "styled-components";
+import { Link } from "wouter";
+import home_icon from "../icons/Home_Hollow.png";
+import home_icon_hovered from "../icons/Home_Filled.png";
+import insights_icon from "../icons/Insights_Hollow.png";
+import insights_icon_hovered from "../icons/Insights_Filled.png";
+import heart_icon from "../icons/Heart_Hollow.png";
+import heart_icon_hovered from "../icons/Heart_Filled.png";
+import profile_icon from "../icons/Dot_Hollow.png";
+import profile_icon_hovered from "../icons/Dot_Filled.png";
 
 const Nav = styled.div`
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: ${p => p.theme.background};
+  background: ${(p) => p.theme.background};
 `;
 
 const StyledListItem = styled.div`
@@ -48,10 +48,10 @@ const ProfileText = styled.div`
 function NavBar(props) {
   return (
     <React.Fragment>
-      <Nav className='navbar'>
+      <Nav className="navbar">
         <StyledListItem>
           <Link
-            href='/profile'
+            href="/profile"
             onMouseOver={(e) =>
               (e.currentTarget.children.item(1).src = profile_icon_hovered)
             }
@@ -66,7 +66,7 @@ function NavBar(props) {
           </Link>
         </StyledListItem>
         <StyledListItem>
-          <Link href='/recommendations'>
+          <Link href="/recommendations">
             <StyledImage
               src={heart_icon}
               onMouseOver={(e) => (e.currentTarget.src = heart_icon_hovered)}
@@ -75,7 +75,7 @@ function NavBar(props) {
           </Link>
         </StyledListItem>
         <StyledListItem>
-          <Link href='/insights'>
+          <Link href="/insights">
             <StyledImage
               src={insights_icon}
               onMouseOver={(e) => (e.currentTarget.src = insights_icon_hovered)}
@@ -84,7 +84,7 @@ function NavBar(props) {
           </Link>
         </StyledListItem>
         <StyledListItem>
-          <Link href='/'>
+          <Link href="/">
             <StyledImage
               src={home_icon}
               onMouseOver={(e) => (e.currentTarget.src = home_icon_hovered)}

@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import SlidingPane from 'react-sliding-pane';
-import '../css/SldiingPane.css';
-import FriendsIcon from '../icons/Friends_Filled_WHITE.png';
-import Friend from './Friend';
-import FriendsSearchBar from './FriendsSearchBar';
-import { pullFriends } from '../services';
-import { connect } from 'react-redux';
+import React from "react";
+import styled from "styled-components";
+import SlidingPane from "react-sliding-pane";
+import "../css/SldiingPane.css";
+import FriendsIcon from "../icons/Friends_Filled_WHITE.png";
+import Friend from "./Friend";
+import FriendsSearchBar from "./FriendsSearchBar";
+import { pullFriends } from "../services";
+import { connect } from "react-redux";
 
 const StickySidebar = styled.div`
   position: -webkit-sticky;
@@ -31,7 +31,7 @@ class FriendsSidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false
+      show: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -53,15 +53,15 @@ class FriendsSidebar extends React.Component {
           <StyledImage src={FriendsIcon} />
         </StickySidebar>
         <SlidingPane
-          className={'Pane'}
-          overlayClassName={'Pane'}
+          className={"Pane"}
+          overlayClassName={"Pane"}
           isOpen={this.state.show}
           onRequestClose={() => {
             this.setState({ show: false });
           }}
-          from={'left'}
-          width={'400px'}
-          title={'Top tracks'}
+          from={"left"}
+          width={"400px"}
+          title={"Top tracks"}
         >
           {this.props.friends.map((friend) => (
             <Friend
@@ -79,8 +79,8 @@ class FriendsSidebar extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    friends: state.userSettings.friends
-  }
+    friends: state.userSettings.friends,
+  };
 }
 
 export default connect(mapStateToProps, null)(FriendsSidebar);

@@ -96,12 +96,25 @@ function Song(props) {
   return (
     <SongRow>
       <ImgDiv>
-        <Img src={props.album.images[2].url} width={32} height={32} onClick={() => {window.open(props.external_urls.spotify)}} />
+        <Img
+          src={props.album.images[2].url}
+          width={32}
+          height={32}
+          onClick={() => {
+            window.open(props.external_urls.spotify);
+          }}
+        />
       </ImgDiv>
-      <SongColumn title={props.name}><a href={props.external_urls.spotify} target="_blank" rel="noreferrer">{props.name}</a></SongColumn>
+      <SongColumn title={props.name}>
+        <a href={props.external_urls.spotify} target="_blank" rel="noreferrer">
+          {props.name}
+        </a>
+      </SongColumn>
       <ArtistColumn title={artists}>{artists}</ArtistColumn>
       <TimeColumn title={time}>{time}</TimeColumn>
-      {props.showPlays && <PlaysColumn title={props.play}>{props.plays}</PlaysColumn>}
+      {props.showPlays && (
+        <PlaysColumn title={props.play}>{props.plays}</PlaysColumn>
+      )}
     </SongRow>
   );
 }
