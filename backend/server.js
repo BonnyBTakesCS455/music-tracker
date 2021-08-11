@@ -236,7 +236,8 @@ app.get("/scrape", async (req, res) => {
 });
 
 app.get("/friends", FriendController.getFriends);
-app.patch("/friend/:id", FriendController.addFriend);
+app.patch("/friend/request/:id", FriendController.createFriendRequest);
+app.patch("/friend/:id", FriendController.acceptFriendRequest);
 
 app.get("/*", function (req, res) {
   res.sendFile(path.resolve(__dirname, "build/index.html", "index.html"));
