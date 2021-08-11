@@ -25,8 +25,20 @@ export function getRecommendations(spotifyId) {
   );
 }
 
-export function getInsights(spotifyId) {
-  return fetch(`/insights?spotifyId=${spotifyId}`).then(
+export function getMinutes(spotifyId) {
+  return fetch(`/insights/minutes?spotifyId=${spotifyId}`).then(
+    (data) => {
+      return data.json();
+    },
+    (err) => {
+      console.log("something went wrong", err);
+      throw err;
+    }
+  );
+}
+
+export function getArtistListens(spotifyId) {
+  return fetch(`/insights/artists?spotifyId=${spotifyId}`).then(
     (data) => {
       return data.json();
     },
