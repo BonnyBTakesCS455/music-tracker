@@ -13,7 +13,7 @@ function Insights({ spotifyId }) {
     getMinutes(spotifyId).then((data) => {
       setMinutes(data);
     });
-    getArtistListens("turntasian").then((data) => {
+    getArtistListens(spotifyId).then((data) => {
       setArtists(data);
     });
   }, [spotifyId]);
