@@ -65,7 +65,48 @@ exports.getFriendRequests = async (req, res) => {
     res.sendStatus(404);
     return;
   }
-  res.send(user.friendRequestIds);
+
+  const friendRequests = await Promise.all(
+    user.friendRequestIds.map(async (friendId) => {
+      const userFriend = await UserController.directFindUserBySpotifyId(
+        friendId
+      );
+
+      let imageUrl = userFriend.image;
+      if (
+        imageUrl === undefined ||
+        imageUrl === null ||
+        imageUrl.length === 0
+      ) {
+        // Use poggers as placeholder image!
+        imageUrl = POGGERS;
+      }
+
+      return {
+        spotifyId: friendId,
+        name: userFriend.name,
+        imgSrc: imageUrl,
+      };
+    })
+  );
+  res.send(friendRequests);
+};
+
+exports.rejectFriendRequest = async (req, res) => {
+  const spotifyId = req.params.id;
+  const friendToReject = req.body.friendId;
+  const user = await UserController.directFindUserBySpotifyId(spotifyId);
+  if (user.friendRequestIds.includes(friendToReject)) {
+    const fieldsToUpdate = {
+      $pull: {
+        friendRequestIds: friendToReject,
+      },
+    };
+    await UserController.directUpdateUserBySpotifyId(spotifyId, fieldsToUpdate);
+    res.send(friendToReject);
+  } else {
+    res.sendStatus(404);
+  }
 };
 
 exports.acceptFriendRequest = async (req, res) => {
@@ -89,6 +130,11 @@ exports.createFriendRequest = async (req, res) => {
     friendToAdd
   );
   if (userFriend) {
+    if (userFriend.friendIds.includes(spotifyId)) {
+      res.send(friendToAdd);
+      return;
+    }
+
     const user = await UserController.directFindUserBySpotifyId(spotifyId);
     if (user.friendRequestIds.includes(friendToAdd)) {
       const status = await makeThemFriends(spotifyId, friendToAdd);
