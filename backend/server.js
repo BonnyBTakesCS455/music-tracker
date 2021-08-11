@@ -202,15 +202,25 @@ app.get("/insights", async (req, res) => {
     listenStats
   );
 
-  const topArtistsData = await SpotifyController.getTopArtists(spotifyId, 5);
+  const topArtistsData = await SpotifyController.getTopArtists(spotifyId, 50);
   const topArtists = [];
   if (topArtistsData && topArtistsData.body && topArtistsData.body.items) {
     topArtists.push(...topArtistsData.body.items);
   }
+  const topGenres = {};
+  const numArtists = topArtists.length;
+  topArtists.forEach((artist, artistIdx) => {
+    if (!artist.genres) return;
+    artist.genres.forEach((genre) => {
+    if (!(genre in topGenres)) {
+        topGenres[genre] = 0;
+    }
+    topGenres[genre] += Math.round(((numArtists - artistIdx) / numArtists) * 100) / 100;
+  })});
 
   res.send({
     minutesListened,
-    topArtists,
+    topGenres,
   });
 });
 

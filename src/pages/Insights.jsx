@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { getInsights } from "../services";
 import Graph from "../components/Graph";
-import TopArtists from "../components/TopArtists";
 import TopGenres from "../components/TopGenres";
 import { connect } from "react-redux";
 
@@ -19,22 +18,6 @@ function Insights({ spotifyId }) {
     fetchInsights();
   }, [fetchInsights]);
 
-  const getGenres = (artists) => {
-    const genres = {};
-    if (!artists) return;
-    artists.forEach((artist) => {
-      if (!artist.genres) return;
-      artist.genres.forEach((genre) => {
-        if (genre in genres) {
-          genres[genre] += 1;
-        } else {
-          genres[genre] = 1;
-        }
-      });
-    });
-    return genres;
-  };
-
   return (
     <React.Fragment>
       <header className="App-container">
@@ -42,10 +25,9 @@ function Insights({ spotifyId }) {
         <h1>{insights && insights.minutesListened}</h1>
         minutes listened in the past 24 hours
         <Graph />
-        {insights && insights.topArtists && (
+        {insights && insights.topGenres && (
           <>
-            <TopArtists artists={insights.topArtists} />
-            <TopGenres genres={getGenres(insights.topArtists)} />
+            <TopGenres genres={insights.topGenres} />
           </>
         )}
       </header>
