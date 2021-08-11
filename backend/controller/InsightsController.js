@@ -90,25 +90,25 @@ exports.getArtistListens = async (spotifyId, listenStats) => {
   let msListened = 0;
 
   Object.entries(listens).forEach(([trackId, listens]) => {
-    const artist = artists[trackId]
+    const artist = artists[trackId];
     if (!artistPlaysCounts[artist]) {
       artistPlaysCounts[artist] = listens;
     } else {
-      artistPlaysCounts[artist] += listens
+      artistPlaysCounts[artist] += listens;
     }
   });
 
   const artistsSorted = Object.keys(artistPlaysCounts).sort((a, b) => {
-    return artistPlaysCounts[b] - artistPlaysCounts[a]
-  })
-
-  const topArtistPlays = []
-  artistsSorted.slice(0, 30).forEach(artist => {
-    topArtistPlays.push({
-      name: artist,
-      plays: artistPlaysCounts[artist]
-    })
+    return artistPlaysCounts[b] - artistPlaysCounts[a];
   });
 
-  return topArtistPlays
+  const topArtistPlays = [];
+  artistsSorted.slice(0, 30).forEach((artist) => {
+    topArtistPlays.push({
+      name: artist,
+      plays: artistPlaysCounts[artist],
+    });
+  });
+
+  return topArtistPlays;
 };
