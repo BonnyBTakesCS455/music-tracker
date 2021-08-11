@@ -27,6 +27,7 @@ function Settings({ logout, isDarkModeEnabled, toggleDarkMode }) {
         />
         <span>Dark mode</span>
       </label>
+      <br />
       <Button onClick={logout}>Logout</Button>
     </>
   );
