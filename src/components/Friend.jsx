@@ -9,8 +9,8 @@ const Button = styled.button`
   background: #1db954;
   padding: 1em;
   color: white;
-  min-width: 100%;
-  height: 8%;
+  width: 100%;
+  height: 100px;
   padding-right: 100px;
   transition: background 200ms;
   &:hover {
