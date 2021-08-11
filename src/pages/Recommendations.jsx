@@ -56,7 +56,7 @@ function Recommendations({ username, spotifyId }) {
           {playlistLink === "" ? "Create Playlist" : "Open Playlist"}
         </Button>
       </header>
-      {!songs.length && <Spinner/>}
+      {!songs.length && <Spinner />}
     </React.Fragment>
   );
 }

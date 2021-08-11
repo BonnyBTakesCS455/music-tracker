@@ -53,14 +53,16 @@ class Friend extends React.Component {
   render() {
     return (
       <Button>
-        <Link href={"/friend/" + this.props.spotifyId + "/name/" + this.props.name}>
-            <FlexBox>
-              <Img src={this.props.imgSrc} width={50} height={50} />
-              <Information>
-                <Name>{this.props.name}</Name>
-                <Song>{this.props.song}</Song>
-              </Information>
-            </FlexBox>
+        <Link
+          href={"/friend/" + this.props.spotifyId + "/name/" + this.props.name}
+        >
+          <FlexBox>
+            <Img src={this.props.imgSrc} width={50} height={50} />
+            <Information>
+              <Name>{this.props.name}</Name>
+              <Song>{this.props.song}</Song>
+            </Information>
+          </FlexBox>
         </Link>
       </Button>
     );

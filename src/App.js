@@ -61,9 +61,11 @@ function App() {
           <NavBar />
           <FriendsSidebar spotifyId={spotifyId} />
           <Switch>
-            <Route path="/friend/:id/name/:name" >
+            <Route path="/friend/:id/name/:name">
               {(params) => {
-                return <FriendsInfo spotifyId={params.id} username={params.name}/>
+                return (
+                  <FriendsInfo spotifyId={params.id} username={params.name} />
+                );
               }}
             </Route>
             <Route path="/profile">
