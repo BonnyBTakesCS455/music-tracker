@@ -24,12 +24,14 @@ const INITIAL_STATE = {
   isDarkModeEnabled: true,
   user: "",
   friends: [],
+  friendRequests: [],
 };
 
 // Types
 export const TOGGLE_DARK_MODE = "TOGGLE_DARK_MODE";
 export const SET_USER = "SET_USER";
 export const SET_FRIENDS = "FRIENDS";
+export const SET_FRIEND_REQUESTS = "SET_FRIEND_REQUESTS";
 
 // Actions
 export const toggleDarkMode = (isDarkModeEnabled) => {
@@ -53,6 +55,13 @@ export const setFriends = (friends) => {
   };
 };
 
+export const setFriendRequests = (friendRequests) => {
+  return {
+    type: SET_FRIEND_REQUESTS,
+    friendRequests,
+  };
+};
+
 // Reducer
 function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -71,6 +80,12 @@ function reducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         friends: action.friends,
+      };
+    case SET_FRIEND_REQUESTS:
+      if (action.friendRequests === null) return state;
+      return {
+        ...state,
+        friendRequests: action.friendRequests,
       };
     default:
       return state;

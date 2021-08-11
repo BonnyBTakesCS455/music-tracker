@@ -1,4 +1,4 @@
-import { setFriends } from "./state/management/userSettings";
+import { setFriendRequests, setFriends } from "./state/management/userSettings";
 import store from "./state/store";
 
 export function getSongs(spotifyId) {
@@ -74,6 +74,19 @@ export function login() {
     (err) => {
       console.log("Something went wrong ", err);
       throw err;
+    }
+  );
+}
+
+export async function pullFriendRequests(spotifyId) {
+  return fetch(`/friend/requests?id=${spotifyId}`).then(
+    async (data) => {
+      const friendRequests = await data.json();
+      if (!friendRequests) return;
+      store.dispatch(setFriendRequests(friendRequests));
+    },
+    (err) => {
+      console.log("Something went wrong ", err);
     }
   );
 }
