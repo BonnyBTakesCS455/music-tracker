@@ -68,6 +68,7 @@ class FriendsSidebar extends React.Component {
               imgSrc={friend.imgSrc}
               name={friend.name}
               song={friend.topTrack}
+              spotifyId={friend.spotifyId}
             />
           ))}
           <FriendsSearchBar spotifyId={this.props.spotifyId} />

@@ -1,6 +1,9 @@
 const UserController = require("./UserController");
 const SpotifyController = require("./SpotifyController");
 
+const POGGERS =
+  "https://oyster.ignimgs.com/wordpress/stg.ign.com/2021/01/pogchamp.png";
+
 exports.getFriends = async (req, res) => {
   const user = await UserController.directFindUserBySpotifyId(req.query.id);
 
@@ -33,9 +36,20 @@ exports.getFriends = async (req, res) => {
         return track.name;
       });
 
+      let imageUrl = userFriend.image;
+      if (
+        imageUrl === undefined ||
+        imageUrl === null ||
+        imageUrl.length === 0
+      ) {
+        // Use poggers as placeholder image!
+        imageUrl = POGGERS;
+      }
+
       return {
+        spotifyId: friendId,
         name: userFriend.name,
-        imgSrc: userFriend.image,
+        imgSrc: imageUrl,
         topTrack,
       };
     })
