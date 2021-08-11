@@ -16,7 +16,6 @@ const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
 `;
 
 const StyledCheckbox = styled.div`
-  display: inline-block;
   width: 44px;
   height: 28px;
   background: ${(p) => (p.checked ? p.theme.body : "#ccc")};

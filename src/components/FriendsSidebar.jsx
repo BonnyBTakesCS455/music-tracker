@@ -19,6 +19,11 @@ const StickySidebar = styled.div`
   border-radius: 0px 25px 25px 0px;
 `;
 
+const SidebarTitle = styled.div`
+  color: white;
+  font-weight: bold;
+`;
+
 const StyledImage = styled.img`
   display: block;
   width: 100%;
@@ -61,7 +66,7 @@ class FriendsSidebar extends React.Component {
           }}
           from={"left"}
           width={"400px"}
-          title={"Top tracks"}
+          title={<SidebarTitle>Top Tracks</SidebarTitle>}
         >
           {this.props.friends.map((friend) => (
             <Friend
