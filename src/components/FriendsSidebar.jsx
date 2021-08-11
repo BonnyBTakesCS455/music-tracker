@@ -65,6 +65,7 @@ class FriendsSidebar extends React.Component {
         >
           {this.props.friends.map((friend) => (
             <Friend
+              key={friend.spotifyId}
               imgSrc={friend.imgSrc}
               name={friend.name}
               song={friend.topTrack}

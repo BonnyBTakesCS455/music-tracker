@@ -177,6 +177,21 @@ app.get("/songs", async (req, res) => {
   );
 });
 
+app.get("/topartists", async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  const numberOfArtists = req.query.numberOfArtists || 5;
+  SpotifyController.getTopArtists(spotifyId, numberOfArtists).then(
+    async (data) => {
+      const artists = data.body.items;
+      res.send(artists);
+    },
+    (err) => {
+      console.log("Something went wrong!", err);
+      res.send(err);
+    }
+  );
+});
+
 app.get("/insights", async (req, res) => {
   const spotifyId = req.query.spotifyId;
   const user = await UserController.directFindUserBySpotifyId(spotifyId);
@@ -187,8 +202,15 @@ app.get("/insights", async (req, res) => {
     listenStats
   );
 
+  const topArtistsData = await SpotifyController.getTopArtists(spotifyId, 5);
+  const topArtists = [];
+  if (topArtistsData && topArtistsData.body && topArtistsData.body.items) {
+    topArtists.push(...topArtistsData.body.items);
+  }
+
   res.send({
     minutesListened,
+    topArtists,
   });
 });
 

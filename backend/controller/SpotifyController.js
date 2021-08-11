@@ -75,9 +75,22 @@ exports.loadClient = async (spotifyId) => {
 };
 
 /**
+ * Get user's top artists
+ * @param {*} spotifyId
+ * @param {*} numberOfArtists number of artists to return
+ * @returns
+ */
+exports.getTopArtists = (spotifyId, numberOfArtists) => {
+  return spotifyWrapperFunction(spotifyId, "getMyTopArtists", [
+    { limit: numberOfArtists },
+  ]);
+};
+
+/**
  * Get amountOfTracks most recent tracks
  * @param {*} spotifyId
  * @param {*} tracks list of tracks
+ * @returns most amountOfTracks most recent tracks
  */
 exports.getTracks = (spotifyId, tracks) => {
   return spotifyWrapperFunction(spotifyId, "getTracks", [tracks]);
@@ -107,7 +120,6 @@ exports.getRecommendations = async (spotifyId) => {
   const recentlyPlayedData = await this.getMyRecentlyPlayedTracks(spotifyId, {
     limit: 5,
   });
-  console.log("data", recentlyPlayedData);
   const recentlyPlayedSongs = recentlyPlayedData.body.items;
 
   // Randomly determine amount of songs to use as seed and amount of artists to use as seed
@@ -139,7 +151,7 @@ exports.getRecommendations = async (spotifyId) => {
     {
       seed_songs: songSeed,
       seed_artists: artistSeed,
-      min_popularity: 20,
+      min_popularity: 0,
       limit: 10,
     },
   ]);
