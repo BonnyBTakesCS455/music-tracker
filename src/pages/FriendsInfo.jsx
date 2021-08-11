@@ -3,7 +3,6 @@ import { getSongs } from "../services";
 import PageHeader from "../components/PageHeader";
 import SongList from "../components/SongList";
 import { connect } from "react-redux";
-import styled, { keyframes } from "styled-components";
 import Spinner from "../components/Spinner";
 
 function FriendsInfo({ username, spotifyId }) {
