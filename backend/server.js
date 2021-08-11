@@ -236,6 +236,7 @@ app.get("/scrape", async (req, res) => {
 });
 
 app.get("/friends", FriendController.getFriends);
+app.get("/friend/request", FriendController.getFriendRequests);
 app.patch("/friend/request/:id", FriendController.createFriendRequest);
 app.patch("/friend/:id", FriendController.acceptFriendRequest);
 

@@ -58,6 +58,16 @@ exports.getFriends = async (req, res) => {
   res.send(friends);
 };
 
+exports.getFriendRequests = async (req, res) => {
+  const spotifyId = req.query.id;
+  const user = await UserController.directFindUserBySpotifyId(spotifyId);
+  if (!user) {
+    res.sendStatus(404);
+    return;
+  }
+  res.send(user.friendRequestIds);
+};
+
 exports.acceptFriendRequest = async (req, res) => {
   const spotifyId = req.params.id;
   const friendToAdd = req.body.friendId;
