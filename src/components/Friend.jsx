@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "wouter";
 
 const Button = styled.button`
   border: none;
@@ -8,7 +9,8 @@ const Button = styled.button`
   background: #1db954;
   padding: 1em;
   color: white;
-  min-width: 100px;
+  min-width: 100%;
+  height: 8%;
   padding-right: 100px;
   transition: background 200ms;
   &:hover {
@@ -50,14 +52,16 @@ class Friend extends React.Component {
 
   render() {
     return (
-      <Button type={"button"} onClick={this.props.onClick}>
-        <FlexBox>
-          <Img src={this.props.imgSrc} width={50} height={50} />
-          <Information>
-            <Name>{this.props.name}</Name>
-            <Song>{this.props.song}</Song>
-          </Information>
-        </FlexBox>
+      <Button>
+        <Link href={"/friend/" + this.props.spotifyId + "/name/" + this.props.name}>
+            <FlexBox>
+              <Img src={this.props.imgSrc} width={50} height={50} />
+              <Information>
+                <Name>{this.props.name}</Name>
+                <Song>{this.props.song}</Song>
+              </Information>
+            </FlexBox>
+        </Link>
       </Button>
     );
   }

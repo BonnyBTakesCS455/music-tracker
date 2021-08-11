@@ -3,6 +3,7 @@ import SongList from "../components/SongList";
 import PageHeader from "../components/PageHeader";
 import { connect } from "react-redux";
 import { getSongs } from "../services";
+import Spinner from "../components/Spinner";
 
 function Home({ username, spotifyId, user }) {
   const [songs, setSongs] = useState([]);
@@ -30,6 +31,7 @@ function Home({ username, spotifyId, user }) {
         <p>Your most listened songs:</p>
         <SongList songs={songs} showPlays={true} />
       </header>
+      {!songs.length && <Spinner />}
     </React.Fragment>
   );
 }
