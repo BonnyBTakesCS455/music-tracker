@@ -233,6 +233,19 @@ app.get("/insights/genres", async (req, res) => {
   res.send(topGenres);
 });
 
+app.get("/insights/musicstats", async (req, res) => {
+    const spotifyId = req.query.spotifyId;
+    const user = await UserController.directFindUserBySpotifyId(spotifyId);
+    const listenStats = user.listenStats ?? {};
+  
+    const musicStats = await InsightsController.getMusicStats(
+      spotifyId,
+      listenStats
+    );
+  
+    res.send(musicStats);
+  });
+
 app.get("/recommendations", async (req, res) => {
   const spotifyId = req.query.spotifyId;
   SpotifyController.getRecommendations(spotifyId).then(

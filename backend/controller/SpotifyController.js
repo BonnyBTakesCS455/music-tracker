@@ -97,6 +97,16 @@ exports.getTracks = (spotifyId, tracks) => {
 };
 
 /**
+ * Get audio features of tracks
+ * @param {*} spotifyId
+ * @param {*} tracks list of tracks
+ * @returns list of audio features for each track given in tracks
+ */
+exports.getAudioFeaturesForTracks = (spotifyId, tracks) => {
+  return spotifyWrapperFunction(spotifyId, "getAudioFeaturesForTracks", [tracks]);
+};
+
+/**
  * Get multiple artists by id
  * @param {*} spotifyId
  * @param {*} artists list of artists
