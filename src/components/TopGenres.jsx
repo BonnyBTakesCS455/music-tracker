@@ -8,7 +8,7 @@ import {
 } from "recharts";
 
 function TopGenres({ genres }) {
-  if (!genres) return <></>;
+  if (!genres || genres === {}) return <></>;
 
   const data = Object.entries(genres)
     .map(([key, value]) => {

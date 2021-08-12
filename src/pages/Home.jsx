@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { getSongs } from "../services";
 import Spinner from "../components/Spinner";
 
-function Home({ username, spotifyId, user }) {
+function Home({ username, spotifyId }) {
   const [songs, setSongs] = useState([]);
 
   const fetchSongs = useCallback(() => {

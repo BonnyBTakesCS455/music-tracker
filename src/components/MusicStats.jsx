@@ -4,12 +4,11 @@ import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis,
+  Tooltip,
 } from "recharts";
 
 function MusicStats({ musicStats }) {
-  if (!musicStats) return <></>;
-
+  if (!musicStats || musicStats === {}) return <></>;
   return (
     <div>
       <h3>Your favourite features</h3>
@@ -26,7 +25,7 @@ function MusicStats({ musicStats }) {
           dataKey="feature"
           tick={{ fontSize: 14, fill: "grey" }}
         />
-        <PolarRadiusAxis tick={{ fontSize: 14, fill: "grey" }} />
+        <Tooltip cursor={{ fill: "rgba(255, 255, 255, 0.2)" }} />
         <Radar
           name="You"
           dataKey="value"
