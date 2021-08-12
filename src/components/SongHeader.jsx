@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
 
 const ImgDiv = styled.div`
@@ -53,22 +52,16 @@ const PlaysColumn = styled.div`
 const SongRow = styled.div`
   display: flex;
   width: 100%;
-  color: ${(props) => props.color};
+  color: grey;
   margin: 4px 4px 12px 0px;
   overflow: visible;
   line-height: normal;
   text-align: left;
 `;
 
-function mapStateToProps(state) {
-  return {
-    isDarkModeEnabled: state.userSettings.isDarkModeEnabled,
-  };
-}
-
-function SongHeader({ isDarkModeEnabled, showPlays }) {
+function SongHeader({ showPlays }) {
   return (
-    <SongRow color={isDarkModeEnabled ? "#1DB954" : "grey"}>
+    <SongRow>
       <ImgDiv></ImgDiv>
       <SongColumn>Song</SongColumn>
       <ArtistColumn>Artist</ArtistColumn>
@@ -78,4 +71,4 @@ function SongHeader({ isDarkModeEnabled, showPlays }) {
   );
 }
 
-export default connect(mapStateToProps, null)(SongHeader);
+export default SongHeader;
