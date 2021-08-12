@@ -192,7 +192,7 @@ app.get("/topartists", async (req, res) => {
   );
 });
 
-app.get("/insights", async (req, res) => {
+app.get("/insights/minutes", async (req, res) => {
   const spotifyId = req.query.spotifyId;
   const user = await UserController.directFindUserBySpotifyId(spotifyId);
   const listenStats = user.listenStats ?? {};
@@ -202,26 +202,35 @@ app.get("/insights", async (req, res) => {
     listenStats
   );
 
-  const topArtistsData = await SpotifyController.getTopArtists(spotifyId, 50);
-  const topArtists = [];
-  if (topArtistsData && topArtistsData.body && topArtistsData.body.items) {
-    topArtists.push(...topArtistsData.body.items);
-  }
-  const topGenres = {};
-  const numArtists = topArtists.length;
-  topArtists.forEach((artist, artistIdx) => {
-    if (!artist.genres) return;
-    artist.genres.forEach((genre) => {
-    if (!(genre in topGenres)) {
-        topGenres[genre] = 0;
-    }
-    topGenres[genre] += Math.round(((numArtists - artistIdx) / numArtists) * 100) / 100;
-  })});
-
   res.send({
     minutesListened,
-    topGenres,
   });
+});
+
+app.get("/insights/artists", async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  const user = await UserController.directFindUserBySpotifyId(spotifyId);
+  const listenStats = user.listenStats ?? {};
+
+  const artistListens = await InsightsController.getArtistListens(
+    spotifyId,
+    listenStats
+  );
+
+  res.send(artistListens);
+});
+
+app.get("/insights/genres", async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  const user = await UserController.directFindUserBySpotifyId(spotifyId);
+  const listenStats = user.listenStats ?? {};
+
+  const topGenres = await InsightsController.getTopGenres(
+    spotifyId,
+    listenStats
+  );
+
+  res.send(topGenres);
 });
 
 app.get("/recommendations", async (req, res) => {
@@ -268,7 +277,10 @@ app.get("/scrape", async (req, res) => {
 });
 
 app.get("/friends", FriendController.getFriends);
-app.patch("/friend/:id", FriendController.addFriend);
+app.get("/friend/requests", FriendController.getFriendRequests);
+app.delete("/friend/request/:id", FriendController.rejectFriendRequest);
+app.patch("/friend/request/:id", FriendController.createFriendRequest);
+app.patch("/friend/:id", FriendController.acceptFriendRequest);
 
 app.get("/*", function (req, res) {
   res.sendFile(path.resolve(__dirname, "build/index.html", "index.html"));

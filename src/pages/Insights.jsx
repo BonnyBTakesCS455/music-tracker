@@ -1,16 +1,24 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { getInsights } from "../services";
+import { getMinutes, getArtistListens, getTopGenres } from "../services";
 import Graph from "../components/Graph";
 import TopGenres from "../components/TopGenres";
 import { connect } from "react-redux";
 
 function Insights({ spotifyId }) {
-  const [insights, setInsights] = useState({});
+  const [minutes, setMinutes] = useState({});
+  const [artists, setArtists] = useState({});
+  const [genres, setGenres] = useState({});
 
   const fetchInsights = useCallback(() => {
     if (!spotifyId) return;
-    getInsights(spotifyId).then((data) => {
-      setInsights(data);
+    getMinutes(spotifyId).then((data) => {
+      setMinutes(data);
+    });
+    getArtistListens(spotifyId).then((data) => {
+      setArtists(data);
+    });
+    getTopGenres(spotifyId).then((data) => {
+      setGenres(data);
     });
   }, [spotifyId]);
 
@@ -22,14 +30,10 @@ function Insights({ spotifyId }) {
     <React.Fragment>
       <header className="App-container">
         <h1>Insights</h1>
-        <h1>{insights && insights.minutesListened}</h1>
+        <h1>{minutes && minutes.minutesListened}</h1>
         minutes listened in the past 24 hours
-        <Graph />
-        {insights && insights.topGenres && (
-          <>
-            <TopGenres genres={insights.topGenres} />
-          </>
-        )}
+        <Graph artistData={artists} />
+        <TopGenres genres={genres} />
       </header>
     </React.Fragment>
   );

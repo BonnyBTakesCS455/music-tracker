@@ -87,13 +87,23 @@ exports.getTopArtists = (spotifyId, numberOfArtists) => {
 };
 
 /**
- * Get amountOfTracks most recent tracks
+ * Get multiple tracks by id
  * @param {*} spotifyId
  * @param {*} tracks list of tracks
- * @returns most amountOfTracks most recent tracks
+ * @returns all the tracks given in tracks
  */
 exports.getTracks = (spotifyId, tracks) => {
   return spotifyWrapperFunction(spotifyId, "getTracks", [tracks]);
+};
+
+/**
+ * Get multiple artists by id
+ * @param {*} spotifyId
+ * @param {*} artists list of artists
+ * @returns all the artists given in artists
+ */
+exports.getArtists = (spotifyId, artists) => {
+  return spotifyWrapperFunction(spotifyId, "getArtists", [artists]);
 };
 
 /**

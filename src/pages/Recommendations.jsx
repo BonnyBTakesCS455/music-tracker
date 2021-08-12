@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import SongList from "../components/SongList";
 import Button from "../components/Button";
 import { getRecommendations, createPlaylistWithSongs } from "../services";
+import Spinner from "../components/Spinner";
 
 function Recommendations({ username, spotifyId }) {
   const [songs, setSongs] = useState([]);
@@ -10,7 +11,7 @@ function Recommendations({ username, spotifyId }) {
   const fetchSongs = useCallback(() => {
     if (!spotifyId) return;
     getRecommendations(spotifyId).then((songs) => {
-        console.log("recommended songs", songs);
+      console.log("recommended songs", songs);
       if (songs.length) {
         setSongs(songs);
       }
@@ -56,6 +57,7 @@ function Recommendations({ username, spotifyId }) {
           {playlistLink === "" ? "Create Playlist" : "Open Playlist"}
         </Button>
       </header>
+      {!songs.length && <Spinner />}
     </React.Fragment>
   );
 }

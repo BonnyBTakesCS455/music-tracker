@@ -1,44 +1,28 @@
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
+import { Tooltip, BarChart, Bar, CartesianGrid, XAxis, YAxis } from "recharts";
 
-import { connect } from "react-redux";
-import { setSong } from "../state/management/songGraph";
-
-const exampleNewData = [
-  { name: "Jan", uv: 34, amt: 2400 },
-  { name: "Feb", uv: 67, amt: 2400 },
-  { name: "Mar", uv: 54, amt: 2400 },
-  { name: "Apr", uv: 36, amt: 2400 },
-  { name: "May", uv: 78, amt: 2400 },
-  { name: "Jun", uv: 43, amt: 2400 },
-];
-
-function Graph(props) {
-  console.log(props.songData);
+function Graph({ artistData, ...props }) {
   return (
-    <LineChart
-      width={1300}
-      height={600}
-      data={props.songData}
-      onClick={() => props.setSong(exampleNewData)}
-    >
-      <Line type="monotone" dataKey="uv" stroke="#1DB954" />
-      <CartesianGrid stroke="#ccc" />
-      <XAxis dataKey="name" tick={{ fontSize: 16 }} />
-      <YAxis tick={{ fontSize: 16 }} />
-    </LineChart>
+    <>
+      <h3>Most listened to artists</h3>
+      <BarChart width={800} height={1000} data={artistData} layout="vertical">
+        {/* <Line type="monotone" dataKey="uv" stroke="#1DB954" /> */}
+        <CartesianGrid stroke="#444" />
+        <Tooltip cursor={{ fill: "rgba(255, 255, 255, 0.2)" }} />
+        <XAxis
+          type="number"
+          dataKey="plays"
+          tick={{ fontSize: 14, fill: "grey" }}
+        />
+        <YAxis
+          width={140}
+          type="category"
+          dataKey="name"
+          tick={{ fontSize: 14, fill: "grey" }}
+        />
+        <Bar dataKey="plays" fill="#1DB954" layout="vertical" />
+      </BarChart>
+    </>
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    songData: state.songGraph.songData,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    setSong: (songData) => dispatch(setSong(songData)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Graph);
+export default Graph;

@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import FriendsSidebar from "./components/FriendsSidebar";
 import { pullFriends } from "./services";
 import Recommendations from "./pages/Recommendations";
+import FriendsInfo from "./pages/FriendsInfo";
 
 const Container = styled.div`
   text-align: center;
@@ -26,7 +27,6 @@ function App() {
   useEffect(getHashParams, []);
 
   const logout = () => {
-    console.log("Logging out");
     Cookies.remove("spotifyId");
     Cookies.remove("username");
     setUsername("");
@@ -50,7 +50,6 @@ function App() {
     }
   }
 
-  console.log("user", username, "spotifyId", spotifyId);
   pullFriends(spotifyId);
 
   return (
@@ -60,6 +59,13 @@ function App() {
           <NavBar />
           <FriendsSidebar spotifyId={spotifyId} />
           <Switch>
+            <Route path="/friend/:id/name/:name">
+              {(params) => {
+                return (
+                  <FriendsInfo spotifyId={params.id} username={params.name} />
+                );
+              }}
+            </Route>
             <Route path="/profile">
               {(_) => {
                 return <Profile logout={logout} />;

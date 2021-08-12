@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import { pullFriends } from "../services";
+import { pullFriendRequests, pullFriends } from "../services";
 
 const StyledSearchBar = styled.div`
   position: absolute;
@@ -14,6 +14,7 @@ const StyledInput = styled.input`
 `;
 
 const DEFAULT_PLACEHOLDER = "Add friend by Spotify ID";
+const SELF_PLACEHOLDER = "You can't add yourself!";
 const NOT_FOUND_PLACEHOLDER = "No user found! :(";
 const ADDED_PLACEHOLDER = "Added!";
 
@@ -36,14 +37,16 @@ class FriendsSearchBar extends React.Component {
         friendId: this.state.input,
       }),
     };
-    console.log("this is my spotifyid " + this.props.spotifyId);
     const response = await fetch(
-      `/friend/${this.props.spotifyId}`,
+      `/friend/request/${this.props.spotifyId}`,
       requestOptions
     );
     if (response.status === 200) {
       this.setState({ input: "", placeholder: ADDED_PLACEHOLDER });
       pullFriends(this.props.spotifyId);
+      pullFriendRequests(this.props.spotifyId);
+    } else if (response.status === 400) {
+      this.setState({ input: "", placeholder: SELF_PLACEHOLDER });
     } else {
       this.setState({ input: "", placeholder: NOT_FOUND_PLACEHOLDER });
     }
