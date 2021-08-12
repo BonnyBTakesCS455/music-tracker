@@ -40,6 +40,7 @@ const Name = styled.p`
 `;
 
 const Song = styled.p`
+  line-height: 1.25em;
   font-weight: normal;
   margin: 0.5em 0;
 `;
