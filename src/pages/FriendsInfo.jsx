@@ -25,7 +25,10 @@ function FriendsInfo({ username, spotifyId }) {
   return (
     <React.Fragment>
       <header className="App-container">
-        <PageHeader title={`Look at ${username}'s Top Songs!`} />
+        <PageHeader
+          title={`Look at ${username}'s Top Songs!`}
+          spotifyId={spotifyId}
+        />
         <p>{username}'s most listened to songs:</p>
         <SongList songs={songs} showPlays={true} />
       </header>
