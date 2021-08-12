@@ -43,7 +43,7 @@ const Accept = styled.button`
   float: left;
   color: white;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 0.25em 0.75em;
   &:hover {
     background-color: #3fe87a;
@@ -53,15 +53,15 @@ const Accept = styled.button`
 const Deny = styled.button`
   margin-left: 1em;
   font-weight: bold;
-  background: #9e1a1a;
+  background: #59615d;
   cursor: pointer;
   float: left;
   color: white;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 0.25em 0.75em;
   &:hover {
-    background-color: #d64040;
+    background-color: #838a86;
   }
 `;
 
