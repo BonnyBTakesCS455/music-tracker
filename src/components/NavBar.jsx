@@ -35,6 +35,7 @@ const StyledImage = styled.img`
   height: auto;
   max-width: 40px;
   max-height: 40px;
+  cursor: pointer;
 `;
 
 const ProfileText = styled.div`
