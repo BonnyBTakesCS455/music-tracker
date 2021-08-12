@@ -126,6 +126,10 @@ exports.acceptFriendRequest = async (req, res) => {
 exports.createFriendRequest = async (req, res) => {
   const spotifyId = req.params.id;
   const friendToAdd = req.body.friendId;
+  if (spotifyId === friendToAdd) {
+    res.sendStatus(400);
+    return;
+  }
   const userFriend = await UserController.directFindUserBySpotifyId(
     friendToAdd
   );

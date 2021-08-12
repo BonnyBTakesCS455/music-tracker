@@ -14,6 +14,7 @@ const StyledInput = styled.input`
 `;
 
 const DEFAULT_PLACEHOLDER = "Add friend by Spotify ID";
+const SELF_PLACEHOLDER = "You can't add yourself!";
 const NOT_FOUND_PLACEHOLDER = "No user found! :(";
 const ADDED_PLACEHOLDER = "Added!";
 
@@ -44,6 +45,8 @@ class FriendsSearchBar extends React.Component {
       this.setState({ input: "", placeholder: ADDED_PLACEHOLDER });
       pullFriends(this.props.spotifyId);
       pullFriendRequests(this.props.spotifyId);
+    } else if (response.status === 400) {
+      this.setState({ input: "", placeholder: SELF_PLACEHOLDER });
     } else {
       this.setState({ input: "", placeholder: NOT_FOUND_PLACEHOLDER });
     }
