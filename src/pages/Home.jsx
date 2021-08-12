@@ -27,7 +27,7 @@ function Home({ username, spotifyId, user }) {
     <React.Fragment>
       <header className="App-container">
         <PageHeader title={`Hey ${username}!`} />
-        <p>Your most listened songs:</p>
+        <p>Your most listened to songs:</p>
         <SongList songs={songs} showPlays={true} />
       </header>
       {!songs.length && <Spinner />}
