@@ -13,7 +13,17 @@ import { connect } from "react-redux";
 
 const Flexbox = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+`;
+
+const Paragraph = styled.span`
+    display: inline;
+    vertical-align: bottom;
+`;
+
+const Minutes = styled.h2`
+    display: inline;
+    vertical-align: bottom;
 `;
 
 function Insights({ spotifyId }) {
@@ -46,8 +56,9 @@ function Insights({ spotifyId }) {
     <React.Fragment>
       <header className="App-container">
         <h1>Insights</h1>
-        <h1>{minutes && minutes.minutesListened}</h1>
-        minutes listened in the past 24 hours
+        <div style={{'display': 'inline'}}>
+        <Minutes>{minutes && minutes.minutesListened}</Minutes>  <Paragraph>minutes listened in the past 24 hours.</Paragraph>
+        </div>
         <Graph artistData={artists} />
         <Flexbox>
           <TopGenres genres={genres} />
