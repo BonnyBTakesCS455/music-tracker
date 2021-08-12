@@ -19,7 +19,6 @@ function Recommendations({ username, spotifyId }) {
 
   useEffect(() => {
     if (!songs.length) {
-      console.log("fetching recommended songs");
       fetchSongs();
     }
   }, [fetchSongs, songs]);

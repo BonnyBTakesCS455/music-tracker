@@ -27,7 +27,6 @@ function App() {
   useEffect(getHashParams, []);
 
   const logout = () => {
-    console.log("Logging out");
     Cookies.remove("spotifyId");
     Cookies.remove("username");
     setUsername("");
@@ -51,7 +50,6 @@ function App() {
     }
   }
 
-  console.log("user", username, "spotifyId", spotifyId);
   pullFriends(spotifyId);
 
   return (

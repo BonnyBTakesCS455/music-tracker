@@ -177,6 +177,21 @@ app.get("/songs", async (req, res) => {
   );
 });
 
+app.get("/topartists", async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  const numberOfArtists = req.query.numberOfArtists || 5;
+  SpotifyController.getTopArtists(spotifyId, numberOfArtists).then(
+    async (data) => {
+      const artists = data.body.items;
+      res.send(artists);
+    },
+    (err) => {
+      console.log("Something went wrong!", err);
+      res.send(err);
+    }
+  );
+});
+
 app.get("/insights/minutes", async (req, res) => {
   const spotifyId = req.query.spotifyId;
   const user = await UserController.directFindUserBySpotifyId(spotifyId);
@@ -203,6 +218,32 @@ app.get("/insights/artists", async (req, res) => {
   );
 
   res.send(artistListens);
+});
+
+app.get("/insights/genres", async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  const user = await UserController.directFindUserBySpotifyId(spotifyId);
+  const listenStats = user.listenStats ?? {};
+
+  const topGenres = await InsightsController.getTopGenres(
+    spotifyId,
+    listenStats
+  );
+
+  res.send(topGenres);
+});
+
+app.get("/insights/musicstats", async (req, res) => {
+  const spotifyId = req.query.spotifyId;
+  const user = await UserController.directFindUserBySpotifyId(spotifyId);
+  const listenStats = user.listenStats ?? {};
+
+  const musicStats = await InsightsController.getMusicStats(
+    spotifyId,
+    listenStats
+  );
+
+  res.send(musicStats);
 });
 
 app.get("/recommendations", async (req, res) => {

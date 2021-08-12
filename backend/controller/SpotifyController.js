@@ -75,12 +75,47 @@ exports.loadClient = async (spotifyId) => {
 };
 
 /**
- * Get amountOfTracks most recent tracks
+ * Get user's top artists
+ * @param {*} spotifyId
+ * @param {*} numberOfArtists number of artists to return
+ * @returns
+ */
+exports.getTopArtists = (spotifyId, numberOfArtists) => {
+  return spotifyWrapperFunction(spotifyId, "getMyTopArtists", [
+    { limit: numberOfArtists },
+  ]);
+};
+
+/**
+ * Get multiple tracks by id
  * @param {*} spotifyId
  * @param {*} tracks list of tracks
+ * @returns all the tracks given in tracks
  */
 exports.getTracks = (spotifyId, tracks) => {
   return spotifyWrapperFunction(spotifyId, "getTracks", [tracks]);
+};
+
+/**
+ * Get audio features of tracks
+ * @param {*} spotifyId
+ * @param {*} tracks list of tracks
+ * @returns list of audio features for each track given in tracks
+ */
+exports.getAudioFeaturesForTracks = (spotifyId, tracks) => {
+  return spotifyWrapperFunction(spotifyId, "getAudioFeaturesForTracks", [
+    tracks,
+  ]);
+};
+
+/**
+ * Get multiple artists by id
+ * @param {*} spotifyId
+ * @param {*} artists list of artists
+ * @returns all the artists given in artists
+ */
+exports.getArtists = (spotifyId, artists) => {
+  return spotifyWrapperFunction(spotifyId, "getArtists", [artists]);
 };
 
 /**
@@ -107,7 +142,6 @@ exports.getRecommendations = async (spotifyId) => {
   const recentlyPlayedData = await this.getMyRecentlyPlayedTracks(spotifyId, {
     limit: 5,
   });
-  console.log("data", recentlyPlayedData);
   const recentlyPlayedSongs = recentlyPlayedData.body.items;
 
   // Randomly determine amount of songs to use as seed and amount of artists to use as seed
@@ -133,13 +167,11 @@ exports.getRecommendations = async (spotifyId) => {
     }
   }
 
-  console.log("song seed", songSeed, "artist seed", artistSeed);
-
   return spotifyWrapperFunction(spotifyId, "getRecommendations", [
     {
       seed_songs: songSeed,
       seed_artists: artistSeed,
-      min_popularity: 20,
+      min_popularity: 0,
       limit: 10,
     },
   ]);

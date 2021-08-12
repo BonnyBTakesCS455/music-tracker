@@ -1,12 +1,26 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { getMinutes, getArtistListens } from "../services";
+import styled from "styled-components";
+import {
+  getMinutes,
+  getArtistListens,
+  getTopGenres,
+  getMusicStats,
+} from "../services";
 import Graph from "../components/Graph";
+import TopGenres from "../components/TopGenres";
+import MusicStats from "../components/MusicStats";
 import { connect } from "react-redux";
+
+const Flexbox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
 
 function Insights({ spotifyId }) {
   const [minutes, setMinutes] = useState({});
   const [artists, setArtists] = useState({});
-  console.log(minutes);
+  const [genres, setGenres] = useState({});
+  const [musicStats, setMusicStats] = useState({});
 
   const fetchInsights = useCallback(() => {
     if (!spotifyId) return;
@@ -15,6 +29,12 @@ function Insights({ spotifyId }) {
     });
     getArtistListens(spotifyId).then((data) => {
       setArtists(data);
+    });
+    getTopGenres(spotifyId).then((data) => {
+      setGenres(data);
+    });
+    getMusicStats(spotifyId).then((data) => {
+      setMusicStats(data);
     });
   }, [spotifyId]);
 
@@ -29,6 +49,10 @@ function Insights({ spotifyId }) {
         <h1>{minutes && minutes.minutesListened}</h1>
         minutes listened in the past 24 hours
         <Graph artistData={artists} />
+        <Flexbox>
+          <TopGenres genres={genres} />
+          <MusicStats musicStats={musicStats} />
+        </Flexbox>
       </header>
     </React.Fragment>
   );

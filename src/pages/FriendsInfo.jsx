@@ -12,14 +12,12 @@ function FriendsInfo({ username, spotifyId }) {
     if (!spotifyId) return;
     getSongs(spotifyId).then((songs) => {
       if (songs.length) {
-        console.log(songs);
         setSongs(songs);
       }
     });
   }, [spotifyId]);
 
   useEffect(() => {
-    console.log("fetching songs");
     setSongs([]);
     fetchSongs();
   }, [fetchSongs]);

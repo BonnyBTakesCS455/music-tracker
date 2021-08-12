@@ -3,10 +3,6 @@ import Song from "./Song";
 import SongHeader from "./SongHeader";
 import styled from "styled-components";
 
-// There are duplicates. Will need to remove via ID
-// import * as fakeSongs from "../fakedata/songs.json";
-// const songs = fakeSongs.items;
-
 const Table = styled.div`
   display: table;
   table-layout: fixed;
