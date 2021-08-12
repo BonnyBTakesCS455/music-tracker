@@ -42,7 +42,7 @@ function PageHeader(props) {
     try {
       await navigator.clipboard.writeText(props.spotifyId);
     } catch (err) {
-      // Oh well
+      // No op
     }
   };
 
