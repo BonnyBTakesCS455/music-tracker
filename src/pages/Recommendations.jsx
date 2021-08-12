@@ -11,7 +11,6 @@ function Recommendations({ username, spotifyId }) {
   const fetchSongs = useCallback(() => {
     if (!spotifyId) return;
     getRecommendations(spotifyId).then((songs) => {
-      console.log("recommended songs", songs);
       if (songs.length) {
         setSongs(songs);
       }
