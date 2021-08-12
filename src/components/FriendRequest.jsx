@@ -42,15 +42,27 @@ const Accept = styled.button`
   cursor: pointer;
   float: left;
   color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.25em 0.75em;
+  &:hover {
+    background-color: #3fe87a;
+  }
 `;
 
 const Deny = styled.button`
   margin-left: 1em;
   font-weight: bold;
-  background: #9e1a1a;
+  background: #59615d;
   cursor: pointer;
   float: left;
   color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.25em 0.75em;
+  &:hover {
+    background-color: #838a86;
+  }
 `;
 
 class FriendRequest extends React.Component {

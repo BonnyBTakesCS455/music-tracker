@@ -23,8 +23,9 @@ exports.getFriends = async (req, res) => {
       let topTrackId = 0;
 
       Object.entries(userFriend.listenStats).forEach(([id, plays]) => {
-        if (plays.length > topPlays) {
-          topPlays = plays.length;
+        const flatListens = plays.flat(2);
+        if (flatListens.length > topPlays) {
+          topPlays = flatListens.length;
           topTrackId = id;
         }
       });
@@ -33,7 +34,7 @@ exports.getFriends = async (req, res) => {
         topTrackId,
       ]).then((data) => {
         const track = data.body.tracks[0];
-        return track.name;
+        return { name: track.name, artist: track.artists[0].name || "Unknown" };
       });
 
       let imageUrl = userFriend.image;
@@ -50,7 +51,7 @@ exports.getFriends = async (req, res) => {
         spotifyId: friendId,
         name: userFriend.name,
         imgSrc: imageUrl,
-        topTrack,
+        topTrack: `${topTrack.name} - ${topTrack.artist}`,
       };
     })
   );
