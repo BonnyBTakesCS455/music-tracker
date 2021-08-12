@@ -14,6 +14,7 @@ module.exports = {
     playlistModifyPrivate: "playlist-modify-private",
     playlistModifyPublic: "playlist-modify-public",
     playlistReadPrivate: "playlist-read-private",
+    userTopRead: "user-top-read",
     userReadEmail: "user-read-email",
     userReadPrivate: "user-read-private",
   },
