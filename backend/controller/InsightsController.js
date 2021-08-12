@@ -57,7 +57,7 @@ exports.getArtistListens = async (spotifyId, listenStats) => {
   const lastWeekTimestamp = lastWeek.toISOString();
 
   // of the form { trackId: # listens }
-  let listens = {};
+  const listens = {};
 
   Object.entries(listenStats).forEach(([trackId, trackListens]) => {
     // I kinda murked the data so there are nested arrays...
