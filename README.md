@@ -4,6 +4,12 @@
 
 Our Spotify tracker web app allows music listeners to view their music tastes and stats, analyze their listening history and trends, and compare with their friends. It is similar to Spotify Wrapped but supports more timeframes, will track more metrics and give you more insights on your music listening.
 
+## Goal legend
+
+- [x] Complete
+- [!] Had progress but couldn't complete
+- [ ] Haven't started
+
 ## Minimal Requirements:
 
 - [x] As a user, I want to be able to see what songs/albums/artists I listen to the most
@@ -22,10 +28,10 @@ Our Spotify tracker web app allows music listeners to view their music tastes an
 
 - [ ] As a user, I want to be able to share my stats on Instagram easily
 - [x] As a user, I want to see song recommendations based off of the songs I recently listened to
-- [ ] As a user, I want to see a comparison of how my music taste is similar to another user
-- [ ] As a user, I want to be able to have a weekly generated playlist of my favourite songs
-- [ ] Possible to create a playlist using ML gathering a bunch of info from different users?
-- [ ] As a user, I want to be able to recommend my top songs to my friends.
+- [!] As a user, I want to see a comparison of how my music taste is similar to another user
+- [!] As a user, I want to be able to have a weekly generated playlist of my favourite songs
+- [ ] Create a playlist using ML gathering a bunch of info from different users
+- [] As a user, I want to be able to recommend my top songs to my friends.
 
 ## Minimal Tasks:
 
