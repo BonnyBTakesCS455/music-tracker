@@ -4,8 +4,6 @@ import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis,
-  ResponsiveContainer,
 } from "recharts";
 
 function TopGenres({ genres }) {
