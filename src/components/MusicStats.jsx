@@ -20,6 +20,12 @@ function MusicStats({ musicStats }) {
         height={500}
         data={musicStats}
       >
+        <defs>
+          <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#1db954" stopOpacity={1}/>
+            <stop offset="95%" stopColor="#1db954" stopOpacity={0.1}/>
+          </linearGradient>
+        </defs>
         <PolarGrid />
         <PolarAngleAxis
           dataKey="feature"
@@ -29,8 +35,8 @@ function MusicStats({ musicStats }) {
         <Radar
           name="You"
           dataKey="value"
-          stroke="#8884d8"
-          fill="#8884d8"
+          stroke="#1db954"
+          fill="url(#colorPv)"
           fillOpacity={0.6}
         />
       </RadarChart>
