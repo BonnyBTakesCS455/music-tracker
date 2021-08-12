@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema(
     token: String,
     refreshToken: String,
     lastScraped: Number,
+    friendRequestIds: [String],
     friendIds: [String],
     topSongIds: [String],
     listenStats: mongoose.Schema.Types.Mixed,

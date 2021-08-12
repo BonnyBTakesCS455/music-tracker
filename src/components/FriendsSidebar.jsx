@@ -4,8 +4,9 @@ import SlidingPane from "react-sliding-pane";
 import "../css/SldiingPane.css";
 import FriendsIcon from "../icons/Friends_Filled_WHITE.png";
 import Friend from "./Friend";
+import FriendRequest from "./FriendRequest";
 import FriendsSearchBar from "./FriendsSearchBar";
-import { pullFriends } from "../services";
+import { pullFriendRequests, pullFriends } from "../services";
 import { connect } from "react-redux";
 
 const StickySidebar = styled.div`
@@ -46,9 +47,8 @@ class FriendsSidebar extends React.Component {
     this.setState((prevState) => {
       return { show: !prevState.show };
     });
-    if (this.state.show) {
-      pullFriends(this.props.spotifyId);
-    }
+    pullFriends(this.props.spotifyId);
+    pullFriendRequests(this.props.spotifyId);
   }
 
   render() {
@@ -68,6 +68,14 @@ class FriendsSidebar extends React.Component {
           width={"400px"}
           title={<SidebarTitle>Top Tracks</SidebarTitle>}
         >
+          {this.props.friendRequests.map((friendRequest) => (
+            <FriendRequest
+              spotifyId={this.props.spotifyId}
+              friendSpotifyId={friendRequest.spotifyId}
+              imgSrc={friendRequest.imgSrc}
+              name={friendRequest.name}
+            />
+          ))}
           {this.props.friends.map((friend) => (
             <Friend
               imgSrc={friend.imgSrc}
@@ -86,6 +94,7 @@ class FriendsSidebar extends React.Component {
 function mapStateToProps(state) {
   return {
     friends: state.userSettings.friends,
+    friendRequests: state.userSettings.friendRequests,
   };
 }
 
