@@ -53,7 +53,7 @@ const PlaysColumn = styled.div`
 const SongRow = styled.div`
   display: flex;
   width: 100%;
-  color: ${props => props.color};
+  color: ${(props) => props.color};
   margin: 4px 4px 12px 0px;
   overflow: visible;
   line-height: normal;
@@ -61,14 +61,14 @@ const SongRow = styled.div`
 `;
 
 function mapStateToProps(state) {
-    return {
-      isDarkModeEnabled: state.userSettings.isDarkModeEnabled,
-    };
-  }
+  return {
+    isDarkModeEnabled: state.userSettings.isDarkModeEnabled,
+  };
+}
 
 function SongHeader({ isDarkModeEnabled, showPlays }) {
   return (
-    <SongRow color={isDarkModeEnabled? '#1DB954' : 'grey'}>
+    <SongRow color={isDarkModeEnabled ? "#1DB954" : "grey"}>
       <ImgDiv></ImgDiv>
       <SongColumn>Song</SongColumn>
       <ArtistColumn>Artist</ArtistColumn>

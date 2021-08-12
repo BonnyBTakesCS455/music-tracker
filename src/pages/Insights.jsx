@@ -17,13 +17,13 @@ const Flexbox = styled.div`
 `;
 
 const Paragraph = styled.span`
-    display: inline;
-    vertical-align: bottom;
+  display: inline;
+  vertical-align: bottom;
 `;
 
 const Minutes = styled.h2`
-    display: inline;
-    vertical-align: bottom;
+  display: inline;
+  vertical-align: bottom;
 `;
 
 function Insights({ spotifyId }) {
@@ -56,8 +56,9 @@ function Insights({ spotifyId }) {
     <React.Fragment>
       <header className="App-container">
         <h1>Insights</h1>
-        <div style={{'display': 'inline'}}>
-        <Minutes>{minutes && minutes.minutesListened}</Minutes>  <Paragraph>minutes listened in the past 24 hours.</Paragraph>
+        <div style={{ display: "inline" }}>
+          <Minutes>{minutes && minutes.minutesListened}</Minutes>{" "}
+          <Paragraph>minutes listened in the past 24 hours.</Paragraph>
         </div>
         <Graph artistData={artists} />
         <Flexbox>
