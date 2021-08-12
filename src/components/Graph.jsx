@@ -5,7 +5,6 @@ function Graph({ artistData, ...props }) {
     <>
       <h3>Most listened to artists</h3>
       <BarChart width={800} height={1000} data={artistData} layout="vertical">
-        {/* <Line type="monotone" dataKey="uv" stroke="#1DB954" /> */}
         <CartesianGrid stroke="#444" />
         <Tooltip cursor={{ fill: "rgba(255, 255, 255, 0.2)" }} />
         <XAxis

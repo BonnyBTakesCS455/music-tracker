@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
-import { getMinutes, getArtistListens, getTopGenres, getMusicStats } from "../services";
+import {
+  getMinutes,
+  getArtistListens,
+  getTopGenres,
+  getMusicStats,
+} from "../services";
 import Graph from "../components/Graph";
 import TopGenres from "../components/TopGenres";
 import MusicStats from "../components/MusicStats";
@@ -29,8 +34,8 @@ function Insights({ spotifyId }) {
       setGenres(data);
     });
     getMusicStats(spotifyId).then((data) => {
-        setMusicStats(data);
-      });
+      setMusicStats(data);
+    });
   }, [spotifyId]);
 
   useEffect(() => {
@@ -45,8 +50,8 @@ function Insights({ spotifyId }) {
         minutes listened in the past 24 hours
         <Graph artistData={artists} />
         <Flexbox>
-            <TopGenres genres={genres} />
-            <MusicStats musicStats={musicStats} />
+          <TopGenres genres={genres} />
+          <MusicStats musicStats={musicStats} />
         </Flexbox>
       </header>
     </React.Fragment>

@@ -103,7 +103,9 @@ exports.getTracks = (spotifyId, tracks) => {
  * @returns list of audio features for each track given in tracks
  */
 exports.getAudioFeaturesForTracks = (spotifyId, tracks) => {
-  return spotifyWrapperFunction(spotifyId, "getAudioFeaturesForTracks", [tracks]);
+  return spotifyWrapperFunction(spotifyId, "getAudioFeaturesForTracks", [
+    tracks,
+  ]);
 };
 
 /**
@@ -164,8 +166,6 @@ exports.getRecommendations = async (spotifyId) => {
       break;
     }
   }
-
-  console.log("song seed", songSeed, "artist seed", artistSeed);
 
   return spotifyWrapperFunction(spotifyId, "getRecommendations", [
     {

@@ -5,7 +5,6 @@ function Profile({ logout }) {
   return (
     <React.Fragment>
       <header className="App-container">
-        <h1>The user profile page</h1>
         <Settings logout={logout} />
       </header>
     </React.Fragment>

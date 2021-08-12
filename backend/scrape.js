@@ -5,7 +5,7 @@ const scrape = async (spotifyId) => {
   const { lastScraped } = await UserController.directFindUserBySpotifyId(
     spotifyId
   );
-  console.log("lastScraped", lastScraped);
+
   return SpotifyController.getMyRecentlyPlayedTracks(spotifyId, {
     limit: 50,
     after: lastScraped || 0,

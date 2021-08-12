@@ -62,16 +62,16 @@ export function getTopGenres(spotifyId) {
 }
 
 export function getMusicStats(spotifyId) {
-    return fetch(`/insights/musicstats?spotifyId=${spotifyId}`).then(
-      (data) => {
-        return data.json();
-      },
-      (err) => {
-        console.log("something went wrong", err);
-        throw err;
-      }
-    );
-  }
+  return fetch(`/insights/musicstats?spotifyId=${spotifyId}`).then(
+    (data) => {
+      return data.json();
+    },
+    (err) => {
+      console.log("something went wrong", err);
+      throw err;
+    }
+  );
+}
 
 export function createPlaylistWithSongs(
   spotifyId,

@@ -1,5 +1,11 @@
 import React from "react";
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from "recharts";
+import {
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+} from "recharts";
 
 function MusicStats({ musicStats }) {
   if (!musicStats) return <></>;
@@ -16,8 +22,11 @@ function MusicStats({ musicStats }) {
         data={musicStats}
       >
         <PolarGrid />
-        <PolarAngleAxis dataKey="feature" tick={{ fontSize: 14, fill: "grey" }} />
-        <PolarRadiusAxis tick={{ fontSize: 14, fill: "grey" }}/>
+        <PolarAngleAxis
+          dataKey="feature"
+          tick={{ fontSize: 14, fill: "grey" }}
+        />
+        <PolarRadiusAxis tick={{ fontSize: 14, fill: "grey" }} />
         <Radar
           name="You"
           dataKey="value"

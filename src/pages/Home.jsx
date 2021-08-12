@@ -19,7 +19,6 @@ function Home({ username, spotifyId, user }) {
 
   useEffect(() => {
     if (!songs.length) {
-      console.log("fetching songs");
       fetchSongs();
     }
   }, [fetchSongs, songs]);
