@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-} from "recharts";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
 
 function TopGenres({ genres }) {
   if (!genres) return <></>;
